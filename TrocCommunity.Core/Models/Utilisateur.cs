@@ -45,13 +45,13 @@ namespace TrocCommunity.Core.Models
 
         [Required]
         [EnumDataType(typeof(string))]
-        public TypeUtilisateur typeUtilisateur { get; set; }
+        public TypeUtilisateur TypeUtilisateur { get; set; }
 
         [Required]
         public Adresse Adresse { get; set; }
 
         public bool Statut { get; set; }
 
-        public string photo { get; set; }
+        public string Photo { get; set; }
     }
 }

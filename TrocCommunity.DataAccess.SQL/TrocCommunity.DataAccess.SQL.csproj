@@ -58,6 +58,10 @@
     <Compile Include="Migrations\202101210843411_InitialModel.designer.cs">
       <DependentUpon>202101210843411_InitialModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202101210953192_InitialModelModif1.cs" />
+    <Compile Include="Migrations\202101210953192_InitialModelModif1.designer.cs">
+      <DependentUpon>202101210953192_InitialModelModif1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MyContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -75,6 +79,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202101210843411_InitialModel.resx">
       <DependentUpon>202101210843411_InitialModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101210953192_InitialModelModif1.resx">
+      <DependentUpon>202101210953192_InitialModelModif1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
