@@ -10,12 +10,15 @@ namespace TrocCommunity.Core.Models
     public abstract class Utilisateur : BaseEntity
     {
         [Required]
+        [MaxLength(50), MinLength(2)]
         public string LastName { get; set; }
 
         [Required]
+        [MaxLength(50), MinLength(2)]
         public string FirstName { get; set; }
 
         [Required]
+        [MaxLength(20), MinLength(6)]
         public string Pseudo { get; set; }
 
         [Required]
@@ -28,10 +31,12 @@ namespace TrocCommunity.Core.Models
 
         [Required]
         [DataType(DataType.Password)]
+        [MaxLength(20), MinLength(6)]
         public string Password { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
+        [MaxLength(20), MinLength(6)]
         public string Confirmpwd { get; set; }
 
         [Required]
@@ -39,6 +44,7 @@ namespace TrocCommunity.Core.Models
         public DateTime DateNaissance { get; set; }
 
         [Required]
+        [EnumDataType(typeof(string))]
         public TypeUtilisateur typeUtilisateur { get; set; }
 
         [Required]

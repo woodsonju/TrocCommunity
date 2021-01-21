@@ -2,7 +2,7 @@
 
 namespace TrocCommunity.Core.Models
 {
-    public class BibliothequeVirtuelle
+    public class BibliothequeVirtuelle: BaseEntity
     {
         public List<Livre> Livres { get; set; }
     }

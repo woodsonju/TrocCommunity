@@ -2,7 +2,7 @@
 
 namespace TrocCommunity.Core.Models
 {
-    public class Livre
+    public class Livre: BaseEntity
     {
         [Required]
         public string Author { get; set; }
@@ -26,8 +26,9 @@ namespace TrocCommunity.Core.Models
         public string Image { get; set; }
 
         [Required]
-        public Category Category { get; set; }
+        public Categorie Categorie { get; set; }
 
+        public bool Disponible { get; set; }
 
     }
 }

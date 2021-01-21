@@ -1,6 +1,6 @@
 ﻿namespace TrocCommunity.Core.Models
 {
-    public class WishList
+    public class WishList: BaseEntity
     {
     }
 }

@@ -42,12 +42,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Logic\IRepository.cs" />
     <Compile Include="Models\Admin.cs" />
     <Compile Include="Models\Adresse.cs" />
     <Compile Include="Models\Annonce.cs" />
     <Compile Include="Models\BaseEntity.cs" />
     <Compile Include="Models\BibliothequeVirtuelle.cs" />
-    <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\Categorie.cs" />
     <Compile Include="Models\Client.cs" />
     <Compile Include="Models\EtatDuLivre.cs" />
     <Compile Include="Models\GestionnaireDePoint.cs" />
@@ -59,6 +60,10 @@
     <Compile Include="Models\Utilisateur.cs" />
     <Compile Include="Models\WishList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Tools\" />
+    <Folder Include="ViewModels\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
