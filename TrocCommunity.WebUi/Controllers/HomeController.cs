@@ -22,7 +22,7 @@ namespace TrocCommunity.WebUi.Controllers
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "Merci de remplir ce formulaire";
 
             return View();
         }
