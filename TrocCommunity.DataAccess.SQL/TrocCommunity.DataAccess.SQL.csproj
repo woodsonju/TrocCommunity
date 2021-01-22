@@ -35,10 +35,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -54,9 +54,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DAO\SQLRepository.cs" />
+    <Compile Include="DAO\SQLRepositoryUtilisateur.cs" />
     <Compile Include="Migrations\202101210843411_InitialModel.cs" />
     <Compile Include="Migrations\202101210843411_InitialModel.designer.cs">
       <DependentUpon>202101210843411_InitialModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101211051341_AddAdminClients.cs" />
+    <Compile Include="Migrations\202101211051341_AddAdminClients.Designer.cs">
+      <DependentUpon>202101211051341_AddAdminClients.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101211458142_MAJUtilisateurChangement.cs" />
+    <Compile Include="Migrations\202101211458142_MAJUtilisateurChangement.Designer.cs">
+      <DependentUpon>202101211458142_MAJUtilisateurChangement.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MyContext.cs" />
@@ -75,6 +84,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202101210843411_InitialModel.resx">
       <DependentUpon>202101210843411_InitialModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101211051341_AddAdminClients.resx">
+      <DependentUpon>202101211051341_AddAdminClients.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101211458142_MAJUtilisateurChangement.resx">
+      <DependentUpon>202101211458142_MAJUtilisateurChangement.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

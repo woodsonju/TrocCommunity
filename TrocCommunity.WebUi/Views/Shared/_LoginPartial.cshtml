@@ -1,0 +1,17 @@
+﻿
+
+
+@if (Session["Connexion"] == null)
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li>@Html.ActionLink("Connexion", "Index", "Login")</li>
+
+    </ul>
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li>@Html.ActionLink("Bonjour " + Session["Connexion"] + "!", "Index", "Home")</li>
+        <li>@Html.ActionLink("Déconnexion", "LogOut", "Login")</li>
+    </ul>
+}

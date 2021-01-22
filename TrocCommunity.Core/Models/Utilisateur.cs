@@ -17,7 +17,7 @@ namespace TrocCommunity.Core.Models
         [MaxLength(50), MinLength(2)]
         public string FirstName { get; set; }
 
-        [Required]
+        
         [MaxLength(20), MinLength(6)]
         public string Pseudo { get; set; }
 
@@ -29,7 +29,7 @@ namespace TrocCommunity.Core.Models
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
-        [Required]
+        
         [DataType(DataType.Password)]
         [MaxLength(20), MinLength(6)]
         public string Password { get; set; }
@@ -44,7 +44,7 @@ namespace TrocCommunity.Core.Models
         public DateTime DateNaissance { get; set; }
 
         [Required]
-        [EnumDataType(typeof(string))]
+        //[EnumDataType(typeof(string))]
         public TypeUtilisateur typeUtilisateur { get; set; }
 
         [Required]
