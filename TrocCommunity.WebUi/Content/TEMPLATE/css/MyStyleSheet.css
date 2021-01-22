@@ -1,0 +1,183 @@
+﻿/********************************  MEDIA QUERY NAVBAR *****************/
+@media only screen and (max-width: 461px) {
+    .js-logo-clone {
+        font-size : 12px!important;
+    }
+
+}
+
+@media only screen and (max-width: 368px) {
+    .js-logo-clone {
+        font-size: 10px !important;
+    }
+}
+
+@media only screen and (max-width: 344px) {
+    .js-logo-clone {
+        visibility : hidden;
+    }
+}
+
+
+
+/****************************** SECTION PICTURE *****************************/
+#container-section-picture{
+    background-color: lavender;
+    border-radius : 5px;
+    margin-top: 50px;
+}
+
+#section-picture {
+    height: 500px;
+    display: flex;
+    align-items: center;
+}
+
+.section-picture-card {
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+}
+
+.section-picture-image{
+    display: flex;
+    align-content: center;
+    justify-content : center;
+    height : 200px;
+}
+
+
+.section-picture-card img {
+    border-radius: 50%;
+}
+
+.section-picture-titre-card {
+    margin-top : 30px;
+    margin-bottom : 30px;
+}
+
+
+/******************************  MEDIA QUERY PICTURE SECTION ***********************************/
+@media only screen and (max-width: 845px) {
+    #section-picture {
+        min-height: 700px;
+    }
+    .title-picture {
+        font-size: 19px;
+    }
+    .picture-image {
+        width: 75%;
+    }
+}
+@media only screen and (max-width: 845px) {
+    #section-picture {
+        min-height: 1000px;
+    }
+
+    .title-picture {
+        font-size: 15px;
+    }
+
+    .picture-image {
+        width: 55%;
+    }
+}
+
+
+/***************************************** SECTION LAST BOOKS ***************************************/
+.container-last-books{
+    height : 500px;
+}
+
+#title-section-last-books {
+    margin-top: 50px;
+}
+
+.section-book-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin-top: 30px;
+    margin-bottom : 30px;
+}
+
+.section-picture-book-image {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    height: 200px;
+}
+
+.titre-books-thumbnail {
+    margin-top : 20px;
+    text-decoration : underline;
+}
+
+.books-items {
+    display: flex;
+    justify-content: center;
+}
+.books-points {
+    background-color: forestgreen;
+    border-radius: 5px;
+    width: 50%;
+}
+
+
+/*********************** IMAGE PARALLAX PAGE D'ACCUEIL **************************/
+
+/* Section Parallax */
+
+.section-parallax {
+    background-image: url("/Content/TEMPLATE/images/books-1204029_1920.jpg");
+    height: 200px;
+    width: 100%;
+    background-attachment: fixed;
+    background-position: right;
+    background-repeat: no-repeat;
+    background-size: cover;
+    filter: grayscale(60%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-shadow: 3px 5px 2px #474747;
+    border-radius: 5px;
+}
+
+.txt-par {
+    font-size: 50px;
+    font-weight: bold;
+    color: #fff;
+}
+
+
+/************************************ FOOTER **************************************************/
+#footer {
+    background-color: lavender;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 150px;
+    border-radius: 5px;
+    margin-bottom : 20px;
+}
+
+#footer a {
+    color : darkgrey;
+}
+
+
+
+
+/********************************************** CONTACT ***********************************************/
+
+form {
+    margin-top : 30px;
+}
+
+#Contact-title {
+    margin-top : 50px;
+}
+
+
+

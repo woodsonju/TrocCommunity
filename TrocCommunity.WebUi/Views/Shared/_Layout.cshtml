@@ -1,43 +1,120 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Mon application ASP.NET</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+    <title>ShopMax &mdash; Colorlib e-Commerce Template</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mukta:300,400,700">
+    <link rel="stylesheet" href=@Url.Content("/Content/TEMPLATE/fonts/icomoon/style.css")>
+
+    <link rel="stylesheet" href=@Url.Content("/Content/TEMPLATE/css/bootstrap.min.css")>
+    <link rel="stylesheet" href=@Url.Content("/Content/TEMPLATE/css/magnific-popup.css")>
+    <link rel="stylesheet" href=@Url.Content("/Content/TEMPLATE/css/jquery-ui.css")>
+    <link rel="stylesheet" href=@Url.Content("/Content/TEMPLATE/css/owl.carousel.min.css")>
+    <link rel="stylesheet" href=@Url.Content("/Content/TEMPLATE/css/owl.theme.default.min.css")>
+    <link href="~/Content/TEMPLATE/css/MyStyleSheet.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href=@Url.Content("/Content/TEMPLATE/css/aos.css")>
+
+    <link rel="stylesheet" href=@Url.Content("/Content/TEMPLATE/css/style.css")>
+
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Nom d'application", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+
+    <div class="site-wrap">
+
+
+        <div class="site-navbar bg-white py-2">
+
+            <div class="search-wrap">
+                <div class="container">
+                    <a href="#" class="search-close js-search-close"><span class="icon-close2"></span></a>
+                    <form action="#" method="post">
+                        <input type="text" class="form-control" placeholder="Search keyword and hit enter...">
+                    </form>
+                </div>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Accueil", "Index", "Home")</li>
-                    <li>@Html.ActionLink("À propos de", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
+
+            <div class="container">
+                <div class="d-flex align-items-center justify-content-between">
+                    <div class="logo">
+                        <div class="site-logo">
+                            @Html.ActionLink("Troc-Community", "Index", "Home", null, new { @class = "js-logo-clone" })
+                        </div>
+                    </div>
+                    <div class="main-nav d-none d-lg-block">
+                        <nav class="site-navigation text-right text-md-center" role="navigation">
+                            <ul class="site-menu js-clone-nav d-none d-lg-block">
+                                <li class="has-children active">
+                                    <a href="index.html">Home</a>
+                                    <ul class="dropdown">
+                                        <li><a href="#">Menu One</a></li>
+                                        <li><a href="#">Menu Two</a></li>
+                                        <li><a href="#">Menu Three</a></li>
+                                        <li class="has-children">
+                                            <a href="#">Sub Menu</a>
+                                            <ul class="dropdown">
+                                                <li><a href="#">Menu One</a></li>
+                                                <li><a href="#">Menu Two</a></li>
+                                                <li><a href="#">Menu Three</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+
+                                <li><a href="shop.html">Shop</a></li>
+                                <li><a href="#">Catalogue</a></li>
+                                <li><a href="#">New Arrivals</a></li>
+                                <li><a href="contact.html">Contact</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="icons">
+                        <a href="#" class="icons-btn d-inline-block js-search-open"><span class="icon-search"></span></a>
+                        <a href="#" class="icons-btn d-inline-block"><span class="icon-heart-o"></span></a>
+                        <a href="cart.html" class="icons-btn d-inline-block bag">
+                            <span class="icon-shopping-bag"></span>
+                            <span class="number">2</span>
+                        </a>
+                        <a href="#" class="site-menu-toggle js-menu-toggle ml-3 d-inline-block d-lg-none"><span class="icon-menu"></span></a>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
+        <div class="container body-content">
+            @RenderBody()
+            <hr />
+        </div>
         <footer>
-            <p>&copy; @DateTime.Now.Year - Mon application ASP.NET</p>
+            <div class="container">
+                <div class="row" id="footer">
+                    <a href='@Url.Action("Contact", "Home")'>
+                        <i class="far fa-envelope fa-4x"></i>
+                    </a>
+                </div>
+
+            </div>
         </footer>
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
+
+    <!-- ScrollMagic & GreenSock -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.3/ScrollMagic.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/plugins/debug.addIndicators.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/plugins/animation.gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/gsap.min.js"></script>
+    <script src="https://kit.fontawesome.com/abb3234326.js" crossorigin="anonymous"></script>
+    <!--<script src=@Url.Content("/Content/TEMPLATE/js/jquery-3.3.1.min.js")></script>-->
+    <script src=@Url.Content("/Content/jquery-3.5.1.js")></script>
+    <script src=@Url.Content("/Content/TEMPLATE/js/jquery-ui.js")></script>
+    <script src=@Url.Content("/Content/TEMPLATE/js/popper.min.js")></script>
+    <script src=@Url.Content("/Content/TEMPLATE/js/bootstrap.min.js")></script>
+    <script src=@Url.Content("/Content/TEMPLATE/js/owl.carousel.min.js")></script>
+    <script src=@Url.Content("/Content/TEMPLATE/js/jquery.magnific-popup.min.js")></script>
+    <script src=@Url.Content("/Content/TEMPLATE/js/aos.js")></script>
+    <script src=@Url.Content("/Content/TEMPLATE/js/main.js")></script>
+    <script src=@Url.Content("/Content/TEMPLATE/js/MyScript.js")></script>
     @RenderSection("scripts", required: false)
 </body>
 </html>
