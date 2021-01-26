@@ -19,6 +19,10 @@
 
     <link rel="stylesheet" href=@Url.Content("/Content/TEMPLATE/css/style.css")>
 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
 </head>
 <body>
 
@@ -63,10 +67,13 @@
                                     </ul>
                                 </li>
 
-                                <li><a href="shop.html">Shop</a></li>
+                               @* <li><a href="shop.html">Shop</a></li>*@
                                 <li><a href="#">Catalogue</a></li>
-                                <li><a href="#">New Arrivals</a></li>
-                                <li><a href="contact.html">Contact</a></li>
+                             @*   <li><a href="#">New Arrivals</a></li>*@
+                                @*<li><a href="contact.html">Contact</a></li>*@
+                                <li>@Html.ActionLink("Gestion des utilisateurs", "Index", "Utilisateurs")</li>
+                                <li>@Html.ActionLink("Créer un compte", "Register", "Account")</li>
+
                             </ul>
                         </nav>
                     </div>
@@ -115,6 +122,9 @@
     <script src=@Url.Content("/Content/TEMPLATE/js/aos.js")></script>
     <script src=@Url.Content("/Content/TEMPLATE/js/main.js")></script>
     <script src=@Url.Content("/Content/TEMPLATE/js/MyScript.js")></script>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>
 </html>

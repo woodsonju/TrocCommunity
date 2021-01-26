@@ -1,0 +1,79 @@
+﻿@model TrocCommunity.Core.Models.Utilisateur
+
+@{
+    ViewBag.Title = "Register";
+}
+
+<div class="register">
+
+
+    @{
+        ViewBag.Title = "Register";
+    }
+
+    <h2>Register</h2>
+
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal signup-form">
+            <h2>Créer un compte</h2>
+            <p class="hint-text">Inscrivez vous avec votre compte réseau  social ou votre adresse e-mail</p>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger, formRegister" })
+            <div class="social-btn text-center form-group">
+                <a href="#" class="btn btn-primary btn-lg"><i class="fa fa-facebook"></i> Facebook</a>
+                <a href="#" class="btn btn-info btn-lg"><i class="fa fa-twitter"></i> Twitter</a>
+                <a href="/account/google-login" class="btn btn-danger btn-lg"><i class="fa fa-google"></i> Google</a>
+            </div>
+            <div class="or-seperator"><b>or</b></div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control input-lg" } })
+                @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control input-lg" } })
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control input-lg", placeholder = "Au moins 6 caractères" } })
+                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Confirmpwd, htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(model => model.Confirmpwd, new { htmlAttributes = new { @class = "form-control input-lg", placeholder = "Au moins 6 caractères" } })
+                @Html.ValidationMessageFor(model => model.Confirmpwd, "", new { @class = "text-danger" })
+
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.DateNaissance, htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(model => model.DateNaissance, new { htmlAttributes = new { @class = "form-control input-lg" } })
+                @Html.ValidationMessageFor(model => model.DateNaissance, "", new { @class = "text-danger" })
+
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-success btn-lg btn-block signup-btn">S'inscrire</button>
+            </div>
+        </div>
+    }
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
