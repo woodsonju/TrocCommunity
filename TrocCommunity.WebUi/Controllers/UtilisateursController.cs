@@ -14,9 +14,6 @@ namespace TrocCommunity.WebUi.Controllers
     {
 
         IRepository<Utilisateur> contextUser;
-        IRepository<Utilisateur> contextMockUser;
-
-
 
         public UtilisateursController()
         {

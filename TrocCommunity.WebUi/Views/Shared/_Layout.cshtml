@@ -13,14 +13,16 @@
     <link rel="stylesheet" href=@Url.Content("/Content/TEMPLATE/css/jquery-ui.css")>
     <link rel="stylesheet" href=@Url.Content("/Content/TEMPLATE/css/owl.carousel.min.css")>
     <link rel="stylesheet" href=@Url.Content("/Content/TEMPLATE/css/owl.theme.default.min.css")>
-    <link href="~/Content/TEMPLATE/css/MyStyleSheet.css" rel="stylesheet" />
+    <link rel="stylesheet" href=@Url.Content("/Content/TEMPLATE/css/MyStyleSheet.css")>
 
     <link rel="stylesheet" href=@Url.Content("/Content/TEMPLATE/css/aos.css")>
 
     <link rel="stylesheet" href=@Url.Content("/Content/TEMPLATE/css/style.css")>
 
+   
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    @Styles.Render("~/Content/css")
+    @* @Styles.Render("~/Content/css")*@
     @Scripts.Render("~/bundles/modernizr")
 
 </head>
@@ -67,12 +69,24 @@
                                     </ul>
                                 </li>
 
-                               @* <li><a href="shop.html">Shop</a></li>*@
+                                @* <li><a href="shop.html">Shop</a></li>*@
                                 <li><a href="#">Catalogue</a></li>
-                             @*   <li><a href="#">New Arrivals</a></li>*@
+                                @*   <li><a href="#">New Arrivals</a></li>*@
                                 @*<li><a href="contact.html">Contact</a></li>*@
                                 <li>@Html.ActionLink("Gestion des utilisateurs", "Index", "Utilisateurs")</li>
                                 <li>@Html.ActionLink("Créer un compte", "Register", "Account")</li>
+
+                                <li class="has-children active">
+                                    <button class="btn btn-primary dropdown-toggle" type="button" id="about-us" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        About Us
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="about-us">
+                                        <li>@Html.ActionLink("Mon compte", "Index", "MyAccount")</li>
+                                        <li>@Html.ActionLink("Tableau de bord", "Index", "TableauDeBord")</li>
+                                        <li>@Html.ActionLink("Déconnexion", "Logout", "Account")</li>
+                                    </ul>
+                                </li>
 
                             </ul>
                         </nav>
