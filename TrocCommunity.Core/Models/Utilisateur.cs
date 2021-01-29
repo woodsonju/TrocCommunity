@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace TrocCommunity.Core.Models
 {
-    public class Utilisateur : BaseEntity
+    public abstract class Utilisateur : BaseEntity
     {
 
         /*        [Required]
