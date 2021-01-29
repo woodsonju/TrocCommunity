@@ -10,22 +10,20 @@ using TrocCommunity.DataAccess.SQL.DAO;
 
 namespace TrocCommunity.WebUi.Controllers
 {
-    public class UtilisateursController : Controller
+    public class MyAccountController : Controller
     {
-
         IRepository<Utilisateur> contextUser;
 
-        public UtilisateursController()
+        public MyAccountController()
         {
             this.contextUser = new SQLRepository<Utilisateur>(new MyContext());
         }
 
 
-        public UtilisateursController(IRepository<Utilisateur> contextUser)
+        public MyAccountController(IRepository<Utilisateur> contextUser)
         {
             this.contextUser = contextUser;
         }
-
 
         // GET: Utilisateurs
         public ActionResult Index()

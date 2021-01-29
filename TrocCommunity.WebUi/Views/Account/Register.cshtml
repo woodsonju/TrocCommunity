@@ -1,4 +1,5 @@
 ﻿@model TrocCommunity.Core.Models.Utilisateur
+<link rel="stylesheet" href=@Url.Content("/Content/css/register.css")>
 
 @{
     ViewBag.Title = "Register";
@@ -12,7 +13,6 @@
     }
 
     <h2>Register</h2>
-
 
     @using (Html.BeginForm())
     {
@@ -30,7 +30,7 @@
             </div>
             <div class="or-seperator"><b>or</b></div>
 
-            <div class="form-group">
+            <div class="form-group" id="formRegister">
                 @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label" })
                 @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control input-lg" } })
                 @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })

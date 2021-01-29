@@ -46,7 +46,7 @@ namespace TrocCommunity.WebUi.Controllers
 
             if (ModelState.IsValid)
             {
-                Utilisateur utilisateur = new Utilisateur(formRegister.UserName, formRegister.Email, formRegister.Password, formRegister.Confirmpwd, formRegister.DateNaissance);
+                Utilisateur utilisateur = new Client(formRegister.UserName, formRegister.Email, formRegister.Password, formRegister.Confirmpwd, formRegister.DateNaissance);
 
                 contextUser.Insert(utilisateur);
                 contextUser.SaveChanges();

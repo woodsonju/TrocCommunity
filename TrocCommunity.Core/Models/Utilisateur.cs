@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace TrocCommunity.Core.Models
 {
-    public class Utilisateur : BaseEntity
+    public abstract class Utilisateur : BaseEntity
     {
 
         /*        [Required]
@@ -61,6 +61,8 @@ namespace TrocCommunity.Core.Models
         {
         }
 
+
+        //Constructeur permettant de faire l'injection de ma classe FormRegister dans Utilisateur
         public Utilisateur(string userName, string email, string password, string confirmpwd, DateTime dateNaissance)
         {
             UserName = userName;
@@ -68,7 +70,7 @@ namespace TrocCommunity.Core.Models
             Password = password;
             Confirmpwd = confirmpwd;
             DateNaissance = dateNaissance;
-
+            TypeUtilisateur = TypeUtilisateur.CLIENT;  //Lors de la création d'un utilisateur il sera un Client par défaut
         }
 
     }

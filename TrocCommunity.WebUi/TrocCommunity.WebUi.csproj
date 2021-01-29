@@ -125,7 +125,9 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdresseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MyAccountController.cs" />
     <Compile Include="Controllers\UtilisateursController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -137,6 +139,8 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\css\myAccount.css" />
+    <Content Include="Content\css\register.css" />
     <Content Include="Content\jquery-3.5.1.js" />
     <Content Include="Content\TEMPLATE\about.html" />
     <Content Include="Content\TEMPLATE\cart.html" />
@@ -341,6 +345,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\MyAccount\" />
     <Folder Include="Views\Utilisateur\" />
   </ItemGroup>
   <ItemGroup>
