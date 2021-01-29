@@ -138,13 +138,19 @@ namespace TrocCommunity.WebUi.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult ConfirmNewPassWord(Utilisateur u )
+        public ActionResult ConfirmNewPassWord(FormRegister u )
         {
+
+            Utilisateur ut = ((SQLRepositoryUtilisateur)contextUser).findByEmail(u.Email);
+
+            ut.Password = u.Password;
+            ut.Confirmpwd = u.Confirmpwd;
+
             if (ModelState.IsValid)
             {
-                if (u.Password.Equals(u.Confirmpwd))
+                if (ut.Password.Equals(ut.Confirmpwd))
                 {
-                    contextUser.Update(u);
+                    contextUser.Update(ut);
                     contextUser.SaveChanges();
                     return RedirectToAction("Index", "Home");
                 }
