@@ -53,6 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DAO\SQLRepository.cs" />
+    <Compile Include="DAO\SQLRepositoryUtilisateur.cs" />
     <Compile Include="Migrations\202101210843411_InitialModel.cs" />
     <Compile Include="Migrations\202101210843411_InitialModel.designer.cs">
       <DependentUpon>202101210843411_InitialModel.cs</DependentUpon>

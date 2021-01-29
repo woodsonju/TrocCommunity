@@ -67,12 +67,13 @@
                                     </ul>
                                 </li>
 
-                               @* <li><a href="shop.html">Shop</a></li>*@
+                                @* <li><a href="shop.html">Shop</a></li>*@
                                 <li><a href="#">Catalogue</a></li>
-                             @*   <li><a href="#">New Arrivals</a></li>*@
+                                @*   <li><a href="#">New Arrivals</a></li>*@
                                 @*<li><a href="contact.html">Contact</a></li>*@
-                                <li>@Html.ActionLink("Gestion des utilisateurs", "Index", "Utilisateurs")</li>
-                                <li>@Html.ActionLink("Créer un compte", "Register", "Account")</li>
+
+                                <li>@Html.Partial("_LoginPartial") </li>
+                                
 
                             </ul>
                         </nav>
