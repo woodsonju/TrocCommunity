@@ -13,9 +13,9 @@ else
 {
     if ((int)Session["TypeUtilisateur"] == 0)
     {
-        
+
         <li class="has-children active">
-            @Html.ActionLink("Admin "+Session["Connexion"], "Index", "Home")
+            @Html.ActionLink("Admin " + Session["Connexion"], "Index", "Home")
             <ul class="dropdown">
                 <li>@Html.ActionLink("Mon Compte", "LogOut", "Account")</li>
                 <li>@Html.ActionLink("Gestion des utilisateurs", "Index", "Utilisateurs")</li>
@@ -28,12 +28,22 @@ else
         <li class="has-children active">
             @Html.ActionLink((String)Session["Connexion"], "Index", "Home")
             <ul class="dropdown">
-                <li>@Html.ActionLink("Mon Compte", "LogOut", "Account")</li>
-                <li>@Html.ActionLink("Tableau de Bord", "LogOut", "Account")</li>
+                <li>@Html.ActionLink("Mon Compte", "LogOut", "MyAccount")</li>
+                <li>@Html.ActionLink("Tableau de Bord", "Index", "TableauDeBord")</li>
                 <li>@Html.ActionLink("Déconnexion", "LogOut", "Account")</li>
             </ul>
         </li>
     }
 
-
+    @*<li class="has-children active">
+            <button class="btn btn-primary dropdown-toggle" type="button" id="about-us" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                About Us
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="about-us">
+                <li>@Html.ActionLink("Mon compte", "Index", "MyAccount")</li>
+                <li>@Html.ActionLink("Tableau de bord", "Index", "TableauDeBord")</li>
+                <li>@Html.ActionLink("Déconnexion", "Logout", "Account")</li>
+            </ul>
+        </li>*@
 }
