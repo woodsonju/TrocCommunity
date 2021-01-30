@@ -59,8 +59,6 @@ namespace TrocCommunity.WebUi.Controllers
 
         public ActionResult Login()
         {
-
-
             return View();
         }
 
@@ -69,9 +67,6 @@ namespace TrocCommunity.WebUi.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Login(string Email, string Password)
         {
-
-
-
             if (ModelState.IsValid)
             {
                 Utilisateur utilisateur = ((SQLRepositoryUtilisateur)contextUser).findByEmail(Email);
@@ -94,11 +89,13 @@ namespace TrocCommunity.WebUi.Controllers
                         Session["Connexion"] = utilisateur.UserName;
                         Session["TypeUtilisateur"] = utilisateur.TypeUtilisateur;
 
+/*                        TempData["TypeUtilisateur"] = utilisateur.TypeUtilisateur;
+                        TempData.Keep();*/
+
                         return RedirectToAction("Index", "Home");
                     }
 
                 }
-
 
                 return View();
             }
