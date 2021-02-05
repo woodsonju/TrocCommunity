@@ -70,6 +70,10 @@
     <Compile Include="Migrations\202102010934104_MAJ.Designer.cs">
       <DependentUpon>202102010934104_MAJ.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202101281743155_AdresseNull.cs" />
+    <Compile Include="Migrations\202101281743155_AdresseNull.Designer.cs">
+      <DependentUpon>202101281743155_AdresseNull.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MyContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
