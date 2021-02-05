@@ -10,6 +10,8 @@ function Erase() {
 }
 window.onload = Erase;
 
+
+
 /***************************** ANIMATION SECTION PICTURE ********************/
 
 const listePicture = document.querySelectorAll('.section-picture-card');

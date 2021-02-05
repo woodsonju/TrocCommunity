@@ -54,41 +54,21 @@
   <ItemGroup>
     <Compile Include="DAO\SQLRepository.cs" />
     <Compile Include="DAO\SQLRepositoryUtilisateur.cs" />
-    <Compile Include="Migrations\202101210843411_InitialModel.cs" />
-    <Compile Include="Migrations\202101210843411_InitialModel.designer.cs">
-      <DependentUpon>202101210843411_InitialModel.cs</DependentUpon>
+    <Compile Include="Migrations\202101301656029_InitialMigration.cs" />
+    <Compile Include="Migrations\202101301656029_InitialMigration.Designer.cs">
+      <DependentUpon>202101301656029_InitialMigration.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202101210953192_InitialModelModif1.cs" />
-    <Compile Include="Migrations\202101210953192_InitialModelModif1.designer.cs">
-      <DependentUpon>202101210953192_InitialModelModif1.cs</DependentUpon>
+    <Compile Include="Migrations\202101312051227_UpdateDataBaseAdmin.cs" />
+    <Compile Include="Migrations\202101312051227_UpdateDataBaseAdmin.Designer.cs">
+      <DependentUpon>202101312051227_UpdateDataBaseAdmin.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202101252330114_ModifClassUtilisateur.cs" />
-    <Compile Include="Migrations\202101252330114_ModifClassUtilisateur.designer.cs">
-      <DependentUpon>202101252330114_ModifClassUtilisateur.cs</DependentUpon>
+    <Compile Include="Migrations\202102010916031_MiseAJour.cs" />
+    <Compile Include="Migrations\202102010916031_MiseAJour.Designer.cs">
+      <DependentUpon>202102010916031_MiseAJour.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202101252341168_ModifClassUtilisateurAbstractSupprimer.cs" />
-    <Compile Include="Migrations\202101252341168_ModifClassUtilisateurAbstractSupprimer.designer.cs">
-      <DependentUpon>202101252341168_ModifClassUtilisateurAbstractSupprimer.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202101260004040_ModifClassUtilisateurMinLength.cs" />
-    <Compile Include="Migrations\202101260004040_ModifClassUtilisateurMinLength.designer.cs">
-      <DependentUpon>202101260004040_ModifClassUtilisateurMinLength.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202101260006505_ModifClassUtilisateurMinLengthV1.cs" />
-    <Compile Include="Migrations\202101260006505_ModifClassUtilisateurMinLengthV1.designer.cs">
-      <DependentUpon>202101260006505_ModifClassUtilisateurMinLengthV1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202101261810138_ModifClassUtilisateurMinLengthV2.cs" />
-    <Compile Include="Migrations\202101261810138_ModifClassUtilisateurMinLengthV2.designer.cs">
-      <DependentUpon>202101261810138_ModifClassUtilisateurMinLengthV2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202101272209045_ModificationSameDataBaseWoodSon.cs" />
-    <Compile Include="Migrations\202101272209045_ModificationSameDataBaseWoodSon.Designer.cs">
-      <DependentUpon>202101272209045_ModificationSameDataBaseWoodSon.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202101281739147_AddAdminAndClient.cs" />
-    <Compile Include="Migrations\202101281739147_AddAdminAndClient.Designer.cs">
-      <DependentUpon>202101281739147_AddAdminAndClient.cs</DependentUpon>
+    <Compile Include="Migrations\202102010934104_MAJ.cs" />
+    <Compile Include="Migrations\202102010934104_MAJ.Designer.cs">
+      <DependentUpon>202102010934104_MAJ.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\202101281743155_AdresseNull.cs" />
     <Compile Include="Migrations\202101281743155_AdresseNull.Designer.cs">
@@ -109,35 +89,17 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202101210843411_InitialModel.resx">
-      <DependentUpon>202101210843411_InitialModel.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202101301656029_InitialMigration.resx">
+      <DependentUpon>202101301656029_InitialMigration.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202101210953192_InitialModelModif1.resx">
-      <DependentUpon>202101210953192_InitialModelModif1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202101312051227_UpdateDataBaseAdmin.resx">
+      <DependentUpon>202101312051227_UpdateDataBaseAdmin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202101252330114_ModifClassUtilisateur.resx">
-      <DependentUpon>202101252330114_ModifClassUtilisateur.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202102010916031_MiseAJour.resx">
+      <DependentUpon>202102010916031_MiseAJour.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202101252341168_ModifClassUtilisateurAbstractSupprimer.resx">
-      <DependentUpon>202101252341168_ModifClassUtilisateurAbstractSupprimer.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202101260004040_ModifClassUtilisateurMinLength.resx">
-      <DependentUpon>202101260004040_ModifClassUtilisateurMinLength.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202101260006505_ModifClassUtilisateurMinLengthV1.resx">
-      <DependentUpon>202101260006505_ModifClassUtilisateurMinLengthV1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202101261810138_ModifClassUtilisateurMinLengthV2.resx">
-      <DependentUpon>202101261810138_ModifClassUtilisateurMinLengthV2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202101272209045_ModificationSameDataBaseWoodSon.resx">
-      <DependentUpon>202101272209045_ModificationSameDataBaseWoodSon.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202101281739147_AddAdminAndClient.resx">
-      <DependentUpon>202101281739147_AddAdminAndClient.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202101281743155_AdresseNull.resx">
-      <DependentUpon>202101281743155_AdresseNull.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202102010934104_MAJ.resx">
+      <DependentUpon>202102010934104_MAJ.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -73,5 +73,16 @@ namespace TrocCommunity.Core.Models
             TypeUtilisateur = TypeUtilisateur.CLIENT;  //Lors de la création d'un utilisateur il sera un Client par défaut
         }
 
+        public Utilisateur(int id, string userName, string email, string password, string confirmpwd, DateTime dateNaissance, TypeUtilisateur typeUtilisateur)
+        {
+            Id = id;
+            UserName = userName;
+            Email = email;
+            Password = password;
+            Confirmpwd = confirmpwd;
+            DateNaissance = dateNaissance;
+            TypeUtilisateur = typeUtilisateur;
+        }
+
     }
 }

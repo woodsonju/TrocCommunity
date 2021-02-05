@@ -180,4 +180,21 @@ form {
 }
 
 
+/************************************** TABLE SECTION ADMIN **************************************/
+#myTable{
+    margin-bottom : 20px;
+}
 
+#myTable th {
+    text-align: center !important;
+}
+
+#myTable td {
+    text-align : center!important;
+}
+
+    #myTable td .btn {
+        height: 25px !important;
+        margin-right: 6px !important;
+        margin-left: 6px !important;
+    }
