@@ -4,28 +4,28 @@ namespace TrocCommunity.Core.Models
 {
     public class Livre: BaseEntity
     {
-        [Required]
+        //[Required]
         public string Author { get; set; }
 
-        [Required]
+        //[Required]
         public string Editor { get; set; }
 
-        [Required]
+        //[Required]
         public string Edition { get; set; }
 
-        [Required]
+        //[Required]
         public long  BarCode { get; set; }
 
-        [Required]
+        //[Required]
         public int Volume { get; set; }
 
-        [Required]
+        //[Required]
         public string Language { get; set; }
 
-        [Required]
+        //[Required]
         public string Image { get; set; }
 
-        [Required]
+        //[Required]
         public Categorie Categorie { get; set; }
 
         public bool Disponible { get; set; }

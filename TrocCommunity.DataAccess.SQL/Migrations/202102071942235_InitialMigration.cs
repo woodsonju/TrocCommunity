@@ -104,21 +104,21 @@ namespace TrocCommunity.DataAccess.SQL.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Author = c.String(nullable: false),
-                        Editor = c.String(nullable: false),
-                        Edition = c.String(nullable: false),
+                        Author = c.String(),
+                        Editor = c.String(),
+                        Edition = c.String(),
                         BarCode = c.Long(nullable: false),
                         Volume = c.Int(nullable: false),
-                        Language = c.String(nullable: false),
-                        Image = c.String(nullable: false),
+                        Language = c.String(),
+                        Image = c.String(),
                         Disponible = c.Boolean(nullable: false),
-                        Categorie_Id = c.Int(nullable: false),
+                        Categorie_Id = c.Int(),
                         BibliothequeVirtuelle_Id = c.Int(),
                         TableauDeBord_Id = c.Int(),
                         WishList_Id = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Categories", t => t.Categorie_Id, cascadeDelete: true)
+                .ForeignKey("dbo.Categories", t => t.Categorie_Id)
                 .ForeignKey("dbo.BibliothequeVirtuelles", t => t.BibliothequeVirtuelle_Id)
                 .ForeignKey("dbo.TableauDeBords", t => t.TableauDeBord_Id)
                 .ForeignKey("dbo.WishLists", t => t.WishList_Id)

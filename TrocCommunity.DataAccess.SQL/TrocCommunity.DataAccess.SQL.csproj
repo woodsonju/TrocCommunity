@@ -54,25 +54,9 @@
   <ItemGroup>
     <Compile Include="DAO\SQLRepository.cs" />
     <Compile Include="DAO\SQLRepositoryUtilisateur.cs" />
-    <Compile Include="Migrations\202101301656029_InitialMigration.cs" />
-    <Compile Include="Migrations\202101301656029_InitialMigration.Designer.cs">
-      <DependentUpon>202101301656029_InitialMigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202101312051227_UpdateDataBaseAdmin.cs" />
-    <Compile Include="Migrations\202101312051227_UpdateDataBaseAdmin.Designer.cs">
-      <DependentUpon>202101312051227_UpdateDataBaseAdmin.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202102010916031_MiseAJour.cs" />
-    <Compile Include="Migrations\202102010916031_MiseAJour.Designer.cs">
-      <DependentUpon>202102010916031_MiseAJour.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202102010934104_MAJ.cs" />
-    <Compile Include="Migrations\202102010934104_MAJ.Designer.cs">
-      <DependentUpon>202102010934104_MAJ.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202101281743155_AdresseNull.cs" />
-    <Compile Include="Migrations\202101281743155_AdresseNull.Designer.cs">
-      <DependentUpon>202101281743155_AdresseNull.cs</DependentUpon>
+    <Compile Include="Migrations\202102071942235_InitialMigration.cs" />
+    <Compile Include="Migrations\202102071942235_InitialMigration.Designer.cs">
+      <DependentUpon>202102071942235_InitialMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MyContext.cs" />
@@ -89,17 +73,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202101301656029_InitialMigration.resx">
-      <DependentUpon>202101301656029_InitialMigration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202101312051227_UpdateDataBaseAdmin.resx">
-      <DependentUpon>202101312051227_UpdateDataBaseAdmin.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202102010916031_MiseAJour.resx">
-      <DependentUpon>202102010916031_MiseAJour.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202102010934104_MAJ.resx">
-      <DependentUpon>202102010934104_MAJ.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202102071942235_InitialMigration.resx">
+      <DependentUpon>202102071942235_InitialMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

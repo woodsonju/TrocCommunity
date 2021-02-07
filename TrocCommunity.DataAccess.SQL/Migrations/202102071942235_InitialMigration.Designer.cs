@@ -7,13 +7,13 @@ namespace TrocCommunity.DataAccess.SQL.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class MAJ : IMigrationMetadata
+    public sealed partial class InitialMigration : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(MAJ));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(InitialMigration));
         
         string IMigrationMetadata.Id
         {
-            get { return "202102010934104_MAJ"; }
+            get { return "202102071942235_InitialMigration"; }
         }
         
         string IMigrationMetadata.Source
