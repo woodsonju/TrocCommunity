@@ -597,16 +597,17 @@
     <Content Include="Views\Admin\Edit.cshtml" />
     <Content Include="Views\Admin\Delete.cshtml" />
     <Content Include="Views\Admin\Details.cshtml" />
-    <Content Include="Views\Categories\Create.cshtml" />
-    <Content Include="Views\Categories\Delete.cshtml" />
-    <Content Include="Views\Categories\Details.cshtml" />
-    <Content Include="Views\Categories\Edit.cshtml" />
+    <Content Include="Views\Categories\Catalogue.cshtml" />
     <Content Include="Views\Categories\Index.cshtml" />
-    <Content Include="Views\Livres\Create.cshtml" />
-    <Content Include="Views\Livres\Delete.cshtml" />
-    <Content Include="Views\Livres\Details.cshtml" />
-    <Content Include="Views\Livres\Edit.cshtml" />
-    <Content Include="Views\Livres\Index.cshtml" />
+    <Content Include="Views\Categories\Lit.cshtml" />
+    <Content Include="Views\Categories\Bie.cshtml" />
+    <Content Include="Views\Categories\Jeu.cshtml" />
+    <Content Include="Views\Categories\Ban.cshtml" />
+    <Content Include="Views\Categories\Art.cshtml" />
+    <Content Include="Views\Categories\Sco.cshtml" />
+    <Content Include="Views\Categories\Loi.cshtml" />
+    <Content Include="Views\Categories\Sci.cshtml" />
+    <Content Include="Views\Categories\Ent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

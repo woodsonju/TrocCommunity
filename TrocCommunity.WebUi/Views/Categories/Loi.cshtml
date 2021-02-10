@@ -1,0 +1,53 @@
+﻿@model TrocCommunity.Core.Tools.CategorieLivre
+
+@{
+    ViewBag.Title = "Loisir";
+}
+
+<div class="container-fluid" id="container-categorie-livre">
+    <div class="row" id="categorie-livre-row">
+
+        <div class="col-md-4" style="padding : 0!important">
+
+            <div class="bs-example">
+                <div class="accordion" id="accordionExample">
+
+                    <div class="card">
+                        @foreach (var item in Model.Categories)
+                        {
+                            <div class="card-header" id="@item.Description.Substring(0,3)">
+                                <h2 class="mb-0 category-btn">
+                                    <button type="button" class="btn btn-link ">
+                                        @Html.ActionLink(item.NomCategorie, item.NomCategorie.Substring(0, 3), null, null)
+                                    </button>
+                                    <i class="fas fa-sort-down  collapsed ml-lg-2" data-toggle="collapse" data-target="#@item.NomCategorie.Substring(0,3)"></i>
+                                </h2>
+                            </div>
+                            <div id="@item.NomCategorie.Substring(0,3)" class="collapse " aria-labelledby="@item.Description.Substring(0,3)" data-parent="#accordionExample">
+                                <div class="card-body">
+                                    <p>@Html.DisplayFor(modelItem => item.Description)</p>
+                                </div>
+                            </div>
+                        }
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+        <div class="col-md-8">
+            @foreach (var item in Model.Livres)
+            {
+                @Html.DisplayFor(modelItem => item.Author)
+            }
+        </div>
+
+
+    </div>
+</div>
+
+

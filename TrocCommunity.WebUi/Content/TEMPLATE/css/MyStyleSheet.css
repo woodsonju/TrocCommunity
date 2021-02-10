@@ -200,43 +200,30 @@ form {
     }
 
 
-/*************************************************** PANEL LIVRE CATEGORIE **********************************/
-#container-categorie-livre{
-    width : 100%!important;
+/*************************** CATEGORIE LIVRE *****************************/
+#container-categorie-livre {
+    margin-top : 50px!important;
+    margin-bottom : 50px!important;
+}
+
+#container-categorie-livre .col-md-4 {
     padding : 0!important;
-    margin : 0!important;
 }
 
-.panel-group {
-    background-color: lavender !important;
+.category-btn {
+    display: flex;
+    justify-content : space-between;
 }
 
-.panel-heading {
-    text-align: center;
-    margin-bottom: 20px !important;
-    margin-top: 5px !important;
-    border-radius: 5% !important;
-    padding-left: 10px !important;
-    padding-right: 10px !important;
-    padding-top: 10px !important;
-}
-
-    .panel-heading a {
-        color: black;
-        text-decoration: none;
-        
+    .category-btn .fas {
+        color: #ee4266!important;
+        cursor : pointer;
     }
 
-    .panel-heading a:hover {
-        font-size: 25px !important;
-
-    }
-
-.panel-body {
-    margin-bottom: 20px !important;
-    text-align: center;
-    color: #12151a;
-    font-size: 20px !important;
-    margin-top: 18px;
+.body-content {
+    padding: 0 !important;
 }
 
+.card-body:nth-last-child(odd) {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.125)!important;
+}

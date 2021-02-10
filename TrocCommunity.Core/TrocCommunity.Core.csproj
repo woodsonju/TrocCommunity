@@ -60,6 +60,7 @@
     <Compile Include="Models\Utilisateur.cs" />
     <Compile Include="Models\WishList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tools\CategorieLivre.cs" />
     <Compile Include="Tools\FormRegister.cs" />
     <Compile Include="Tools\TestControllerAdmin.cs" />
     <Compile Include="Tools\UpdateDatabaseAdmin.cs" />
