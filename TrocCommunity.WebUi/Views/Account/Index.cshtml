@@ -1,0 +1,59 @@
+﻿@model TrocCommunity.Core.Models.Utilisateur
+<link rel="stylesheet" href=@Url.Content("/Content/css/profile.css")>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<h2>Index</h2>
+
+<div class="container">
+
+
+
+    <div class="row">
+        <div class="col-sm-12 imgUserProfile">
+            <img src="~/Content/TEMPLATE/images/AccountImages/@TempData["Photo"]" class="img-responsive" />
+            <span class="pseudo"> @TempData["UserName"] </span>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-5 col-xs-12 edit-profile">
+            @Html.ActionLink("Profil ", "Details", new { id = @TempData["ID"] })
+            <p>Modifier mon  profil</p>
+        </div>
+        <div class="col-sm-5  col-xs-12 offset-sm-2  edit-profile">
+            @*@Html.ActionLink("Adresse", "DetailsAdresse", new { id = @TempData["ID"] })*@
+            @Html.ActionLink("Adresse", "DetailsAdresse", "Adresse", new { id = @TempData["ID"] })
+            <p>Modifier mon adresse</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-5 col-xs-12 edit-profile">
+            @Html.ActionLink("Abonnement", "Details", "Utilisateurs")
+            <p>M'abonner</p>
+        </div>
+
+        <div class="col-sm-5 col-xs-12 offset-sm-2 edit-profile">
+            @Html.ActionLink("Application TrocCommunity Mobile ", "Details", "Utilisateurs")
+            <p>Télecharger l'application TROC COMMUNITY</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-5 col-xs-12 edit-profile">
+            @Html.ActionLink("Aide", "Details", "Utilisateurs")
+            <p>Parcourir les rubriques d'aides disponible</p>
+        </div>
+
+        <div class="col-sm-5 col-xs-12 offset-sm-2 edit-profile">
+            @Html.ActionLink("Centre de messagerie ", "Details", "Utilisateurs")
+            <p>Consulter les messages Troc community et de vos amis</p>
+        </div>
+    </div>
+
+</div>
+

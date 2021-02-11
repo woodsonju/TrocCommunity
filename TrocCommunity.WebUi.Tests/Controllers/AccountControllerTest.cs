@@ -19,14 +19,19 @@ namespace TrocCommunity.WebUi.Tests.Controllers
         IRepository<Utilisateur> contextMockUser;
         UtilisateursController controllerUser;
 
-
+/*        IRepository<Adresse> controllerAdresse;
+*/
         [TestInitialize]
         public void Setup()
         {
-            contextUser = new SQLRepository<Utilisateur>(new MyContext());
+            /*contextUser = new SQLRepository<Utilisateur>(new MyContext());*/
+            contextUser = new SQLRepositoryUtilisateur(new MyContext());
             contextMockUser = new MockContext<Utilisateur>();
 
             controllerUser = new UtilisateursController(contextUser);
+
+            /*controllerAdresse = new */
+
         }
 
         [TestMethod]
@@ -34,11 +39,11 @@ namespace TrocCommunity.WebUi.Tests.Controllers
         public void RegisterWithHttpPost_DoesInsertUser()
         {
             //Arrange
-            string username = "TestUnit1";
-            string email = "TestUnit1@gmail.com";
-            string password = "TestUnit1";
-            string confirmPassword = "TestUnit1";
-            string dateNaiss = "17-08-2000";
+            string username = "TestUnit56";
+            string email = "TestUnit56@gmail.com";
+            string password = "TestUnit556";
+            string confirmPassword = "TestUnit56";
+            string dateNaiss = "17-08-2016";
             DateTime dateNaissance = DateTime.Parse(dateNaiss);
 
             var resultAvantInsertion = controllerUser.Index() as ViewResult;
@@ -57,6 +62,30 @@ namespace TrocCommunity.WebUi.Tests.Controllers
             //Assert
             Assert.AreEqual(tailleApresInsertion, tailleAvantInsertion + 1);
 
+        }
+
+
+        [TestMethod]
+        [TestCategory("Product Manager Controller")]
+        public void RegisterAction_DoesReturn_AdresseIsNotNull()
+        {
+            //Arrange
+            string username = "TestAdresse34";
+            string email = "testAdresse34@gmail.com";
+            string password = "testAdresse34";
+            string confirmPassword = "testAdresse34";
+            string dateNaiss = "18-11-2011";
+            DateTime dateNaissance = DateTime.Parse(dateNaiss);
+
+            //Act
+            AccountController controller = new AccountController(contextUser);
+            FormRegister formRegister = new FormRegister { UserName = username, Email = email, Password = password, Confirmpwd = confirmPassword, DateNaissance = dateNaissance };
+            var result = controller.Register(formRegister);
+
+            Utilisateur utilisateur = ((SQLRepositoryUtilisateur)contextUser).findByEmail("testAdresse34@gmail.com");
+
+            //Assert
+            Assert.IsNotNull(utilisateur.Adresse);
         }
 
     }

@@ -14,6 +14,7 @@ namespace TrocCommunity.DataAccess.SQL.DAO
         internal MyContext dataContext;
         internal DbSet<T> dbSet;
 
+
         public SQLRepository(MyContext DataContext)
         {
             this.dataContext = DataContext;
@@ -21,7 +22,7 @@ namespace TrocCommunity.DataAccess.SQL.DAO
         }
 
         public IQueryable<T> Collection()
-        {
+        {           
             return dbSet;
         }
 
@@ -48,6 +49,7 @@ namespace TrocCommunity.DataAccess.SQL.DAO
         public void SaveChanges()
         {
             dataContext.SaveChanges();
+            
         }
 
         public void Update(T t)

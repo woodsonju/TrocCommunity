@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using TrocCommunity.Core.Logic;
@@ -20,7 +21,6 @@ namespace TrocCommunity.WebUi.Controllers
             this.contextUser = new SQLRepository<Utilisateur>(new MyContext());
         }
 
-
         public UtilisateursController(IRepository<Utilisateur> contextUser)
         {
             this.contextUser = contextUser;
@@ -33,5 +33,21 @@ namespace TrocCommunity.WebUi.Controllers
             List<Utilisateur> users = contextUser.Collection().ToList();
             return View(users);
         }
+
+        // GET: Utilisateurs/Details/5
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Utilisateur utilisateur = contextUser.FindById((int)id);
+            if (utilisateur == null)
+            {
+                return HttpNotFound();
+            }
+            return View(utilisateur);
+        }
+
     }
 }

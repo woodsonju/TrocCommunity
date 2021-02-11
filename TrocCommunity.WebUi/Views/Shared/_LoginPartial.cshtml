@@ -28,7 +28,7 @@ else
         <li class="has-children active">
             @Html.ActionLink((String)Session["Connexion"], "Index", "Home")
               <ul class="dropdown">
-                <li>@Html.ActionLink("Mon compte", "Index", "MyAccount")</li>
+                <li>@Html.ActionLink("Mon compte", "Index", "Account")</li>
                 <li>@Html.ActionLink("Tableau de bord", "Index", "TableauDeBord")</li>
                 <li>@Html.ActionLink("Déconnexion", "Logout", "Account")</li>
             </ul>

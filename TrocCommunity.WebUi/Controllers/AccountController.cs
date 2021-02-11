@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
@@ -9,6 +10,7 @@ using System.Web.Routing;
 using TrocCommunity.Core.Logic;
 using TrocCommunity.Core.Models;
 using TrocCommunity.Core.Tools;
+using TrocCommunity.Core.ViewModels;
 using TrocCommunity.DataAccess.SQL;
 using TrocCommunity.DataAccess.SQL.DAO;
 
@@ -17,10 +19,12 @@ namespace TrocCommunity.WebUi.Controllers
     public class AccountController : Controller
     {
         private IRepository<Utilisateur> contextUser;
+        private IRepository<Adresse> contextAdresse;
 
         public AccountController()
         {
             contextUser = new SQLRepositoryUtilisateur(new MyContext());
+            contextAdresse = new SQLRepository<Adresse>(new MyContext());
         }
 
         public AccountController(IRepository<Utilisateur> contextUser)
@@ -28,13 +32,25 @@ namespace TrocCommunity.WebUi.Controllers
             this.contextUser = contextUser;
         }
 
+        public AccountController(IRepository<Utilisateur> contextUser, IRepository<Adresse> contextAdresse)
+        {
+            this.contextUser = contextUser;
+            this.contextAdresse = contextAdresse;
+        }
+
+        public ActionResult Index()
+        {
+            TempData.Keep();
+
+            return View();
+        }
+
 
         // GET: Account
         [AllowAnonymous]
         public ActionResult Register()
         {
-            /* FormRegister user = new FormRegister();*/
-            contextUser.Collection().ToList();
+            //Retourne la vue pour créer un utilisateur
             return View();
         }
 
@@ -47,9 +63,16 @@ namespace TrocCommunity.WebUi.Controllers
             if (ModelState.IsValid)
             {
                 Utilisateur utilisateur = new Client(formRegister.UserName, formRegister.Email, formRegister.Password, formRegister.Confirmpwd, formRegister.DateNaissance);
+                
+                //Lors de la création d'un utilisateur je crée un adresse par défaut
+    /*            utilisateur.Adresse = new Adresse {
+                  TypeDeVoie="", NomDeVoie="", NumVoie=0, CodePostale="00000", Ville="", Pays="" };*/
 
-                contextUser.Insert(utilisateur);
-                contextUser.SaveChanges();
+                contextUser.Insert(utilisateur); //Ajoute dans la liste d'utilisateur en mémoire (la liste locale)
+                contextUser.SaveChanges();  //Ensuite Actualise dans la base de données (la liste distante: remote)
+
+                ViewData["UserName"] = utilisateur.UserName;
+                
                 return RedirectToAction("Index", "Home");
             }
 
@@ -71,6 +94,7 @@ namespace TrocCommunity.WebUi.Controllers
             {
                 Utilisateur utilisateur = ((SQLRepositoryUtilisateur)contextUser).findByEmail(Email);
 
+
                 if (utilisateur == null)
                 {
                     ModelState.Clear();
@@ -89,8 +113,32 @@ namespace TrocCommunity.WebUi.Controllers
                         Session["Connexion"] = utilisateur.UserName;
                         Session["TypeUtilisateur"] = utilisateur.TypeUtilisateur;
 
-/*                        TempData["TypeUtilisateur"] = utilisateur.TypeUtilisateur;
-                        TempData.Keep();*/
+                        /**
+                         * Partie Woodson : Compte Client
+                         */
+                        //Username
+                        TempData["UserName"] = utilisateur.UserName;
+     
+                        //ID
+                        TempData["ID"] = utilisateur.Id;
+
+                        //img : photo
+                       if (utilisateur.Photo == null)
+                        {
+                            TempData["Photo"] = "imgProfile.png";
+                        }
+                        else
+                        {
+                            TempData["Photo"] = utilisateur.Photo;
+                        }
+
+                        // TempData["Photo"] = utilisateur.Photo;
+                        // TempData["AdresseId"] = utilisateur.Adresse.Id;
+
+                        /*          int id_adresse = utilisateur.Adresse.Id;*//*
+                                  //TempData["ID_ADRESSE"] = id_adresse;*/
+
+                        TempData.Keep();
 
                         return RedirectToAction("Index", "Home");
                     }
@@ -208,6 +256,73 @@ namespace TrocCommunity.WebUi.Controllers
             return View("");
         }
 
+        // GET: Utilisateurs/Details/5
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Utilisateur utilisateur = contextUser.FindById((int)id);
+            if (utilisateur == null)
+            {
+                return HttpNotFound();
+            }
+            return View(utilisateur);
+        }
+
+        // GET: Produits/Edit/5
+        public ActionResult Edit(int? id)
+        {          
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Utilisateur utilisateur = contextUser.FindById((int)id);
+            int adresseId = utilisateur.AdresseId;
+            Utilisateur uAdresse = ((SQLRepositoryUtilisateur)contextUser).FindByAdresseId(adresseId);
+            if (uAdresse == null)
+            {
+                return HttpNotFound();
+            }
+  
+            return View(utilisateur);
+        }
+
+        // POST: Produits/Edit/5
+        // Afin de déjouer les attaques par survalidation, activez les propriétés spécifiques auxquelles vous voulez établir une liaison. Pour 
+        // plus de détails, consultez https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(Client client, int id, HttpPostedFileBase image)
+        {
+           
+            if (!ModelState.IsValid)
+            {
+                TempData.Keep();
+                return View(client);
+            } else
+            {
+                if(image!=null)
+                {
+                    client.Photo = client.Id + Path.GetExtension(image.FileName);
+                    image.SaveAs(Server.MapPath("~/Content/TEMPLATE/images/AccountImages/") + client.Photo);
+                }
+
+                TempData["Photo"] = client.Photo;
+                TempData["UserName"] = client.UserName;
+                Session["Connexion"] = client.UserName;
+                TempData.Keep();
+                contextUser.Update(client);
+                contextUser.SaveChanges();
+                //img : photo
+              
+
+                return RedirectToAction("Index");
+            }
+
+        }
 
     }
 }

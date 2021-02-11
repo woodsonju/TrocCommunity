@@ -1,0 +1,66 @@
+﻿@model TrocCommunity.Core.ViewModels.UtilisateurViewModel
+
+@{
+    ViewBag.Title = "DetailsAdresse";
+}
+
+<h2>DetailsAdresse</h2>
+
+<div>
+    <h4>UtilisateurViewModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Utilisateur.Adresse.TypeDeVoie)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Utilisateur.Adresse.TypeDeVoie)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Utilisateur.Adresse.NomDeVoie)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Utilisateur.Adresse.NomDeVoie)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Utilisateur.Adresse.NumVoie)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Utilisateur.Adresse.NumVoie)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Utilisateur.Adresse.CodePostale)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Utilisateur.Adresse.CodePostale)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Utilisateur.Adresse.Ville)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Utilisateur.Adresse.Ville)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Utilisateur.Adresse.Pays)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Utilisateur.Adresse.Pays)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "EditAdresse", new { id = Model.Adresse.Id}) |
+    @Html.ActionLink("Retour vers Compte Utilisateur", "Index", "Account")
+</p>

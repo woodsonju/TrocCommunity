@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -51,7 +52,10 @@ namespace TrocCommunity.Core.Models
         /*[Required]*/
         public TypeUtilisateur TypeUtilisateur { get; set; }
 
+        [ForeignKey("AdresseId")]
         public Adresse Adresse { get; set; }
+
+        public int AdresseId { get; set; }
 
         /// public bool Statut { get; set; }
 
@@ -59,6 +63,7 @@ namespace TrocCommunity.Core.Models
 
         public Utilisateur()
         {
+           
         }
 
 
@@ -71,6 +76,16 @@ namespace TrocCommunity.Core.Models
             Confirmpwd = confirmpwd;
             DateNaissance = dateNaissance;
             TypeUtilisateur = TypeUtilisateur.CLIENT;  //Lors de la création d'un utilisateur il sera un Client par défaut
+            Photo = "imgProfile.png";
+            this.Adresse = new Adresse
+            {
+                TypeDeVoie = "",
+                NomDeVoie = "",
+                NumVoie = 0,
+                CodePostale = "00000",
+                Ville = "",
+                Pays = ""
+            };
         }
 
     }

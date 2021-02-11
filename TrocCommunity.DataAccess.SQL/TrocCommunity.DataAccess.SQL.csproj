@@ -94,6 +94,18 @@
     <Compile Include="Migrations\202101281743155_AdresseNull.Designer.cs">
       <DependentUpon>202101281743155_AdresseNull.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202102032211067_ModifClassUtilisateurDateNaissance.cs" />
+    <Compile Include="Migrations\202102032211067_ModifClassUtilisateurDateNaissance.Designer.cs">
+      <DependentUpon>202102032211067_ModifClassUtilisateurDateNaissance.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102041425150_ModifAddresseChampsValidation.cs" />
+    <Compile Include="Migrations\202102041425150_ModifAddresseChampsValidation.Designer.cs">
+      <DependentUpon>202102041425150_ModifAddresseChampsValidation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102091845374_AddForeignKeyAdresseInUser.cs" />
+    <Compile Include="Migrations\202102091845374_AddForeignKeyAdresseInUser.Designer.cs">
+      <DependentUpon>202102091845374_AddForeignKeyAdresseInUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MyContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -138,6 +150,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202101281743155_AdresseNull.resx">
       <DependentUpon>202101281743155_AdresseNull.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102032211067_ModifClassUtilisateurDateNaissance.resx">
+      <DependentUpon>202102032211067_ModifClassUtilisateurDateNaissance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102041425150_ModifAddresseChampsValidation.resx">
+      <DependentUpon>202102041425150_ModifAddresseChampsValidation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102091845374_AddForeignKeyAdresseInUser.resx">
+      <DependentUpon>202102091845374_AddForeignKeyAdresseInUser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

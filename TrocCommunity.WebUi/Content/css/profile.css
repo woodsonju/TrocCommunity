@@ -1,0 +1,54 @@
+﻿body {
+}
+/*
+.borderProfile {
+    border:1px solid rgb(189, 184, 184);
+    border-radius:5px;
+    height: 120px;
+    width: auto;
+}
+*/
+/*.bouton-outline-secondary {
+    color: #4183d7;
+    margin:35px;
+}
+
+.bouton-outline-secondary:hover {
+    background-color: rgb(159, 202, 243);
+    color: #4183d7;
+}*/
+
+
+
+
+.edit-profile {
+    border: 1px solid rgb(194, 185, 185);
+    border-radius: 5px;
+    margin-top: 50px;
+    text-align: center;
+    box-shadow: 6px 6px 8px rgb(164, 158, 158);
+}
+
+    .edit-profile:hover {
+        background-color: rgba(164, 158, 158, 0.49)
+    }
+
+
+.imgUserProfile img {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    margin-top: 24px;
+}
+
+.pseudo {
+    font-weight: bold;
+    margin: auto;
+    font-size: 30px;
+}
+
+/*.editPropile {
+    margin:auto;
+}
+*/
+

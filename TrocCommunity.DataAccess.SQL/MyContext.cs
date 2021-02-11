@@ -13,18 +13,18 @@ namespace TrocCommunity.DataAccess.SQL
         {
         }
 
-        public DbSet<Admin> Admins { get; set; }
-        public DbSet<Adresse> Adresses { get; set; }
-        public DbSet<Annonce> Annonces { get; set; }
-        public DbSet<BibliothequeVirtuelle> BibliothequeVirtuelle { get; set; }
-        public DbSet<Categorie> Categories { get; set; }
-        public DbSet<Client> Clients { get; set; }
-        public DbSet<GestionnaireDePoint> GestionnaireDePoints { get; set; }
-        public DbSet<LigneDeCommande> LigneDeCommandes { get; set; }
-        public DbSet<Livre> Livres { get; set; }
-        public DbSet<TableauDeBord> TableauDeBords { get; set; }
-        public DbSet<Utilisateur> Utilisateurs { get; set; }
-        public DbSet<WishList> WishLists { get; set; }
+        public virtual DbSet<Admin> Admins { get; set; }
+        public virtual DbSet<Adresse> Adresses { get; set; }
+        public virtual DbSet<Annonce> Annonces { get; set; }
+        public virtual DbSet<BibliothequeVirtuelle> BibliothequeVirtuelle { get; set; }
+        public virtual DbSet<Categorie> Categories { get; set; }
+        public virtual DbSet<Client> Clients { get; set; }
+        public virtual DbSet<GestionnaireDePoint> GestionnaireDePoints { get; set; }
+        public virtual DbSet<LigneDeCommande> LigneDeCommandes { get; set; }
+        public virtual DbSet<Livre> Livres { get; set; }
+        public virtual DbSet<TableauDeBord> TableauDeBords { get; set; }
+        public virtual DbSet<Utilisateur> Utilisateurs { get; set; }
+        public virtual DbSet<WishList> WishLists { get; set; }
 
     }
 

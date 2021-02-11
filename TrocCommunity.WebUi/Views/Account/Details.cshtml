@@ -1,0 +1,95 @@
+﻿@model TrocCommunity.Core.Models.Utilisateur
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h4>Utilisateur</h4>
+    </div>
+    <hr />
+    <div class="panel-body">
+        <dl class="dl-horizontal">
+            <div class></div>
+            <dt>
+                @Html.DisplayNameFor(model => model.LastName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.LastName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.FirstName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.UserName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.UserName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.PhoneNumber)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.PhoneNumber)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Email)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Password)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Password)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Confirmpwd)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Confirmpwd)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.DateNaissance)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.DateNaissance)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Photo)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Photo)
+            </dd>
+
+        </dl>
+    </div>
+</div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
