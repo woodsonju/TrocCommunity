@@ -18,7 +18,7 @@ else
             @Html.ActionLink("Admin " + Session["Connexion"], "Index", "Home")
             <ul class="dropdown">
                 <li>@Html.ActionLink("Mon Compte", "LogOut", "Account")</li>
-                <li>@Html.ActionLink("Gestion des utilisateurs", "Index", "Utilisateurs")</li>
+                <li>@Html.ActionLink("Gestion des utilisateurs", "Index", "Admin")</li>
                 <li>@Html.ActionLink("Déconnexion", "LogOut", "Account")</li>
             </ul>
         </li>

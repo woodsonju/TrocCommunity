@@ -1,4 +1,4 @@
-﻿namespace TrocCommunity.DataAccess.SQL.Migrations
+namespace TrocCommunity.DataAccess.SQL.Migrations
 {
     using System;
     using System.Data.Entity;

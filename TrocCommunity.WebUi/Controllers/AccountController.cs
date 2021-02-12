@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using System.Web;
+using System.Web.Security;
 using System.Web.Mvc;
 using System.Web.Routing;
 using TrocCommunity.Core.Logic;
@@ -166,9 +167,10 @@ namespace TrocCommunity.WebUi.Controllers
 
 
 
-        public ActionResult ConfirmNewPassWord(string Email)
+        public ActionResult ConfirmNewPassWord(string mail)
         {
-            Utilisateur u = ((SQLRepositoryUtilisateur)contextUser).findByEmail(Email);
+            string decrypt = CryptingData.Unprotect( mail );
+            Utilisateur u = ((SQLRepositoryUtilisateur)contextUser).findByEmail(decrypt);
             
             if (u != null)
             {
@@ -226,17 +228,25 @@ namespace TrocCommunity.WebUi.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult RestartPassWord(string Email)
         {
+
             // Envoyer le Mail
             if (ModelState.IsValid)
             {
 
                 if (((SQLRepositoryUtilisateur)contextUser).findByEmail(Email) != null)
                 {
+
+                    // Encryptind Data
+
+                    string encrypt = CryptingData.Protect(Email);
+
+                    
+
                     string actionURL = Url.Action("ConfirmNewPassWord", "Account", null, Request.Url.Scheme);
                     MailMessage msg = new MailMessage("no.reply.TrocCommunity@gmail.com", Email, "TrocCommunity Restart PassWord",
                                                                                                     "<h1>Changement de mot de passe</h1>" + "\n" + 
                                                                                                     "<p> Veuillezcliquer sur le lien ci-joint afin de changer de mot de passe<p>"+ "\n"+ 
-                                                                                                    "<a href=\""+actionURL+"?Email="+Email+"\">Lien remplacement mot de passe<a>" );
+                                                                                                    "<a href=\""+actionURL+"?mail="+ encrypt + "\">Lien remplacement mot de passe<a>" );
                     msg.IsBodyHtml = true;
                     //msg.CC.Add("pereiramarc@hotmail.fr");
                     // Provider GMAIL

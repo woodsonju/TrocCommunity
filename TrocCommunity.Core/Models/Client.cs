@@ -28,6 +28,7 @@ namespace TrocCommunity.Core.Models
             TypeUtilisateur = TypeUtilisateur.CLIENT;
             Photo = "imgProfile.png";
         }
+
     }
 
 

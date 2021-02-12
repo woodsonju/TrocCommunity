@@ -88,5 +88,16 @@ namespace TrocCommunity.Core.Models
             };
         }
 
+        public Utilisateur(int id, string userName, string email, string password, string confirmpwd, DateTime dateNaissance, TypeUtilisateur typeUtilisateur)
+        {
+            Id = id;
+            UserName = userName;
+            Email = email;
+            Password = password;
+            Confirmpwd = confirmpwd;
+            DateNaissance = dateNaissance;
+            TypeUtilisateur = typeUtilisateur;
+        }
+
     }
 }
