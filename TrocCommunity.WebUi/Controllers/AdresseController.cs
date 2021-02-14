@@ -86,9 +86,12 @@ namespace TrocCommunity.WebUi.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+ 
+
             Utilisateur utilisateur = contextUser.FindById((int)id);
             int adresse_id = utilisateur.AdresseId;
-            Utilisateur uAdresse = ((SQLRepositoryUtilisateur)contextUser).FindByAdresseId(adresse_id);
+            string mail = utilisateur.Email;
+            Utilisateur uAdresse = ((SQLRepositoryUtilisateur)contextUser).FindByMailWithAdressId(mail, adresse_id);
             /* Utilisateur utilisateur = ((SQLRepositoryUtilisateur)contextUser).findByEmail(Email);*/
 
 
@@ -110,22 +113,35 @@ namespace TrocCommunity.WebUi.Controllers
 
         // GET: Adresse/Edit/5
         //GET:Account/EditeAdresse/@IdUser  
+
         public ActionResult EditAdresse(int? id)
         {
             try
             {
-                /*Utilisateur utilisateur = contextUser.FindById((int)id);*/
-                Utilisateur utilisateur = ((SQLRepositoryUtilisateur)contextUser).FindByAdresseId(id);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+
+                Adresse adresse = contextAdresse.FindById((int)id);
+                string mail = (string)Session["Email"];
+
+                //Utilisateur utilisateur = contextUser.FindById((int)id);
+
+                Utilisateur uByMail = ((SQLRepositoryUtilisateur)contextUser).findByEmail(mail);
+
+
+                Utilisateur uByAdresse = ((SQLRepositoryUtilisateur)contextUser).FindByMailWithAdressId(mail, (int)id);
                 // Adresse adresse = contextAdresse.FindById((int)id);
-                if (utilisateur.Adresse == null)
+                if (uByAdresse.Adresse == null)
                 {
                     return HttpNotFound();
                 }
                 else
                 {
                     UtilisateurViewModel viewModel = new UtilisateurViewModel();
-                    viewModel.Adresse = utilisateur.Adresse;
-                    viewModel.Utilisateur = utilisateur;
+                    viewModel.Adresse = uByAdresse.Adresse;
+                    viewModel.Utilisateur = uByAdresse;
 
                     TempData.Keep();
                     return View(viewModel);

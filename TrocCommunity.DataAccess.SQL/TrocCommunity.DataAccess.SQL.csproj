@@ -54,9 +54,13 @@
   <ItemGroup>
     <Compile Include="DAO\SQLRepository.cs" />
     <Compile Include="DAO\SQLRepositoryUtilisateur.cs" />
-    <Compile Include="Migrations\202101301656029_InitialMigration.cs" />
-    <Compile Include="Migrations\202101301656029_InitialMigration.Designer.cs">
-      <DependentUpon>202101301656029_InitialMigration.cs</DependentUpon>
+    <Compile Include="Migrations\202101210843411_InitialModel.cs" />
+    <Compile Include="Migrations\202101210843411_InitialModel.Designer.cs">
+      <DependentUpon>202101210843411_InitialModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101210953192_InitialModelModif1.cs" />
+    <Compile Include="Migrations\202101210953192_InitialModelModif1.Designer.cs">
+      <DependentUpon>202101210953192_InitialModelModif1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\202101312051227_UpdateDataBaseAdmin.cs" />
     <Compile Include="Migrations\202101312051227_UpdateDataBaseAdmin.Designer.cs">
@@ -70,10 +74,6 @@
     <Compile Include="Migrations\202102010934104_MAJ.Designer.cs">
       <DependentUpon>202102010934104_MAJ.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202101281743155_AdresseNull.cs" />
-    <Compile Include="Migrations\202101281743155_AdresseNull.Designer.cs">
-      <DependentUpon>202101281743155_AdresseNull.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\202102032211067_ModifClassUtilisateurDateNaissance.cs" />
     <Compile Include="Migrations\202102032211067_ModifClassUtilisateurDateNaissance.Designer.cs">
       <DependentUpon>202102032211067_ModifClassUtilisateurDateNaissance.cs</DependentUpon>
@@ -85,6 +85,10 @@
     <Compile Include="Migrations\202102091845374_AddForeignKeyAdresseInUser.cs" />
     <Compile Include="Migrations\202102091845374_AddForeignKeyAdresseInUser.Designer.cs">
       <DependentUpon>202102091845374_AddForeignKeyAdresseInUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102141436397_ModifImage.cs" />
+    <Compile Include="Migrations\202102141436397_ModifImage.Designer.cs">
+      <DependentUpon>202102141436397_ModifImage.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MyContext.cs" />
@@ -101,8 +105,11 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202101301656029_InitialMigration.resx">
-      <DependentUpon>202101301656029_InitialMigration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202101210843411_InitialModel.resx">
+      <DependentUpon>202101210843411_InitialModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101210953192_InitialModelModif1.resx">
+      <DependentUpon>202101210953192_InitialModelModif1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202101312051227_UpdateDataBaseAdmin.resx">
       <DependentUpon>202101312051227_UpdateDataBaseAdmin.cs</DependentUpon>
@@ -121,6 +128,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202102091845374_AddForeignKeyAdresseInUser.resx">
       <DependentUpon>202102091845374_AddForeignKeyAdresseInUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102141436397_ModifImage.resx">
+      <DependentUpon>202102141436397_ModifImage.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

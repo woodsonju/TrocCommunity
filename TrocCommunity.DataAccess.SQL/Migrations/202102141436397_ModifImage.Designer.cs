@@ -7,13 +7,13 @@ namespace TrocCommunity.DataAccess.SQL.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class AdresseNull : IMigrationMetadata
+    public sealed partial class ModifImage : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AdresseNull));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(ModifImage));
         
         string IMigrationMetadata.Id
         {
-            get { return "202101281743155_AdresseNull"; }
+            get { return "202102141436397_ModifImage"; }
         }
         
         string IMigrationMetadata.Source

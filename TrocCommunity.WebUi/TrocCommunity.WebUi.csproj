@@ -305,7 +305,6 @@
     <Content Include="Content\DataTables\images\sort_desc.png" />
     <Content Include="Content\DataTables\images\sort_desc_disabled.png" />
     <Content Include="Content\DataTables\swf\flashExport.swf" />
-    <Content Include="Content\Images\profile.png" />
     <Content Include="Content\jquery-3.5.1.js" />
     <Content Include="Content\TEMPLATE\about.html" />
     <Content Include="Content\TEMPLATE\cart.html" />
@@ -329,6 +328,7 @@
     <Content Include="Content\TEMPLATE\fonts\icomoon\style.css" />
     <Content Include="Content\TEMPLATE\images\about_1.jpg" />
     <Content Include="Content\TEMPLATE\images\about_1.png" />
+    <Content Include="Content\TEMPLATE\images\AccountImages\imgProfile.png" />
     <Content Include="Content\TEMPLATE\images\blog_1.jpg" />
     <Content Include="Content\TEMPLATE\images\books-1204029_1920.jpg" />
     <Content Include="Content\TEMPLATE\images\children.jpg" />
@@ -339,7 +339,6 @@
     <Content Include="Content\TEMPLATE\images\hero_1.jpg" />
     <Content Include="Content\TEMPLATE\images\hero_1.png" />
     <Content Include="Content\TEMPLATE\images\hero_2.jpg" />
-    <Content Include="Content\TEMPLATE\images\AccountImages\imgProfile.png" />
     <Content Include="Content\TEMPLATE\images\livre2.jpg" />
     <Content Include="Content\TEMPLATE\images\macbook-pro-1050973_1920.jpg" />
     <Content Include="Content\TEMPLATE\images\men.jpg" />
@@ -602,6 +601,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\Images\" />
     <Folder Include="Models\" />
     <Folder Include="Views\MyAccount\" />
     <Folder Include="Views\Utilisateur\" />
