@@ -198,3 +198,33 @@ form {
         margin-right: 6px !important;
         margin-left: 6px !important;
     }
+
+
+
+/*************************** CATEGORIE LIVRE *****************************/
+#container-categorie-livre {
+    margin-top: 50px !important;
+    margin-bottom: 50px !important;
+}
+
+    #container-categorie-livre .col-md-4 {
+        padding: 0 !important;
+    }
+
+.category-btn {
+    display: flex;
+    justify-content: space-between;
+}
+
+    .category-btn .fas {
+        color: #ee4266 !important;
+        cursor: pointer;
+    }
+
+.body-content {
+    padding: 0 !important;
+}
+
+.card-body:nth-last-child(odd) {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.125) !important;
+}

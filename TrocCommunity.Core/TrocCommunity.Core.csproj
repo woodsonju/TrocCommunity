@@ -59,6 +59,7 @@
     <Compile Include="Models\TypeCategorie.cs" />
     <Compile Include="Models\TypeUtilisateur.cs" />
     <Compile Include="Models\Utilisateur.cs" />
+    <Compile Include="Tools\CategorieLivre.cs" />
     <Compile Include="ViewModels\UtilisateurViewModel.cs" />
     <Compile Include="Models\WishList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
