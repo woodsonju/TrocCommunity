@@ -41,7 +41,6 @@ namespace TrocCommunity.WebUi.Controllers
         }
 
 
-
         // GET: Utilisateurs
         public ActionResult Index()
         {
