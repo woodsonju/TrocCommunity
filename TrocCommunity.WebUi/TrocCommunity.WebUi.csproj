@@ -331,10 +331,17 @@
     <Content Include="Content\TEMPLATE\images\AccountImages\imgProfile.png" />
     <Content Include="Content\TEMPLATE\images\blog_1.jpg" />
     <Content Include="Content\TEMPLATE\images\books-1204029_1920.jpg" />
+    <Content Include="Content\TEMPLATE\images\CarrouselImages\echangeLivreCarroussel1.jpg" />
+    <Content Include="Content\TEMPLATE\images\CarrouselImages\echangeLivreCarroussel2.jpg" />
+    <Content Include="Content\TEMPLATE\images\CarrouselImages\echangeLivreCarroussel3.jpg" />
+    <Content Include="Content\TEMPLATE\images\CarrouselImages\echangeLivreCarroussel4.jpg" />
+    <Content Include="Content\TEMPLATE\images\CarrouselImages\echangeLivreCarroussel5.jpg" />
+    <Content Include="Content\TEMPLATE\images\CarrouselImages\macbook-pro-1050973_1920.jpg" />
     <Content Include="Content\TEMPLATE\images\children.jpg" />
     <Content Include="Content\TEMPLATE\images\cloth_1.jpg" />
     <Content Include="Content\TEMPLATE\images\cloth_2.jpg" />
     <Content Include="Content\TEMPLATE\images\cloth_3.jpg" />
+    <Content Include="Content\TEMPLATE\images\echangeLivreCarroussel.jpg" />
     <Content Include="Content\TEMPLATE\images\ecology.jpg" />
     <Content Include="Content\TEMPLATE\images\hero_1.jpg" />
     <Content Include="Content\TEMPLATE\images\hero_1.png" />
