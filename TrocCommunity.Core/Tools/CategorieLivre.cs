@@ -10,6 +10,8 @@ namespace TrocCommunity.Core.Tools
     public class CategorieLivre
     {
         public IEnumerable<Livre> Livres { get; set; }
+
+
         public IEnumerable<Categorie> Categories { get; set; }
     }
 }

@@ -6,8 +6,8 @@
 
 <div class="product-search">
 
-    <form action="@Url.Action("Catalogue", "Categories")" method="get">
-        <input id="search" name="search" type="text" value="@ViewBag.Search" />
+    <form action="@Url.Action("Catalogue1", "Categories")" method="get">
+        Search <input id="search" name="search" type="text" value="@ViewBag.Search" />
         <input type="submit" value="Search" />
     </form>
 
@@ -17,70 +17,12 @@
     for (int i = start; i <= end; i++)
     {
         <a class="@(i == ViewBag.CurrentPage ? "current" : "")"
-           href="@Url.Action("Catalogue", "Categories", new { page = i, sortBy = ViewBag.sortBy, isAsc = ViewBag.isAsc, search = ViewBag.Search })">@(innerContent ?? i.ToString())</a>
+           href="@Url.Action("Catalogue1", "Categories", new { page = i, search = ViewBag.Search })">@(innerContent ?? i.ToString())</a>
     }
 
 }
 
-@helper pageLinks()
-{
-    const int maxPages = 11;
 
-    if (ViewBag.TotalPages <= maxPages)
-    {
-        @buildLinks(1, (int)ViewBag.TotalPages, null)
-        return;
-    }
-
-    int pagesAfter = ViewBag.TotalPages - ViewBag.CurrentPage; // Number of pages after current
-    int pagesBefore = ViewBag.CurrentPage - 1; // Number of pages before current
-
-    if (pagesAfter <= 4)
-    {
-        @buildLinks(1, 1, null) // Show 1st page
-
-        int pageSubset = ViewBag.TotalPages - maxPages - 1 > 1 ? ViewBag.TotalPages - maxPages - 1 : 2;
-        @buildLinks(pageSubset, pageSubset, "...") // Show page subset (...)
-
-        @buildLinks(ViewBag.TotalPages - maxPages + 3, ViewBag.TotalPages, null) // Show last pages
-
-        return; // Exit
-    }
-
-    if (pagesBefore <= 4)
-    {
-        @buildLinks(1, maxPages - 2, null) // Show 1st pages
-
-
-        int pageSubset = maxPages + 2 < ViewBag.TotalPages ? maxPages + 2 : ViewBag.TotalPages - 1;
-        @buildLinks(pageSubset, pageSubset, "...") // Show page subset (...)
-
-        @buildLinks(ViewBag.TotalPages, ViewBag.TotalPages, null) // Show last page
-
-        return; // Exit
-
-    }
-
-    if (pagesAfter > 4)
-    {
-        @buildLinks(1, 1, null) // Show 1st pages
-
-        int pageSubset1 = ViewBag.CurrentPage - 7 > 1 ? ViewBag.CurrentPage - 7 : 2;
-        int pageSubset2 = ViewBag.CurrentPage + 7 < ViewBag.TotalPages ? ViewBag.CurrentPage + 7 : ViewBag.TotalPages - 1;
-
-        @buildLinks(pageSubset1, pageSubset1, pageSubset1 == ViewBag.CurrentPage - 4 ? null : "...") // Show 1st page subset (...)
-
-        @buildLinks(ViewBag.CurrentPage - 3, ViewBag.CurrentPage + 3, null) // Show middle pages
-
-        // Show 2nd page subset (...)
-        // only show ... if page is contigous to the previous one.
-        @buildLinks(pageSubset2, pageSubset2, pageSubset2 == ViewBag.CurrentPage + 4 ? null : "...")
-        @buildLinks(ViewBag.TotalPages, ViewBag.TotalPages, null)// Show last page
-
-        return; // Exit
-
-    }
-}
 
 
 
@@ -131,7 +73,7 @@
 
                     <div class="col-md-4 col-sm-12 section-book-card">
                         <div class="section-picture-book-image thumbnail">
-                            <img src="~/Content/TEMPLATE/images/Livres/@item.Image" alt="Découverte" class="img-fluid" />
+                            <img src="~/Content/TEMPLATE/images/@item.Image" alt="Découverte" class="img-fluid" />
                         </div>
                         <div>
                             <h3 class="text-center titre-books-thumbnail">Titre</h3>
@@ -145,15 +87,16 @@
 
                 }
             </div>
-
-
         </div>
 
-
-    </div>
-    <div class="row" id="row-pagination">
         <div class="pagination">
-            @pageLinks()
+            Page:
+            @for (int p = 1; p <= ViewBag.TotalPages; p++)
+            {
+                <a class="@(p == ViewBag.CurrentPage ?  "current" : "")"
+                   href="@Url.Action("Catalogue1", "Categories", new {page = p})">@p</a>
+            }
         </div>
+
     </div>
 </div>

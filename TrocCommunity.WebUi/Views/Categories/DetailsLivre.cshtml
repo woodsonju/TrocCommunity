@@ -1,0 +1,29 @@
+﻿@model TrocCommunity.Core.Models.Livre
+
+@{
+    ViewBag.Title = "DetailsLivre";
+}
+
+
+
+<div>
+
+    <hr />
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <img src="~/Content/TEMPLATE/images/Livres/@Html.DisplayFor(model => model.Image)" alt="Découverte" class="img-fluid" />
+            </div>
+            <div class="col-md-8">
+                <p>@Html.DisplayFor(model => model.Author)</p>
+                <p>Titre</p>
+                <p>Edition</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <p>
+        @Html.ActionLink("Back to List", "Catalogue")
+    </p>

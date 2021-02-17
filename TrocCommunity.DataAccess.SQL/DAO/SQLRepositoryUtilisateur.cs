@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TrocCommunity.Core.Models;
-using System.Linq;
 using System.Data.Entity;
 
 namespace TrocCommunity.DataAccess.SQL.DAO

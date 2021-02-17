@@ -89,6 +89,9 @@
     height : 500px;
 }
 
+#row-section-book-card{
+    margin-left : 5px;
+}
 #title-section-last-books {
     margin-top: 50px;
 }
@@ -97,7 +100,6 @@
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    margin-top: 30px;
     margin-bottom : 30px;
 }
 
@@ -123,11 +125,17 @@
     width: 50%;
 }
 
+#row-pagination {
+    display:flex;
+    justify-content: center;
+}
+.pagination a {
+    padding : 10px 10px;
+}
+
 
 /*********************** IMAGE PARALLAX PAGE D'ACCUEIL **************************/
-
 /* Section Parallax */
-
 .section-parallax {
     background-image: url("/Content/TEMPLATE/images/books-1204029_1920.jpg");
     height: 200px;
