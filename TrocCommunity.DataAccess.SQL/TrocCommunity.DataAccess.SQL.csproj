@@ -90,6 +90,14 @@
     <Compile Include="Migrations\202102141436397_ModifImage.Designer.cs">
       <DependentUpon>202102141436397_ModifImage.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202102171732319_AddTitleBook.cs" />
+    <Compile Include="Migrations\202102171732319_AddTitleBook.Designer.cs">
+      <DependentUpon>202102171732319_AddTitleBook.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102171744445_DateEdition.cs" />
+    <Compile Include="Migrations\202102171744445_DateEdition.Designer.cs">
+      <DependentUpon>202102171744445_DateEdition.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MyContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -131,6 +139,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202102141436397_ModifImage.resx">
       <DependentUpon>202102141436397_ModifImage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102171732319_AddTitleBook.resx">
+      <DependentUpon>202102171732319_AddTitleBook.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102171744445_DateEdition.resx">
+      <DependentUpon>202102171744445_DateEdition.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
