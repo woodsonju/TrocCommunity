@@ -113,6 +113,8 @@ namespace TrocCommunity.WebUi.Controllers
                         // Connexion Réussite
                         Session["Connexion"] = utilisateur.UserName;
                         Session["TypeUtilisateur"] = utilisateur.TypeUtilisateur;
+                        Session["Photo"] = utilisateur.Photo;
+                        Session["Email"] = utilisateur.Email;
 
                         /**
                          * Partie Woodson : Compte Client
@@ -124,14 +126,16 @@ namespace TrocCommunity.WebUi.Controllers
                         TempData["ID"] = utilisateur.Id;
 
                         //img : photo
-                       if (utilisateur.Photo == null)
+                        if (utilisateur.Photo == null)
                         {
-                            TempData["Photo"] = "imgProfile.png";
+                            TempData["Photo"] = "~/Content/TEMPLATE/images/AccountImages/imgProfile.png";
                         }
                         else
                         {
-                            TempData["Photo"] = utilisateur.Photo;
+                            TempData["Photo"] = Session["Photo"];
                         }
+
+                       // TempData["Photo"] = utilisateur.Photo;
 
                         // TempData["Photo"] = utilisateur.Photo;
                         // TempData["AdresseId"] = utilisateur.Adresse.Id;
@@ -290,13 +294,15 @@ namespace TrocCommunity.WebUi.Controllers
             }
 
             Utilisateur utilisateur = contextUser.FindById((int)id);
-            int adresseId = utilisateur.AdresseId;
-            Utilisateur uAdresse = ((SQLRepositoryUtilisateur)contextUser).FindByAdresseId(adresseId);
+            /* int adresseId = utilisateur.AdresseId;*/
+            string mail = utilisateur.Email;
+            Utilisateur uAdresse = ((SQLRepositoryUtilisateur)contextUser).findByEmail(mail);
             if (uAdresse == null)
             {
                 return HttpNotFound();
             }
-  
+
+            
             return View(utilisateur);
         }
 
@@ -307,20 +313,26 @@ namespace TrocCommunity.WebUi.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Client client, int id, HttpPostedFileBase image)
         {
-           
+        
+
             if (!ModelState.IsValid)
             {
-                TempData.Keep();
                 return View(client);
             } else
             {
                 if(image!=null)
                 {
                     client.Photo = client.Id + Path.GetExtension(image.FileName);
+                    //Sauvegarde la photo dans le dossier AccountImages
                     image.SaveAs(Server.MapPath("~/Content/TEMPLATE/images/AccountImages/") + client.Photo);
+                    //Actualise la session utilisateur avec sa nouvelle photo 
+                    Session["Photo"] = client.Photo;
+                } else
+                {              
+                    client.Photo = (string)Session["Photo"];                  
                 }
 
-                TempData["Photo"] = client.Photo;
+                TempData["Photo"] = Session["Photo"];
                 TempData["UserName"] = client.UserName;
                 Session["Connexion"] = client.UserName;
                 TempData.Keep();

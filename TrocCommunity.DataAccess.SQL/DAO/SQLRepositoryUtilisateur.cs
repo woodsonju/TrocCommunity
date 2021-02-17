@@ -33,10 +33,10 @@ namespace TrocCommunity.DataAccess.SQL.DAO
         }
 
 
-        public Utilisateur FindByAdresseId(int? adresseId)
+        public Utilisateur FindByMailWithAdressId(string mail, int adresseId)
         {
             Utilisateur utilisateur = (Utilisateur)dataContext.Utilisateurs.Include(u => u.Adresse)
-                                                .SingleOrDefault(u => u.AdresseId == adresseId);
+                                                .SingleOrDefault(u => u.Email == mail);
             return utilisateur;
             
         }

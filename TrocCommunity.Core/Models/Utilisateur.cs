@@ -88,7 +88,7 @@ namespace TrocCommunity.Core.Models
             };
         }
 
-        public Utilisateur(int id, string userName, string email, string password, string confirmpwd, DateTime dateNaissance, TypeUtilisateur typeUtilisateur)
+/*        public Utilisateur(int id, string userName, string email, string password, string confirmpwd, DateTime dateNaissance, TypeUtilisateur typeUtilisateur)
         {
             Id = id;
             UserName = userName;
@@ -97,7 +97,8 @@ namespace TrocCommunity.Core.Models
             Confirmpwd = confirmpwd;
             DateNaissance = dateNaissance;
             TypeUtilisateur = typeUtilisateur;
-        }
+            Photo = "imgProfile.png";
+        }*/
 
     }
 }
