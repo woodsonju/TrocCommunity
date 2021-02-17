@@ -1,4 +1,10 @@
-﻿@model TrocCommunity.Core.ViewModels.UtilisateurViewModel
+﻿
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-1.8.0.js"></script>
+<script src="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.22/jquery-ui.js"></script>
+
+
 
 @{
     ViewBag.Title = "EditAdresse";
@@ -6,25 +12,59 @@
 
 <h2>EditAdresse</h2>
 
-@using (Html.BeginForm("EditAdresse", "Adresse", FormMethod.Post))
-{
-    @Html.AntiForgeryToken()
-
-    <div class="form-horizontal">
-        <h4>UtilisateurViewModel</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.Adresse.Id)
 
 
-        <div class="col-md-10">
-            <div class="form-group">
-                @Html.LabelFor(model => model.Utilisateur.Adresse.TypeDeVoie, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Adresse.TypeDeVoie, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Utilisateur.Adresse.TypeDeVoie, "", new { @class = "text-danger" })
-                </div>
-            </div>
+<div>
+    <input id="searchInput" class="form-control" />
+</div>
+
+<script>
+
+    $("#searchInput").autocomplete({
+        source: function (request, response) {
+            $.ajax({
+                url: '@Url.Action("GetSearchElem","Adresse")',
+                dataType: "json",
+                data: { search: $("#searchInput").val() },
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    //alert("Sucess");
+                    response($.map(data, function (item) {
+                        return { label: item.str, value: item.str };
+
+                    }));
+                },
+                error: function (xhr, status, error) {
+                    alert("Error");
+                    console.log(error);
+                    console.log(status);
+                },
+                failure: function (response) {
+                    alert(response.responseText);
+                }
+
+            });
+        }
+    });
+</script>
+
+
+@*<div class="ui-widget">
+        <label for="tags">Tags: </label>
+        <input id="tags">
+    </div>
+
+    @using (Html.BeginForm("EditAdresse", "Adresse", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>UtilisateurViewModel</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.Adresse.Id)
+
+
 
             <div class="form-group">
                 @Html.LabelFor(model => model.Utilisateur.Adresse.NomDeVoie, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -72,8 +112,8 @@
                 </div>
             </div>
         </div>
-    </div>
-}
+
+    }*@
 
 <div>
     @Html.ActionLink("Back to List", "Index")

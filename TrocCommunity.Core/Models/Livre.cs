@@ -5,6 +5,9 @@ namespace TrocCommunity.Core.Models
     public class Livre: BaseEntity
     {
         [Required]
+        public string Title { get; set; }
+
+        [Required]
         public string Author { get; set; }
 
         [Required]

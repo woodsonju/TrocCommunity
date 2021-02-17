@@ -9,12 +9,16 @@ using TrocCommunity.Core.Models;
 using TrocCommunity.Core.ViewModels;
 using TrocCommunity.DataAccess.SQL;
 using TrocCommunity.DataAccess.SQL.DAO;
+using TrocCommunity.Core.Tools;
+using System.Configuration;
+using System.Web.Services;
+
 
 namespace TrocCommunity.WebUi.Controllers
 {
     public class AdresseController : Controller
     {
-        IRepository<Adresse> contextAdresse;
+        private IRepository<Adresse> contextAdresse;
         private IRepository<Utilisateur> contextUser;
 
 
@@ -155,7 +159,7 @@ namespace TrocCommunity.WebUi.Controllers
 
         }
 
- [HttpPost]
+        [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult EditAdresse(Adresse adresse, int id)
         {
@@ -182,6 +186,35 @@ namespace TrocCommunity.WebUi.Controllers
             }
 
         }
+
+        [WebMethod]
+        public JsonResult GetSearchElemTest(string search)
+        {
+            string[] aa = { "ddd", "bcc", "bbb", "aaa" };
+            return new JsonResult { Data = aa, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+        }
+
+        //[HttpPost]
+        public async System.Threading.Tasks.Task<JsonResult> GetSearchElem(string search)
+        {
+
+
+            List<string> adresses = await GooglePlaceApifunctions.AutoCompleteSearch(ConfigurationManager.AppSettings["GooglePlaceAPIKey"],search);
+
+            List<StringModel> lst = new List<StringModel>();
+
+            foreach (var item in adresses)
+            {
+                StringModel a = new StringModel() { str = item };
+                lst.Add(a);
+            }
+
+            JsonResult res = new JsonResult { Data = lst, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+            object data = res.Data;
+            return res;
+        }
+
+
 
     }
 }

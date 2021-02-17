@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -59,6 +62,9 @@
     <Compile Include="Models\TypeCategorie.cs" />
     <Compile Include="Models\TypeUtilisateur.cs" />
     <Compile Include="Models\Utilisateur.cs" />
+    <Compile Include="Tools\GooglePlaceApifunctions.cs" />
+    <Compile Include="ViewModels\AdresseViewModel.cs" />
+    <Compile Include="ViewModels\StringModel.cs" />
     <Compile Include="ViewModels\UtilisateurViewModel.cs" />
     <Compile Include="Models\WishList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -67,6 +73,8 @@
     <Compile Include="Tools\TestControllerAdmin.cs" />
     <Compile Include="Tools\UpdateDatabaseAdmin.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
