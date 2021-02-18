@@ -6,7 +6,6 @@ namespace TrocCommunity.Core.Models
     {
         public List<Livre> Livres { get; set; }
         public Client Client { get; set; }
-        public List<Annonce> Annonces { get; set; }
         public List<Client> Clients { get; set; }
         public WishList WishList { get; set; }
         public LigneDeCommande LigneDeCommande { get; set; }

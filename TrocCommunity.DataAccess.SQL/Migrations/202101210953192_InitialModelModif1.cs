@@ -7,9 +7,9 @@
     {
         public override void Up()
         {
-            AddColumn("dbo.Livres", "WishList_Id", c => c.Int());
+            /*AddColumn("dbo.Livres", "WishList_Id", c => c.Int());
             CreateIndex("dbo.Livres", "WishList_Id");
-            AddForeignKey("dbo.Livres", "WishList_Id", "dbo.WishLists", "Id");
+            AddForeignKey("dbo.Livres", "WishList_Id", "dbo.WishLists", "Id");*/
         }
         
         public override void Down()

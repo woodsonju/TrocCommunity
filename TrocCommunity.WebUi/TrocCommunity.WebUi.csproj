@@ -142,6 +142,12 @@
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -217,6 +223,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\AdresseController.cs" />
+    <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MyAccountController.cs" />
     <Compile Include="Controllers\UtilisateursController.cs" />
@@ -390,6 +397,7 @@
     <Content Include="Content\DataTables\images\sort_desc_disabled.png" />
     <Content Include="Content\DataTables\swf\flashExport.swf" />
     <Content Include="Content\jquery-3.5.1.js" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="Content\TEMPLATE\about.html" />
     <Content Include="Content\TEMPLATE\cart.html" />
     <Content Include="Content\TEMPLATE\checkout.html" />
@@ -415,16 +423,25 @@
     <Content Include="Content\TEMPLATE\images\AccountImages\imgProfile.png" />
     <Content Include="Content\TEMPLATE\images\blog_1.jpg" />
     <Content Include="Content\TEMPLATE\images\books-1204029_1920.jpg" />
+    <Content Include="Content\TEMPLATE\images\CarrouselImages\echangeLivreCarroussel1.jpg" />
+    <Content Include="Content\TEMPLATE\images\CarrouselImages\echangeLivreCarroussel2.jpg" />
+    <Content Include="Content\TEMPLATE\images\CarrouselImages\echangeLivreCarroussel3.jpg" />
+    <Content Include="Content\TEMPLATE\images\CarrouselImages\echangeLivreCarroussel4.jpg" />
+    <Content Include="Content\TEMPLATE\images\CarrouselImages\echangeLivreCarroussel5.jpg" />
+    <Content Include="Content\TEMPLATE\images\CarrouselImages\macbook-pro-1050973_1920.jpg" />
+    <Content Include="Content\TEMPLATE\images\Livres\Cercle.jpg" />
     <Content Include="Content\TEMPLATE\images\children.jpg" />
     <Content Include="Content\TEMPLATE\images\cloth_1.jpg" />
     <Content Include="Content\TEMPLATE\images\cloth_2.jpg" />
     <Content Include="Content\TEMPLATE\images\cloth_3.jpg" />
+    <Content Include="Content\TEMPLATE\images\echangeLivreCarroussel.jpg" />
     <Content Include="Content\TEMPLATE\images\ecology.jpg" />
     <Content Include="Content\TEMPLATE\images\hero_1.jpg" />
     <Content Include="Content\TEMPLATE\images\hero_1.png" />
     <Content Include="Content\TEMPLATE\images\hero_2.jpg" />
     <Content Include="Content\TEMPLATE\images\livre2.jpg" />
     <Content Include="Content\TEMPLATE\images\macbook-pro-1050973_1920.jpg" />
+    <Content Include="Content\TEMPLATE\images\Livres\manuscrit.jpg" />
     <Content Include="Content\TEMPLATE\images\men.jpg" />
     <Content Include="Content\TEMPLATE\images\model_1.png" />
     <Content Include="Content\TEMPLATE\images\model_2.png" />
@@ -444,6 +461,8 @@
     <Content Include="Content\TEMPLATE\images\rencontrer.jpg" />
     <Content Include="Content\TEMPLATE\images\shoe.png" />
     <Content Include="Content\TEMPLATE\images\shoe_1.jpg" />
+    <Content Include="Content\TEMPLATE\images\Tension.jpg" />
+    <Content Include="Content\TEMPLATE\images\Livres\thriller.jpg" />
     <Content Include="Content\TEMPLATE\images\women.jpg" />
     <Content Include="Content\TEMPLATE\index.html" />
     <Content Include="Content\TEMPLATE\js\aos.js" />
@@ -456,6 +475,7 @@
     <Content Include="Content\TEMPLATE\js\owl.carousel.min.js" />
     <Content Include="Content\TEMPLATE\js\popper.min.js" />
     <Content Include="Content\TEMPLATE\js\slick.min.js" />
+    <Content Include="Content\TEMPLATE\manuscrit.jpg" />
     <Content Include="Content\TEMPLATE\shop-single.html" />
     <Content Include="Content\TEMPLATE\shop.html" />
     <Content Include="Content\TEMPLATE\thankyou.html" />
@@ -682,6 +702,18 @@
     <Content Include="Views\Admin\Edit.cshtml" />
     <Content Include="Views\Admin\Delete.cshtml" />
     <Content Include="Views\Admin\Details.cshtml" />
+    <Content Include="Views\Categories\Catalogue.cshtml" />
+    <Content Include="Views\Categories\Lit.cshtml" />
+    <Content Include="Views\Categories\Bie.cshtml" />
+    <Content Include="Views\Categories\Jeu.cshtml" />
+    <Content Include="Views\Categories\Ban.cshtml" />
+    <Content Include="Views\Categories\Art.cshtml" />
+    <Content Include="Views\Categories\Sco.cshtml" />
+    <Content Include="Views\Categories\Loi.cshtml" />
+    <Content Include="Views\Categories\Sci.cshtml" />
+    <Content Include="Views\Categories\Ent.cshtml" />
+    <Content Include="Views\Categories\Catalogue1.cshtml" />
+    <Content Include="Views\Categories\DetailsLivre.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -745,8 +777,8 @@
     <PropertyGroup>
       <ErrorText>Ce projet fait référence à des packages NuGet qui sont manquants sur cet ordinateur. Utilisez l'option de restauration des packages NuGet pour les télécharger. Pour plus d'informations, consultez http://go.microsoft.com/fwlink/?LinkID=322105. Le fichier manquant est : {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
     <Error Condition="!Exists('..\packages\Microsoft.NETFramework.ReferenceAssemblies.net472.1.0.0\build\Microsoft.NETFramework.ReferenceAssemblies.net472.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.NETFramework.ReferenceAssemblies.net472.1.0.0\build\Microsoft.NETFramework.ReferenceAssemblies.net472.targets'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
   </Target>
   <Import Project="..\packages\Microsoft.NETFramework.ReferenceAssemblies.net472.1.0.0\build\Microsoft.NETFramework.ReferenceAssemblies.net472.targets" Condition="Exists('..\packages\Microsoft.NETFramework.ReferenceAssemblies.net472.1.0.0\build\Microsoft.NETFramework.ReferenceAssemblies.net472.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

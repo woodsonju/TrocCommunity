@@ -1,0 +1,102 @@
+﻿@model TrocCommunity.Core.Tools.CategorieLivre
+
+@{
+    ViewBag.Title = "Catalogue";
+}
+
+<div class="product-search">
+
+    <form action="@Url.Action("Catalogue1", "Categories")" method="get">
+        Search <input id="search" name="search" type="text" value="@ViewBag.Search" />
+        <input type="submit" value="Search" />
+    </form>
+
+</div>
+@helper buildLinks(int start, int end, string innerContent)
+{
+    for (int i = start; i <= end; i++)
+    {
+        <a class="@(i == ViewBag.CurrentPage ? "current" : "")"
+           href="@Url.Action("Catalogue1", "Categories", new { page = i, search = ViewBag.Search })">@(innerContent ?? i.ToString())</a>
+    }
+
+}
+
+
+
+
+
+<div class="container-fluid" id="container-categorie-livre">
+    <div class="row" id="categorie-livre-row">
+
+        <div class="col-md-4" style="padding : 0!important">
+
+            <div class="bs-example">
+                <div class="accordion" id="accordionExample">
+
+                    <div class="card">
+                        @foreach (var item in Model.Categories)
+                        {
+                            <div class="card-header" id="@item.Description.Substring(0,3)">
+                                <h2 class="mb-0 category-btn">
+                                    <button type="button" class="btn btn-link ">
+                                        @Html.ActionLink(item.NomCategorie, item.NomCategorie.Substring(0, 3), null, null)
+                                    </button>
+                                    <i class="fas fa-sort-down  collapsed ml-lg-2" data-toggle="collapse" data-target="#@item.NomCategorie.Substring(0,3)"></i>
+                                </h2>
+                            </div>
+                            <div id="@item.NomCategorie.Substring(0,3)" class="collapse " aria-labelledby="@item.Description.Substring(0,3)" data-parent="#accordionExample">
+                                <div class="card-body">
+                                    <p>@Html.DisplayFor(modelItem => item.Description)</p>
+                                </div>
+                            </div>
+                        }
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+        <div class="col-md-8">
+
+
+
+
+
+            <div class="row">
+                @foreach (var item in Model.Livres)
+                {
+
+                    <div class="col-md-4 col-sm-12 section-book-card">
+                        <div class="section-picture-book-image thumbnail">
+                            <img src="~/Content/TEMPLATE/images/@item.Image" alt="Découverte" class="img-fluid" />
+                        </div>
+                        <div>
+                            <h3 class="text-center titre-books-thumbnail">Titre</h3>
+                            <p class="text-center">@Html.DisplayFor(modelItem => item.Author)</p>
+                            <div class="books-items">
+                                <p class="books-points text-center">100 points</p>
+                            </div>
+                            <p class="text-left">Ville</p>
+                        </div>
+                    </div>
+
+                }
+            </div>
+        </div>
+
+        <div class="pagination">
+            Page:
+            @for (int p = 1; p <= ViewBag.TotalPages; p++)
+            {
+                <a class="@(p == ViewBag.CurrentPage ?  "current" : "")"
+                   href="@Url.Action("Catalogue1", "Categories", new {page = p})">@p</a>
+            }
+        </div>
+
+    </div>
+</div>
