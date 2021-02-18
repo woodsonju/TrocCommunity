@@ -112,6 +112,7 @@ namespace TrocCommunity.WebUi.Controllers
                     {
                         // Connexion Réussite
                         Session["Connexion"] = utilisateur.UserName;
+                        Session["user"] = utilisateur;
                         Session["TypeUtilisateur"] = utilisateur.TypeUtilisateur;
                         Session["Photo"] = utilisateur.Photo;
                         Session["Email"] = utilisateur.Email;

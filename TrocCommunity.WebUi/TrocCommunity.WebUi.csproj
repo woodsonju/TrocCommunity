@@ -162,6 +162,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MyAccountController.cs" />
     <Compile Include="Controllers\UtilisateursController.cs" />
+    <Compile Include="Filters\LoginFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -649,12 +650,12 @@
     <Content Include="Views\Categories\Ent.cshtml" />
     <Content Include="Views\Categories\Catalogue1.cshtml" />
     <Content Include="Views\Categories\DetailsLivre.cshtml" />
+    <Content Include="Views\Books\AddBook.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\Images\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\Books\" />
     <Folder Include="Views\MyAccount\" />
     <Folder Include="Views\Utilisateur\" />
   </ItemGroup>

@@ -9,9 +9,11 @@ namespace TrocCommunity.WebUi.Controllers
     public class BooksController : Controller
     {
         // GET: Books
-        public ActionResult Index()
+        public ActionResult AddBook()
         {
             return View();
         }
+
+
     }
 }

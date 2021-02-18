@@ -5,12 +5,13 @@ namespace TrocCommunity.Core.Models
 {
     public class Livre: BaseEntity
     {
-        [Required]
+    /*    [Required]*/
         public string Title { get; set; }
-        [Required]
+
+    /*    [Required]*/
         public string Author { get; set; }
 
-        [Required]
+      /*  [Required]*/
         public string Editor { get; set; }
 
         
@@ -20,15 +21,15 @@ namespace TrocCommunity.Core.Models
         [Required]
         public long  ISBN { get; set; }
 
-        [Required]
+      /*  [Required]*/
         public int Volume { get; set; }
 
         public string Language { get; set; }
 
-        [Required]
+       /* [Required]*/
         public string Image { get; set; }
 
-        [Required]
+    /*    [Required]*/
         public Categorie Categorie { get; set; }
 
         public bool Disponible { get; set; }

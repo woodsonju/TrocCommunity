@@ -4,7 +4,7 @@ using System;
 namespace TrocCommunity.WebUi.Tests.Controllers
 {
     [TestClass]
-    public class LivreControllerTest
+    public class BooksControllerTest
     {
 
         [TestInitialize]
