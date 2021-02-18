@@ -1,18 +1,42 @@
 ﻿using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using TrocCommunity.Core.Models;
 
-namespace TrocCommunity.Core.Tools
+namespace TrocCommunity.WebUi.ApiClient
 {
     public class GooglePlaceApifunctions
     {
 
-        public async static Task<List<String>> AutoCompleteSearch(string key, string search)
+        public async static Task<String> EssaiBookAPI(string isbn)
+        {
+            using (var client = new HttpClient())
+            {
+
+                string response = await client.GetStringAsync(String.Format("https://www.googleapis.com/books/v1/volumes?q=isbn:"+isbn+"&key=" + ConfigurationManager.AppSettings["GooglePlaceAPIKey"]));
+             }
+            /* La clé se trouve dans le fichier Web.Config, pour l'utiliser : ConfigurationManager.AppSettings["GooglePlaceAPIKey"] (retourne la clé en string)
+            
+            Pour utiliser la fonction EssaiBookAPI : 
+             await GooglePlaceApifunctions.EssaiBookAPI(ConfigurationManager.AppSettings["GooglePlaceAPIKey"]);
+
+            Pour utiliser une API:
+            - faire un compte google API
+            - ajouter dans bibliothèque les API voulu
+            - généré ue clé API 
+            - voir la doc de l'API pour voir comment l'utiliser
+
+            */
+            return "aa";
+        }
+
+
+        public async static Task<List<String>> AutoCompleteSearch( string search)
         {
             string researchedPlace = search.Replace(' ', '+');
             List<string> listPlace = null;
@@ -21,7 +45,7 @@ namespace TrocCommunity.Core.Tools
             {
                 // key : ConfigurationManager.AppSettings["GooglePlaceAPIKey"]
                 // Permet de compléter la suite de l'adresse saisie
-                string response = await client.GetStringAsync(String.Format("https://maps.googleapis.com/maps/api/place/autocomplete/json?input="+ researchedPlace + "&key=" + key));
+                string response = await client.GetStringAsync(String.Format("https://maps.googleapis.com/maps/api/place/autocomplete/json?input="+ researchedPlace + "&key=" + ConfigurationManager.AppSettings["GooglePlaceAPIKey"]));
 
 
                 JObject objectContainer = JObject.Parse(response);
@@ -37,7 +61,7 @@ namespace TrocCommunity.Core.Tools
             return listPlace;
         }
 
-        public async static Task<Adresse> AdresseInformation(string key, string search)
+        public async static Task<Adresse> AdresseInformation( string search)
         {
             string researchedPlace = search.Replace(' ', '+');
             Adresse add = null;
@@ -45,7 +69,7 @@ namespace TrocCommunity.Core.Tools
             {
 
 
-                string response2 = await client.GetStringAsync(String.Format("https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=" + researchedPlace + "&inputtype=textquery&fields=formatted_address,geometry,place_id&key=" + key));
+                string response2 = await client.GetStringAsync(String.Format("https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=" + researchedPlace + "&inputtype=textquery&fields=formatted_address,geometry,place_id&key=" + ConfigurationManager.AppSettings["GooglePlaceAPIKey"]));
 
 
                 JObject objectContainer2 = JObject.Parse(response2);
@@ -56,7 +80,7 @@ namespace TrocCommunity.Core.Tools
 
 
 
-                string response3 = await client.GetStringAsync(String.Format("https://maps.googleapis.com/maps/api/place/details/json?place_id=" + item.Item4 + "&fields=address_component&key=" + key));
+                string response3 = await client.GetStringAsync(String.Format("https://maps.googleapis.com/maps/api/place/details/json?place_id=" + item.Item4 + "&fields=address_component&key=" + ConfigurationManager.AppSettings["GooglePlaceAPIKey"]));
 
                 JObject objectContainer3 = JObject.Parse(response3);
 

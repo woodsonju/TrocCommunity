@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAO\QueryLivre.cs" />
     <Compile Include="DAO\SQLRepository.cs" />
     <Compile Include="DAO\SQLRepositoryAnnonce.cs" />
     <Compile Include="DAO\SQLRepositoryUtilisateur.cs" />
