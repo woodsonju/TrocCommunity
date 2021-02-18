@@ -99,14 +99,6 @@
     <Compile Include="Migrations\202102150430070_AddFullNameToAdresse.Designer.cs">
       <DependentUpon>202102150430070_AddFullNameToAdresse.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202102151421300_ADdNameBookAndForeignKey.cs" />
-    <Compile Include="Migrations\202102151421300_ADdNameBookAndForeignKey.Designer.cs">
-      <DependentUpon>202102151421300_ADdNameBookAndForeignKey.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202102151430114_ADdDate.cs" />
-    <Compile Include="Migrations\202102151430114_ADdDate.Designer.cs">
-      <DependentUpon>202102151430114_ADdDate.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MyContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -154,12 +146,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202102150430070_AddFullNameToAdresse.resx">
       <DependentUpon>202102150430070_AddFullNameToAdresse.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202102151421300_ADdNameBookAndForeignKey.resx">
-      <DependentUpon>202102151421300_ADdNameBookAndForeignKey.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202102151430114_ADdDate.resx">
-      <DependentUpon>202102151430114_ADdDate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
