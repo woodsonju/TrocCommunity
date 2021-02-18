@@ -56,7 +56,7 @@ namespace TrocCommunity.Core.Tools
 
 
 
-                string response3 = await client.GetStringAsync(String.Format("https://maps.googleapis.com/maps/api/place/details/json?place_id=" + item.Item1 + "&fields=address_component&key=" + key));
+                string response3 = await client.GetStringAsync(String.Format("https://maps.googleapis.com/maps/api/place/details/json?place_id=" + item.Item4 + "&fields=address_component&key=" + key));
 
                 JObject objectContainer3 = JObject.Parse(response3);
 

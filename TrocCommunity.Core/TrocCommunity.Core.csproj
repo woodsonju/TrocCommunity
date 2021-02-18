@@ -63,7 +63,6 @@
     <Compile Include="Models\Utilisateur.cs" />
     <Compile Include="Tools\GooglePlaceApifunctions.cs" />
     <Compile Include="ViewModels\AdresseViewModel.cs" />
-    <Compile Include="ViewModels\StringModel.cs" />
     <Compile Include="Tools\CategorieLivre.cs" />
     <Compile Include="ViewModels\UtilisateurViewModel.cs" />
     <Compile Include="Models\WishList.cs" />

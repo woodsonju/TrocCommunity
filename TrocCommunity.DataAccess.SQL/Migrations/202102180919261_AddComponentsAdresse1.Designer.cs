@@ -7,13 +7,13 @@ namespace TrocCommunity.DataAccess.SQL.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class AddFullNameToAdresse : IMigrationMetadata
+    public sealed partial class AddComponentsAdresse1 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddFullNameToAdresse));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AddComponentsAdresse1));
         
         string IMigrationMetadata.Id
         {
-            get { return "202102150430070_AddFullNameToAdresse"; }
+            get { return "202102180919261_AddComponentsAdresse1"; }
         }
         
         string IMigrationMetadata.Source
