@@ -52,7 +52,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAO\QueryLivre.cs" />
     <Compile Include="DAO\SQLRepository.cs" />
+    <Compile Include="DAO\SQLRepositoryAnnonce.cs" />
     <Compile Include="DAO\SQLRepositoryUtilisateur.cs" />
     <Compile Include="Migrations\202101210843411_InitialModel.cs" />
     <Compile Include="Migrations\202101210843411_InitialModel.Designer.cs">
@@ -101,6 +103,10 @@
     <Compile Include="Migrations\202102181726312_ProblemContext_MdodifBook.cs" />
     <Compile Include="Migrations\202102181726312_ProblemContext_MdodifBook.Designer.cs">
       <DependentUpon>202102181726312_ProblemContext_MdodifBook.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102180919261_AddComponentsAdresse1.cs" />
+    <Compile Include="Migrations\202102180919261_AddComponentsAdresse1.Designer.cs">
+      <DependentUpon>202102180919261_AddComponentsAdresse1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MyContext.cs" />
@@ -152,6 +158,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202102181726312_ProblemContext_MdodifBook.resx">
       <DependentUpon>202102181726312_ProblemContext_MdodifBook.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102180919261_AddComponentsAdresse1.resx">
+      <DependentUpon>202102180919261_AddComponentsAdresse1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
