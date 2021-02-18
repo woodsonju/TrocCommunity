@@ -79,7 +79,6 @@ namespace TrocCommunity.Core.Models
             Photo = "imgProfile.png";
             this.Adresse = new Adresse
             {
-                TypeDeVoie = "",
                 NomDeVoie = "",
                 NumVoie = 0,
                 CodePostale = "00000",
