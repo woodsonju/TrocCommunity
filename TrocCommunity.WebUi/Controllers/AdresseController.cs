@@ -9,10 +9,9 @@ using TrocCommunity.Core.Models;
 using TrocCommunity.Core.ViewModels;
 using TrocCommunity.DataAccess.SQL;
 using TrocCommunity.DataAccess.SQL.DAO;
-using TrocCommunity.Core.Tools;
 using System.Configuration;
 using System.Web.Services;
-
+using TrocCommunity.WebUi.ApiClient;
 
 namespace TrocCommunity.WebUi.Controllers
 {
@@ -170,7 +169,7 @@ namespace TrocCommunity.WebUi.Controllers
                 else
                 {
                     
-                    Adresse a = await GooglePlaceApifunctions.AdresseInformation(ConfigurationManager.AppSettings["GooglePlaceAPIKey"], searchInput);
+                    Adresse a = await GooglePlaceApifunctions.AdresseInformation( searchInput);
                     a.Id = adresse.Id;
                     contextAdresse.Update(a);
                     contextAdresse.SaveChanges();
@@ -199,7 +198,7 @@ namespace TrocCommunity.WebUi.Controllers
         {
 
 
-            List<string> adresses = await GooglePlaceApifunctions.AutoCompleteSearch(ConfigurationManager.AppSettings["GooglePlaceAPIKey"],search);
+            List<string> adresses = await GooglePlaceApifunctions.AutoCompleteSearch(search);
 
             List<string> lst = new List<string>();
 
