@@ -15,7 +15,6 @@ namespace TrocCommunity.DataAccess.SQL
 
         public virtual DbSet<Admin> Admins { get; set; }
         public virtual DbSet<Adresse> Adresses { get; set; }
-        public virtual DbSet<Annonce> Annonces { get; set; }
         public virtual DbSet<BibliothequeVirtuelle> BibliothequeVirtuelle { get; set; }
         public virtual DbSet<Categorie> Categories { get; set; }
         public virtual DbSet<Client> Clients { get; set; }

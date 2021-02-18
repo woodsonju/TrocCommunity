@@ -46,7 +46,6 @@
     <Compile Include="Logic\IRepository.cs" />
     <Compile Include="Models\Admin.cs" />
     <Compile Include="Models\Adresse.cs" />
-    <Compile Include="Models\Annonce.cs" />
     <Compile Include="Models\BaseEntity.cs" />
     <Compile Include="Models\BibliothequeVirtuelle.cs" />
     <Compile Include="Models\Categorie.cs" />
@@ -59,6 +58,7 @@
     <Compile Include="Models\TypeCategorie.cs" />
     <Compile Include="Models\TypeUtilisateur.cs" />
     <Compile Include="Models\Utilisateur.cs" />
+    <Compile Include="Tools\CategorieLivre.cs" />
     <Compile Include="ViewModels\UtilisateurViewModel.cs" />
     <Compile Include="Models\WishList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

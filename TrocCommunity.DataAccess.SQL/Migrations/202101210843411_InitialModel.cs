@@ -7,7 +7,7 @@
     {
         public override void Up()
         {
-            CreateTable(
+           /* CreateTable(
                 "dbo.Utilisateurs",
                 c => new
                     {
@@ -165,7 +165,7 @@
                         Id = c.Int(nullable: false, identity: true),
                     })
                 .PrimaryKey(t => t.Id);
-            
+            */
         }
         
         public override void Down()
