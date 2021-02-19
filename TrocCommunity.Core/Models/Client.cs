@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,7 +9,10 @@ namespace TrocCommunity.Core.Models
 {
     public class Client : Utilisateur
     {
+        //[ForeignKey("TableauId")]
         public TableauDeBord TableauDeBord { get; set; }
+
+        //public int TableauId { get; set; }
 
         public Client()
         {
