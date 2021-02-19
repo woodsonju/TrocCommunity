@@ -48,29 +48,53 @@ namespace TrocCommunity.WebUi.Controllers
             CategorieLivre viewModel = new CategorieLivre();
 
 
-            IEnumerable<Livre>list = new List<Livre>();
+            /*IEnumerable<Livre>list = new List<Livre>();
             if(cat == null)
             {
-                list = contextLivre.Collection();
+                list = contextLivre.Collection().ToList();
 
             }
             else
             {
                 list = ((SQLRepositoryLivre)contextLivre).LivreParCategorie(cat);
-            }
+            }*/
 
-
+            
             //IEnumerable<Livre> LivresSearch = ((SQLRepositoryLivre)contextLivre).Search(search);
             viewModel.Categories = contextCategorie.Collection().ToList();
-            ViewBag.TotalPages = (int)Math.Ceiling((decimal)list.Count() / pageSize);
             //var list = contextLivre.Collection().ToList();
-            var Livres = NbPagination(search, page, pageSize);
-            viewModel.Livres = Livres;
+            if (cat == null)
+            {
+                var Livres = ((SQLRepositoryLivre)contextLivre).Search(search);
+                ViewBag.TotalPages = (int)Math.Ceiling((decimal)Livres.Count() / pageSize);
+                var Livres = ((SQLRepositoryLivre)contextLivre).NbPagination(search,page, pageSize);
+                viewModel.Livres = Livres;
+
+                
+                
+                
+                viewModel.Livres = Livres;
+                ViewBag.currentPage = page;
+                ViewBag.PageSize = pageSize;
+                ViewBag.Search = search;
+                ViewBag.NoSearch = 0;
+            }
+            else
+            {
+                var Livres = ((SQLRepositoryLivre)contextLivre).LivreParCategoriePagination(((SQLRepositoryLivre)contextLivre).NbPagination(search, page, pageSize), cat);
+                viewModel.Livres = Livres;
+                ViewBag.TotalPages = (int)Math.Ceiling((decimal)Livres.Count() / pageSize);
+                viewModel.Livres = Livres;
+                ViewBag.currentPage = page;
+                ViewBag.PageSize = pageSize;
+                ViewBag.Search = search;
+                ViewBag.NoSearch = 0;
+            }
+                
+            
+            
             //LivresSearch = ((SQLRepositoryLivre)contextLivre).NbPagination(search, page, pageSize);
-            ViewBag.currentPage = page;
-            ViewBag.PageSize = pageSize;
-            ViewBag.Search = search;
-            ViewBag.NoSearch = 0;
+            
 
             if (((SQLRepositoryLivre)contextLivre).Search(search).Count() > 0)
             {
@@ -78,7 +102,7 @@ namespace TrocCommunity.WebUi.Controllers
                 ViewBag.NbLivreSearch = NbLivreRecherche;
             }
 
-            viewModel.Livres = Livres;
+            
 
 
             return View(viewModel) ;
