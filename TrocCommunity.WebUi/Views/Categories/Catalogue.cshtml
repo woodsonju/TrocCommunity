@@ -119,7 +119,7 @@ if (ViewBag.TotalPages <= maxPages)
                             <div class="card-header" id="@item.Description.Substring(0,3)">
                                 <h2 class="mb-0 category-btn">
                                     <button type="button" class="btn btn-link ">
-                                        @Html.ActionLink(item.NomCategorie, item.NomCategorie.Substring(0, 3), null, null)
+                                        @Html.ActionLink(item.NomCategorie,"Catalogue", new { cat = item.NomCategorie.Substring(0, 3) }, null)
                                     </button>
                                     <i class="fas fa-sort-down  collapsed ml-lg-2" data-toggle="collapse" data-target="#@item.NomCategorie.Substring(0,3)"></i>
                                 </h2>

@@ -42,15 +42,31 @@ namespace TrocCommunity.WebUi.Controllers
         }
 
         // GET: Categories
-        public ActionResult Catalogue(int page = 1,  string search = null)
+        public ActionResult Catalogue(int page = 1,  string search = null, string cat = null)
         {
 
             CategorieLivre viewModel = new CategorieLivre();
-            IEnumerable<Livre> LivresSearch = ((SQLRepositoryLivre)contextLivre).Search(search);
+
+
+            IEnumerable<Livre>list = new List<Livre>();
+            if(cat == null)
+            {
+                list = contextLivre.Collection();
+
+            }
+            else
+            {
+                list = ((SQLRepositoryLivre)contextLivre).LivreParCategorie(cat);
+            }
+
+
+            //IEnumerable<Livre> LivresSearch = ((SQLRepositoryLivre)contextLivre).Search(search);
             viewModel.Categories = contextCategorie.Collection().ToList();
-            var list = contextLivre.Collection().ToList();
             ViewBag.TotalPages = (int)Math.Ceiling((decimal)list.Count() / pageSize);
-            LivresSearch = ((SQLRepositoryLivre)contextLivre).NbPagination(search, page, pageSize);
+            //var list = contextLivre.Collection().ToList();
+            var Livres = NbPagination(search, page, pageSize);
+            viewModel.Livres = Livres;
+            //LivresSearch = ((SQLRepositoryLivre)contextLivre).NbPagination(search, page, pageSize);
             ViewBag.currentPage = page;
             ViewBag.PageSize = pageSize;
             ViewBag.Search = search;
@@ -62,7 +78,7 @@ namespace TrocCommunity.WebUi.Controllers
                 ViewBag.NbLivreSearch = NbLivreRecherche;
             }
 
-            viewModel.Livres = LivresSearch;
+            viewModel.Livres = Livres;
 
 
             return View(viewModel) ;
@@ -71,7 +87,7 @@ namespace TrocCommunity.WebUi.Controllers
 
 
         // Vue Littérature
-        public ActionResult Lit(int page = 1, string search = null, string categorie = null)
+       /* public ActionResult Lit(int page = 1, string search = null, string categorie = null)
         {
             CategorieLivre viewModel = new CategorieLivre();
             var vps = ((SQLRepositoryLivre)contextLivre).NomCategorie(((SQLRepositoryLivre)contextLivre).NbPagination(search, page, pageSize),"Lit");
@@ -82,7 +98,7 @@ namespace TrocCommunity.WebUi.Controllers
             ViewBag.PageSize = pageSize;
             ViewBag.Search = search;
             return View(viewModel);
-        }
+        }*/
 
         
 

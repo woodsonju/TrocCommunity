@@ -38,9 +38,16 @@ namespace TrocCommunity.DataAccess.SQL.DAO
         }
 
 
-        public IEnumerable<Livre> LivreParCategorie(IEnumerable<Livre> book, string categorie)
+        public IEnumerable<Livre> LivreParCategoriePagination(IEnumerable<Livre> book, string cat)
         {
-            var result = dataContext.Livres.Where(x => x.Categorie.NomCategorie.Substring(0, 3) == categorie);
+            IEnumerable<Livre> result = dataContext.Livres.Where(x => x.Categorie.NomCategorie.Substring(0, 3) == cat);
+            return result;
+
+        }
+
+        public IEnumerable<Livre> LivreParCategorie(string cat)
+        {
+            IEnumerable<Livre> result = dataContext.Livres.Where(x => x.Categorie.NomCategorie.Substring(0, 3) == cat);
             return result;
 
         }

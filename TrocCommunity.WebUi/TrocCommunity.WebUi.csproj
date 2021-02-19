@@ -619,15 +619,6 @@
     <Content Include="Views\Admin\Delete.cshtml" />
     <Content Include="Views\Admin\Details.cshtml" />
     <Content Include="Views\Categories\Catalogue.cshtml" />
-    <Content Include="Views\Categories\Lit.cshtml" />
-    <Content Include="Views\Categories\Bie.cshtml" />
-    <Content Include="Views\Categories\Jeu.cshtml" />
-    <Content Include="Views\Categories\Ban.cshtml" />
-    <Content Include="Views\Categories\Art.cshtml" />
-    <Content Include="Views\Categories\Sco.cshtml" />
-    <Content Include="Views\Categories\Loi.cshtml" />
-    <Content Include="Views\Categories\Sci.cshtml" />
-    <Content Include="Views\Categories\Ent.cshtml" />
     <Content Include="Views\Categories\DetailsLivre.cshtml" />
   </ItemGroup>
   <ItemGroup>
