@@ -9,10 +9,7 @@ namespace TrocCommunity.Core.Models
 {
     public class Adresse : BaseEntity
     {
-     /*   [Required]*/
-        public string TypeDeVoie { get; set; }
-
-    /*    [Required]*/
+        public string FullName { get; set; }
         public string NomDeVoie { get; set; }
 
  /*       [Required] 
@@ -28,12 +25,15 @@ namespace TrocCommunity.Core.Models
 
       /*  [Required]*/
         public string Pays { get; set; }
-/*
-        [Required]
-        public Utilisateur Utilisateur { get; set; }*/
+
+        public double Longitude { get; set; }
+
+        public double Latitude { get; set; }
+
+        public string PlaceId { get; set; }
+
     }
 
 
     
 }
-/*Adresse FindByUtilisateur(int utilisateurId);*/
