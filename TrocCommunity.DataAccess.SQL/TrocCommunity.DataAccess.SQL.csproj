@@ -52,7 +52,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAO\ISQLRepositoryLivre.cs" />
     <Compile Include="DAO\SQLRepository.cs" />
+    <Compile Include="DAO\SQLRepositoryLivre.cs" />
     <Compile Include="DAO\SQLRepositoryUtilisateur.cs" />
     <Compile Include="Migrations\202101210843411_InitialModel.cs" />
     <Compile Include="Migrations\202101210843411_InitialModel.Designer.cs">

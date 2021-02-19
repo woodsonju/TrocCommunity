@@ -1,4 +1,10 @@
-﻿/********************************  MEDIA QUERY NAVBAR *****************/
+﻿/*************************** LAYOUT CONTAINER **********************/
+#layout-container {
+    padding : 0;
+}
+
+
+/********************************  MEDIA QUERY NAVBAR *****************/
 @media only screen and (max-width: 461px) {
     .js-logo-clone {
         font-size : 12px!important;
@@ -16,6 +22,20 @@
     .js-logo-clone {
         visibility : hidden;
     }
+}
+
+
+/********************************* CAROUSEL *******************************/
+.carousel {
+    padding : 0!important;
+    margin-top : 85px;
+    margin-bottom : 95px;
+
+}
+
+.carousel-item img {
+    height: 700px!important;
+    border-radius : 5px;
 }
 
 

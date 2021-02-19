@@ -628,7 +628,6 @@
     <Content Include="Views\Categories\Loi.cshtml" />
     <Content Include="Views\Categories\Sci.cshtml" />
     <Content Include="Views\Categories\Ent.cshtml" />
-    <Content Include="Views\Categories\Catalogue1.cshtml" />
     <Content Include="Views\Categories\DetailsLivre.cshtml" />
   </ItemGroup>
   <ItemGroup>
