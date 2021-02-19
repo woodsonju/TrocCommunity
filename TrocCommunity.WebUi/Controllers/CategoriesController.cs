@@ -42,89 +42,80 @@ namespace TrocCommunity.WebUi.Controllers
         }
 
         // GET: Categories
-        public ActionResult Catalogue(int page = 1,  string search = null, string cat = null)
+        public ActionResult Catalogue(int page = 1, string cat = null)
         {
 
             CategorieLivre viewModel = new CategorieLivre();
 
 
-            /*IEnumerable<Livre>list = new List<Livre>();
-            if(cat == null)
-            {
-                list = contextLivre.Collection().ToList();
+            IEnumerable<Livre>list = new List<Livre>();
 
-            }
-            else
-            {
-                list = ((SQLRepositoryLivre)contextLivre).LivreParCategorie(cat);
-            }*/
 
-            
             //IEnumerable<Livre> LivresSearch = ((SQLRepositoryLivre)contextLivre).Search(search);
             viewModel.Categories = contextCategorie.Collection().ToList();
+
+            ViewBag.TotalPages = (int)Math.Ceiling((decimal)((SQLRepositoryLivre)contextLivre).Count(cat) / pageSize);
             //var list = contextLivre.Collection().ToList();
-            if (cat == null)
-            {
-                var Livres = ((SQLRepositoryLivre)contextLivre).Search(search);
-                ViewBag.TotalPages = (int)Math.Ceiling((decimal)Livres.Count() / pageSize);
-                var Livres = ((SQLRepositoryLivre)contextLivre).NbPagination(search,page, pageSize);
-                viewModel.Livres = Livres;
 
-                
-                
-                
-                viewModel.Livres = Livres;
-                ViewBag.currentPage = page;
-                ViewBag.PageSize = pageSize;
-                ViewBag.Search = search;
-                ViewBag.NoSearch = 0;
-            }
-            else
-            {
-                var Livres = ((SQLRepositoryLivre)contextLivre).LivreParCategoriePagination(((SQLRepositoryLivre)contextLivre).NbPagination(search, page, pageSize), cat);
-                viewModel.Livres = Livres;
-                ViewBag.TotalPages = (int)Math.Ceiling((decimal)Livres.Count() / pageSize);
-                viewModel.Livres = Livres;
-                ViewBag.currentPage = page;
-                ViewBag.PageSize = pageSize;
-                ViewBag.Search = search;
-                ViewBag.NoSearch = 0;
-            }
-                
-            
-            
+            var Livres = ((SQLRepositoryLivre)contextLivre).NbPagination(page, pageSize,cat);
+            viewModel.Livres = Livres;
             //LivresSearch = ((SQLRepositoryLivre)contextLivre).NbPagination(search, page, pageSize);
-            
+            ViewBag.currentPage = page;
+            ViewBag.PageSize = pageSize;
+            ViewBag.Search = null;
 
-            if (((SQLRepositoryLivre)contextLivre).Search(search).Count() > 0)
-            {
-                var NbLivreRecherche = ((SQLRepositoryLivre)contextLivre).Search(search).Count();
-                ViewBag.NbLivreSearch = NbLivreRecherche;
-            }
 
-            
+            viewModel.Livres = Livres;
 
 
             return View(viewModel) ;
         }
 
-
-
-        // Vue Littérature
-       /* public ActionResult Lit(int page = 1, string search = null, string categorie = null)
+        public ActionResult Search(int page = 1,string search = null)
         {
             CategorieLivre viewModel = new CategorieLivre();
-            var vps = ((SQLRepositoryLivre)contextLivre).NomCategorie(((SQLRepositoryLivre)contextLivre).NbPagination(search, page, pageSize),"Lit");
-            viewModel.Livres = vps;
-            ViewBag.TotalPages = (int)Math.Ceiling((double)vps.Count() / pageSize);
             viewModel.Categories = contextCategorie.Collection().ToList();
+
+           
+
+
+            ViewBag.TotalPages = (int)Math.Ceiling((decimal)((SQLRepositoryLivre)contextLivre).SearchCount(search) / pageSize);
+
+            //var list = contextLivre.Collection().ToList();
+
+            var Livres = ((SQLRepositoryLivre)contextLivre).NbPaginationSearch(page, pageSize,search);
+            viewModel.Livres = Livres;
+            //LivresSearch = ((SQLRepositoryLivre)contextLivre).NbPagination(search, page, pageSize);
             ViewBag.currentPage = page;
             ViewBag.PageSize = pageSize;
             ViewBag.Search = search;
-            return View(viewModel);
-        }*/
 
-        
+            
+            ViewBag.NbLivreSearch = Livres.Count();
+
+
+            
+
+
+            return View("Catalogue",viewModel);
+        }
+
+
+        // Vue Littérature
+        /* public ActionResult Lit(int page = 1, string search = null, string categorie = null)
+         {
+             CategorieLivre viewModel = new CategorieLivre();
+             var vps = ((SQLRepositoryLivre)contextLivre).NomCategorie(((SQLRepositoryLivre)contextLivre).NbPagination(search, page, pageSize),"Lit");
+             viewModel.Livres = vps;
+             ViewBag.TotalPages = (int)Math.Ceiling((double)vps.Count() / pageSize);
+             viewModel.Categories = contextCategorie.Collection().ToList();
+             ViewBag.currentPage = page;
+             ViewBag.PageSize = pageSize;
+             ViewBag.Search = search;
+             return View(viewModel);
+         }*/
+
+
 
         // Détails d'un livre
         public ActionResult DetailsLivre(int id)
