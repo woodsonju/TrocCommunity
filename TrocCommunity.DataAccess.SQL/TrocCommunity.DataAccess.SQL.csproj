@@ -99,6 +99,10 @@
     <Compile Include="Migrations\202102171744445_DateEdition.Designer.cs">
       <DependentUpon>202102171744445_DateEdition.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202102191521280_ChangementNolween.cs" />
+    <Compile Include="Migrations\202102191521280_ChangementNolween.Designer.cs">
+      <DependentUpon>202102191521280_ChangementNolween.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MyContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -146,6 +150,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202102171744445_DateEdition.resx">
       <DependentUpon>202102171744445_DateEdition.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102191521280_ChangementNolween.resx">
+      <DependentUpon>202102191521280_ChangementNolween.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
