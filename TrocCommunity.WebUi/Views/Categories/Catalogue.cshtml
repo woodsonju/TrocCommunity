@@ -6,31 +6,41 @@
 
 <div class="product-search">
 
-    <form action="@Url.Action("Catalogue", "Categories")" method="get">
-        <input id="search" name="search" type="text" value="@ViewBag.Search" placeholder="Rechercher..." />
-        <input type="submit" value="Valider" />
-    </form>
+    @Html.BeginForm("Search", "Categories", FormMethod.Get){
+
+    <input id="search" name="search" type="text" value="@ViewBag.Search" placeholder="Rechercher..." />
+    <input type="submit" value="Valider" />
+    }
 
 </div>
 @helper buildLinks(int start, int end, string innerContent)
 {
     for (int i = start; i <= end; i++)
     {
-        <a class="@(i == ViewBag.CurrentPage ? "current" : "")"
-           href="@Url.Action("Catalogue", "Categories", new { page = i, search = ViewBag.Search })">@(innerContent ?? i.ToString())</a>
+
+        if (ViewBag.Search == null)
+        {
+            <a class="@(i == ViewBag.CurrentPage ? "current" : "")"
+               href="@Url.Action("Catalogue", "Categories", new { page = i, search = ViewBag.Search })">@(innerContent ?? i.ToString())</a>
+        }
+        else
+        {
+            <a class="@(i == ViewBag.CurrentPage ? "current" : "")"
+               href="@Url.Action("Search", "Categories", new { page = i, search = ViewBag.Search })">@(innerContent ?? i.ToString())</a>
+        }
     }
 
 }
 
 @helper pageLinks()
 {
-const int maxPages = 11;
+    const int maxPages = 11;
 
 
-if (ViewBag.TotalPages <= maxPages)
-{
-    if (ViewBag.NbLivreSearch  == null && ViewBag.Search != null)
+    if (ViewBag.TotalPages <= maxPages)
     {
+        if (ViewBag.NbLivreSearch == null && ViewBag.Search != null)
+        {
             @buildLinks(1, (int)ViewBag.NoSearch, null)
 
             return;
@@ -38,7 +48,7 @@ if (ViewBag.TotalPages <= maxPages)
 
         if (ViewBag.NbLivreSearch <= 9)
         {
-            @buildLinks(1, (int)ViewBag.TotalPages - 1, null)
+            @buildLinks(1, (int)ViewBag.TotalPages, null)
 
             return;
         }
@@ -119,7 +129,7 @@ if (ViewBag.TotalPages <= maxPages)
                             <div class="card-header" id="@item.Description.Substring(0,3)">
                                 <h2 class="mb-0 category-btn">
                                     <button type="button" class="btn btn-link ">
-                                        @Html.ActionLink(item.NomCategorie,"Catalogue", new { cat = item.NomCategorie.Substring(0, 3) }, null)
+                                        @Html.ActionLink(item.NomCategorie, "Catalogue", new { cat = item.NomCategorie.Substring(0, 3) }, null)
                                     </button>
                                     <i class="fas fa-sort-down  collapsed ml-lg-2" data-toggle="collapse" data-target="#@item.NomCategorie.Substring(0,3)"></i>
                                 </h2>
@@ -147,9 +157,9 @@ if (ViewBag.TotalPages <= maxPages)
 
 
             <div class="row" id="row-section-book-card">
-                @if (ViewBag.NbLivreSearch  == null && ViewBag.Search != null)
+                @if (ViewBag.NbLivreSearch == null && ViewBag.Search != null)
                 {
-                <p>Il n'y a pas de livres correspondant à cette recherche.</p>
+                    <p>Il n'y a pas de livres correspondant à cette recherche.</p>
                 }
                 @foreach (var item in Model.Livres)
                 {
