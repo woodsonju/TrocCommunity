@@ -3,15 +3,46 @@
 @{
     ViewBag.Title = "Catalogue";
 }
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
 
 <div class="product-search">
+
+
+
 
     @using (Html.BeginForm("Search", "Categories", FormMethod.Get))
     {
 
-    <input id="search" name="search" type="text" value="@ViewBag.Search" placeholder="Rechercher..." />
-    <input type="submit" value="Valider" />
+        <input id="search" name="search" type="text" value="@ViewBag.Search" placeholder="Rechercher..." />
+
+        <input type="submit" value="Valider" />
     }
+    <p>Recherche Avancée</p>
+    @using (Html.BeginForm("AdvancedSearch", "Categories", FormMethod.Get))
+    {
+
+        <div class="col-md-12 col-sm-12">
+            <label>Auteur:</label> <input type="text">
+            <label>Titre:</label> <input type="text">
+        </div>
+        <br>
+        <label for="amount1" class="col-md-1 col-sm-12">Points : </label>
+        <input type="text" id="amount1" class="col-md-1 col-sm-12" style="border:0; color:#f6931f; font-weight:bold;">
+
+        <input type="text" id="amount2" class="col-md-1 col-sm-12" style="border:0; color:#f6931f; font-weight:bold;">
+        <br>
+
+        <div id="slider-rangeTest" class="col-md-4 col-sm-12" display="inline-block" margin-right=70></div>
+
+        <br>
+
+
+        <input type="submit" value="Valider" />
+    }
+
 
 </div>
 @helper buildLinks(int start, int end, string innerContent)
@@ -196,4 +227,19 @@
     </div>
 </div>
 
+<script>
+    $("#slider-rangeTest").slider({
+        range: true,
+        min: 0,
+        max: 700,
+        values: [75, 300],
+        slide: function (event, ui) {
+            $("#amount1").val(ui.values[0]);
+            $("#amount2").val(ui.values[1]);
 
+        }
+    });
+
+    $("#amount1").val($("#slider-rangeTest").slider("values", 0));
+    $("#amount2").val($("#slider-rangeTest").slider("values", 1));
+</script>

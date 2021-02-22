@@ -115,7 +115,12 @@ namespace TrocCommunity.WebUi.Controllers
              return View(viewModel);
          }*/
 
+        public ActionResult AdvancedSearch()
+        {
 
+
+            return View();
+        }
 
         // Détails d'un livre
         public ActionResult DetailsLivre(int id)

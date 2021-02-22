@@ -77,12 +77,44 @@ namespace TrocCommunity.DataAccess.SQL.DAO
         }
 
 
-        public IQueryable<Livre> LivreParCategorie(string cat)
+        public IEnumerable<Livre> LivreParCategorie(string cat)
         {
             IQueryable<Livre> result = dataContext.Livres.Where(x => x.Categorie.NomCategorie.Substring(0, 3) == cat);
             return result;
 
         }
+
+
+        //AdvancedSearch
+        public IEnumerable<Livre> findByKeyWord(string keyWord)
+        {
+            return dataContext.Livres.AsNoTracking().Where(book => book.Title.Contains(keyWord)
+                                   || book.Author.Contains(keyWord)
+                                   || book.Editor.Contains(keyWord));
+        }
+
+        public List<Livre> findByPoints(int min, int max)
+        {
+            return dataContext.Livres.AsNoTracking().Where(book => book.PointDuLivre >= min && book.PointDuLivre <= max).ToList();
+
+        }
+
+        public List<Livre> findByState(List<int> AcceptableState)
+        {
+
+            var request = (from a1 in dbSet where AcceptableState.Contains((int)a1.EtatDuLivre) select a1).ToList();
+            return request;
+
+        }
+
+        public List<Livre> findByDate(DateTime limitDate)
+        {
+
+            var request = (from a1 in dataContext.Livres where limitDate > a1.DateEdition select a1).ToList();
+            return request;
+
+        }
+
 
 
     }
