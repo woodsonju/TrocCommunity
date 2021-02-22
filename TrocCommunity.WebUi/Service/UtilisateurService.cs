@@ -42,9 +42,10 @@ namespace TrocCommunity.WebUi.Service
         {
             Utilisateur userBD = repo.FindById(u.Id);
 
-            if (!userBD.Password.Equals(u.Password))
+            if (!userBD.Password.Equals(u.Confirmpwd))
             {
-                u.Password = HashTools.ComputeSha256Hash(u.Password);
+                u.Password = HashTools.ComputeSha256Hash(u.Confirmpwd);
+                u.Confirmpwd = HashTools.ComputeSha256Hash(u.Confirmpwd);
             }
             repo.Update(u);
         }
