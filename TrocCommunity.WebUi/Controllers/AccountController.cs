@@ -194,12 +194,12 @@ namespace TrocCommunity.WebUi.Controllers
 
             Utilisateur ut = serviceUser.FindByEmail(u.Email);
 
-            ut.Password = u.Password;
+            //ut.Password = u.Password;
             ut.Confirmpwd = u.Confirmpwd;
 
             if (ModelState.IsValid)
             {
-                if (ut.Password.Equals(ut.Confirmpwd))
+                if (u.Password.Equals(u.Confirmpwd))
                 {
                     serviceUser.Update(ut);
                     serviceUser.SaveChanges();
