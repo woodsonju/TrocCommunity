@@ -23,7 +23,7 @@ namespace TrocCommunity.WebUi.Service
             Utilisateur u = ((SQLRepositoryUtilisateur)repo).findByEmail(email);
             string pwdCrypt = HashTools.ComputeSha256Hash(password);
 
-            if (u == null || u.Password.Equals(pwdCrypt))
+            if (u == null || !u.Password.Equals(pwdCrypt))
             {
                 return null;
             }
