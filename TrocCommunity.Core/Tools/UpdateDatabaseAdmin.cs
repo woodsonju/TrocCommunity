@@ -10,6 +10,7 @@ namespace TrocCommunity.Core.Tools
 {
     public class UpdateDatabaseAdmin : BaseEntity
     {
+
         [Required]
         public TypeUtilisateur typeUtilisateur { get; set; }
 

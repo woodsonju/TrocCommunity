@@ -1,4 +1,10 @@
-﻿@model TrocCommunity.Core.ViewModels.UtilisateurViewModel
+﻿
+@model TrocCommunity.Core.Models.Adresse
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-1.8.0.js"></script>
+<script src="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.22/jquery-ui.js"></script>
+
+
 
 @{
     ViewBag.Title = "EditAdresse";
@@ -6,74 +12,61 @@
 
 <h2>EditAdresse</h2>
 
+
 @using (Html.BeginForm("EditAdresse", "Adresse", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-        <h4>UtilisateurViewModel</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.Adresse.Id)
-
-
+    @Html.HiddenFor(model => model.Id)
+    <div class="form-group">
+        @Html.Label("Saisir l'adresse", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            <div class="form-group">
-                @Html.LabelFor(model => model.Utilisateur.Adresse.TypeDeVoie, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Adresse.TypeDeVoie, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Utilisateur.Adresse.TypeDeVoie, "", new { @class = "text-danger" })
-                </div>
-            </div>
+            <input id="searchInput" name="searchInput" class="form-control" />
+            @*@Html.ValidationMessageFor(model => model.Utilisateur.Adresse.NomDeVoie, "", new { @class = "text-danger" })*@
+        </div>
+    </div>
+    <div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.Utilisateur.Adresse.NomDeVoie, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Adresse.NomDeVoie, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Utilisateur.Adresse.NomDeVoie, "", new { @class = "text-danger" })
-                </div>
-            </div>
+    </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.Utilisateur.Adresse.NumVoie, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Adresse.NumVoie, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Utilisateur.Adresse.NumVoie, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.Adresse.CodePostale, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Adresse.CodePostale, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Utilisateur.Adresse.CodePostale, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.Utilisateur.Adresse.Ville, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Adresse.Ville, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Utilisateur.Adresse.Ville, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.Utilisateur.Adresse.Pays, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Adresse.Pays, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Utilisateur.Adresse.Pays, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Save" class="btn btn-default" />
-                </div>
-            </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Save" class="btn btn-default" />
         </div>
     </div>
 }
+
+<script>
+
+    $("#searchInput").autocomplete({
+        source: function (request, response) {
+            $.ajax({
+                url: '@Url.Action("GetSearchElem","Adresse")',
+                dataType: "json",
+                data: { search: $("#searchInput").val() },
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    //alert("Sucess");
+                    response($.map(data, function (item) {
+                        return { label: item, value: item };
+
+                    }));
+                },
+                error: function (xhr, status, error) {
+                    alert("Error");
+                    console.log(error);
+                    console.log(status);
+                },
+                failure: function (response) {
+                    alert(response.responseText);
+                }
+
+            });
+        }
+    });
+</script>
+
+
 
 <div>
     @Html.ActionLink("Back to List", "Index")

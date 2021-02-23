@@ -1,4 +1,4 @@
-﻿@model TrocCommunity.Core.ViewModels.UtilisateurViewModel
+﻿@model TrocCommunity.Core.ViewModels.AdresseViewModel
 
 @{
     ViewBag.Title = "DetailsAdresse";
@@ -6,61 +6,64 @@
 
 <h2>DetailsAdresse</h2>
 
+
+
 <div>
-    <h4>UtilisateurViewModel</h4>
     <hr />
     <dl class="dl-horizontal">
+
         <dt>
-            @Html.DisplayNameFor(model => model.Utilisateur.Adresse.TypeDeVoie)
+            @Html.DisplayNameFor(model => model.FullName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Utilisateur.Adresse.TypeDeVoie)
+            @Html.DisplayFor(model => model.FullName)
+            
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Utilisateur.Adresse.NomDeVoie)
+            @Html.DisplayNameFor(model => model.NumVoie)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Utilisateur.Adresse.NomDeVoie)
+            @Html.DisplayFor(model => model.NumVoie)
         </dd>
-
         <dt>
-            @Html.DisplayNameFor(model => model.Utilisateur.Adresse.NumVoie)
+            @Html.DisplayNameFor(model => model.NomDeVoie)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Utilisateur.Adresse.NumVoie)
+            @Html.DisplayFor(model => model.NomDeVoie)
         </dd>
-
         <dt>
-            @Html.DisplayNameFor(model => model.Utilisateur.Adresse.CodePostale)
+            @Html.DisplayNameFor(model => model.CodePostale)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Utilisateur.Adresse.CodePostale)
+            @Html.DisplayFor(model => model.CodePostale)
         </dd>
-
         <dt>
-            @Html.DisplayNameFor(model => model.Utilisateur.Adresse.Ville)
+            @Html.DisplayNameFor(model => model.Ville)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Utilisateur.Adresse.Ville)
+            @Html.DisplayFor(model => model.Ville)
         </dd>
-
         <dt>
-            @Html.DisplayNameFor(model => model.Utilisateur.Adresse.Pays)
+            @Html.DisplayNameFor(model => model.Pays)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Utilisateur.Adresse.Pays)
+            @Html.DisplayFor(model => model.Pays)
         </dd>
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "EditAdresse", new { id = Model.Adresse.Id}) |
+    @Html.ActionLink("Edit", "EditAdresse", new { id = Model.Id }) |
     @Html.ActionLink("Retour vers Compte Utilisateur", "Index", "Account")
 </p>
+}
+
+
+

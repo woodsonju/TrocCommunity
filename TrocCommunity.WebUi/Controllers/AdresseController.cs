@@ -9,12 +9,15 @@ using TrocCommunity.Core.Models;
 using TrocCommunity.Core.ViewModels;
 using TrocCommunity.DataAccess.SQL;
 using TrocCommunity.DataAccess.SQL.DAO;
+using System.Configuration;
+using System.Web.Services;
+using TrocCommunity.WebUi.ApiClient;
 
 namespace TrocCommunity.WebUi.Controllers
 {
     public class AdresseController : Controller
     {
-        IRepository<Adresse> contextAdresse;
+        private IRepository<Adresse> contextAdresse;
         private IRepository<Utilisateur> contextUser;
 
 
@@ -79,14 +82,14 @@ namespace TrocCommunity.WebUi.Controllers
         }
 
         // GET: Utilisateurs/Details/5
-        public ActionResult DetailsAdresse(int? id)
+        public ActionResult DetailsAdresse(int ?id)
         {
 
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
- 
+
 
             Utilisateur utilisateur = contextUser.FindById((int)id);
             int adresse_id = utilisateur.AdresseId;
@@ -94,19 +97,35 @@ namespace TrocCommunity.WebUi.Controllers
             Utilisateur uAdresse = ((SQLRepositoryUtilisateur)contextUser).FindByMailWithAdressId(mail, adresse_id);
             /* Utilisateur utilisateur = ((SQLRepositoryUtilisateur)contextUser).findByEmail(Email);*/
 
-
+            AdresseViewModel viewModel = new AdresseViewModel();
             if (utilisateur == null)
             {
                 return HttpNotFound();
             }
 
-            UtilisateurViewModel viewModel = new UtilisateurViewModel();
+            if (uAdresse.Adresse.FullName == "")
+            {
+                viewModel.FullName = "";
+                viewModel.Id = adresse_id;
 
-            //int id_adresse = utilisateur.Adresse.Id;
+            }
+            else
+            {
 
-            viewModel.Utilisateur = uAdresse;
-            viewModel.Adresse = uAdresse.Adresse;
-            /* TempData["Id"] = id_adresse;*/
+                viewModel.Id = adresse_id;
+                viewModel.FullName = uAdresse.Adresse.FullName;
+                viewModel.CodePostale = uAdresse.Adresse.CodePostale;
+                viewModel.NomDeVoie = uAdresse.Adresse.NomDeVoie;
+                viewModel.NumVoie = uAdresse.Adresse.NumVoie;
+                viewModel.Pays = uAdresse.Adresse.Pays;
+                
+                viewModel.Ville = uAdresse.Adresse.Ville;
+
+
+
+            }
+
+
             return View(viewModel);
         }
 
@@ -124,28 +143,9 @@ namespace TrocCommunity.WebUi.Controllers
                 }
 
                 Adresse adresse = contextAdresse.FindById((int)id);
-                string mail = (string)Session["Email"];
 
-                //Utilisateur utilisateur = contextUser.FindById((int)id);
+                return View(adresse);
 
-                Utilisateur uByMail = ((SQLRepositoryUtilisateur)contextUser).findByEmail(mail);
-
-
-                Utilisateur uByAdresse = ((SQLRepositoryUtilisateur)contextUser).FindByMailWithAdressId(mail, (int)id);
-                // Adresse adresse = contextAdresse.FindById((int)id);
-                if (uByAdresse.Adresse == null)
-                {
-                    return HttpNotFound();
-                }
-                else
-                {
-                    UtilisateurViewModel viewModel = new UtilisateurViewModel();
-                    viewModel.Adresse = uByAdresse.Adresse;
-                    viewModel.Utilisateur = uByAdresse;
-
-                    TempData.Keep();
-                    return View(viewModel);
-                }
             }
             catch (Exception)
             {
@@ -155,9 +155,9 @@ namespace TrocCommunity.WebUi.Controllers
 
         }
 
- [HttpPost]
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditAdresse(Adresse adresse, int id)
+        public async System.Threading.Tasks.Task<ActionResult> EditAdresse(Adresse adresse,string searchInput)
         {
             try
             {
@@ -168,7 +168,10 @@ namespace TrocCommunity.WebUi.Controllers
                 }
                 else
                 {
-                    contextAdresse.Update(adresse);
+                    
+                    Adresse a = await GooglePlaceApifunctions.AdresseInformation( searchInput);
+                    a.Id = adresse.Id;
+                    contextAdresse.Update(a);
                     contextAdresse.SaveChanges();
              /*       TempData["ID"] = id;
                     TempData.Keep();*/
@@ -182,6 +185,35 @@ namespace TrocCommunity.WebUi.Controllers
             }
 
         }
+
+        [WebMethod]
+        public JsonResult GetSearchElemTest(string search)
+        {
+            string[] aa = { "ddd", "bcc", "bbb", "aaa" };
+            return new JsonResult { Data = aa, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+        }
+
+        //[HttpPost]
+        public async System.Threading.Tasks.Task<JsonResult> GetSearchElem(string search)
+        {
+
+
+            List<string> adresses = await GooglePlaceApifunctions.AutoCompleteSearch(search);
+
+            List<string> lst = new List<string>();
+
+            foreach (var item in adresses)
+            {
+                
+                lst.Add(item);
+            }
+
+            JsonResult res = new JsonResult { Data = lst, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+            object data = res.Data;
+            return res;
+        }
+
+
 
     }
 }
