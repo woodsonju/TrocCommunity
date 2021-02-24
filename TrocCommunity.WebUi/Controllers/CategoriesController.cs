@@ -20,6 +20,7 @@ namespace TrocCommunity.WebUi.Controllers
     {
         const int pageSize = 9;
 
+        private IRepository<Utilisateur> contextUser;
         IRepository<Categorie> contextCategorie;
         IRepository<Livre> contextLivre; 
 
@@ -27,21 +28,23 @@ namespace TrocCommunity.WebUi.Controllers
 
         public CategoriesController()
         {
+            contextUser = new SQLRepositoryUtilisateur(new MyContext());
             this.contextCategorie = new SQLRepository<Categorie>(new MyContext());
             this.contextLivre = new SQLRepositoryLivre(new MyContext());
 
         }
 
 
-        public CategoriesController(IRepository<Categorie> contextCategorie, IRepository<Livre> contextLivre)
+        public CategoriesController(IRepository<Utilisateur> contextUser, IRepository<Categorie> contextCategorie, IRepository<Livre> contextLivre)
         {
+            this.contextUser = contextUser;
             this.contextCategorie = contextCategorie;
             this.contextLivre = contextLivre;
 
         }
 
         // GET: Categories
-        public ActionResult Catalogue(int page = 1, string cat = null)
+        public ActionResult Catalogue(int page = 1, string cat = null, string typeSearch = "Catalogue")
         {
 
             CategorieLivre viewModel = new CategorieLivre();
@@ -62,7 +65,7 @@ namespace TrocCommunity.WebUi.Controllers
             ViewBag.currentPage = page;
             ViewBag.PageSize = pageSize;
             ViewBag.Search = null;
-
+            ViewBag.typeSearch = typeSearch;
 
             viewModel.Livres = Livres;
 
@@ -70,7 +73,7 @@ namespace TrocCommunity.WebUi.Controllers
             return View(viewModel) ;
         }
 
-        public ActionResult Search(int page = 1,string search = null)
+        public ActionResult Search(int page = 1,string search = null, string typeSearch = "Search")
         {
             CategorieLivre viewModel = new CategorieLivre();
             viewModel.Categories = contextCategorie.Collection().ToList();
@@ -89,7 +92,7 @@ namespace TrocCommunity.WebUi.Controllers
             ViewBag.PageSize = pageSize;
             ViewBag.Search = search;
 
-            
+            ViewBag.typeSearch = typeSearch;
             ViewBag.NbLivreSearch = Livres.Count();
 
 
@@ -100,21 +103,99 @@ namespace TrocCommunity.WebUi.Controllers
         }
 
 
-        // Vue Littérature
-        /* public ActionResult Lit(int page = 1, string search = null, string categorie = null)
-         {
-             CategorieLivre viewModel = new CategorieLivre();
-             var vps = ((SQLRepositoryLivre)contextLivre).NomCategorie(((SQLRepositoryLivre)contextLivre).NbPagination(search, page, pageSize),"Lit");
-             viewModel.Livres = vps;
-             ViewBag.TotalPages = (int)Math.Ceiling((double)vps.Count() / pageSize);
-             viewModel.Categories = contextCategorie.Collection().ToList();
-             ViewBag.currentPage = page;
-             ViewBag.PageSize = pageSize;
-             ViewBag.Search = search;
-             return View(viewModel);
-         }*/
 
 
+
+        public ActionResult AdvancedSearch(int amount1,int amount2,string Auteur,string Titre,bool cn,bool be, bool em, bool u, bool? ville, bool? rayon,int? range,int page = 1,string search = null, string typeSearch = "AdvancedSearch")
+        {
+
+            // Test Calcul Distance entre Paris 18 et la proche banlieue : resultat environ 4 kilomètre.
+            double lon1 = 2.3370638;
+            double lat1 = 48.8842813;
+            double lon2 = 2.3402471;
+            double lat2 = 48.92362;
+            double dist = DistanceOrth.DistanceOrthodromique(lon2, lat2, lon1, lat1);
+            if (Auteur == null) Auteur = "";
+            if (Titre == null) Titre= "";
+
+
+            CategorieLivre viewModel = new CategorieLivre();
+            viewModel.Categories = contextCategorie.Collection().ToList();
+
+            if (ModelState.IsValid)
+            {
+                
+                List<int> AcceptableState = new List<int>();
+                if (cn) AcceptableState.Add((int)EtatDuLivre.COMMENEUF);
+                if (be) AcceptableState.Add((int)EtatDuLivre.BONETAT);
+                if (em) AcceptableState.Add((int)EtatDuLivre.ETATMOYEN);
+                if (u) AcceptableState.Add((int)EtatDuLivre.USE);
+                IEnumerable<Livre> livre = new List<Livre>();
+                
+
+                if (Session["Connexion"] != null )
+                {
+                    Adresse utAdresse = ((SQLRepositoryUtilisateur)contextUser).findByEmail((string)Session["Email"]).Adresse;
+
+                    if ( utAdresse.FullName != "")
+                    {
+
+                    
+                        
+                        // Vérification pour savoir si l'adresse est bonne
+
+                        //ViewBag.ShowGeo = false;
+
+                        ViewBag.TotalPages = (int)Math.Ceiling((decimal)((SQLRepositoryLivre)contextLivre).CountAdvancedSearchWithGeo(amount1, amount2, Auteur, Titre, AcceptableState, ville, rayon, range, utAdresse) / pageSize);
+
+                        livre = ((SQLRepositoryLivre)contextLivre).NbPaginationAdvancedSearchWithGeo(amount1, amount2, Auteur, Titre, AcceptableState, ville, rayon, range, utAdresse, page, pageSize);
+
+                        //livre = ((SQLRepositoryLivre)contextLivre).AdvancedSearchWithGeo(amount1, amount2, Auteur, Titre, AcceptableState, ville, rayon, range, utAdresse);
+                        ViewBag.ShowGeo = "";
+                    }
+                    else
+                    {
+                        ViewBag.TotalPages = (int)Math.Ceiling((decimal)((SQLRepositoryLivre)contextLivre).CountAdvancedSearch(amount1, amount2, Auteur, Titre, AcceptableState) / pageSize);
+
+                        livre = ((SQLRepositoryLivre)contextLivre).NbPaginationAdvancedSearch(amount1, amount2, Auteur, Titre, AcceptableState, page, pageSize);
+
+                        ViewBag.ShowGeo = "Indiquer votre adresse dans les paramètres de votre compte afin d'utiliser la localisation dans votre recherche";
+                    }
+
+                }
+
+                else
+                {
+                    ViewBag.TotalPages = (int)Math.Ceiling((decimal)((SQLRepositoryLivre)contextLivre).CountAdvancedSearch(amount1, amount2, Auteur, Titre, AcceptableState) / pageSize);
+
+                    livre = ((SQLRepositoryLivre)contextLivre).NbPaginationAdvancedSearch(amount1, amount2, Auteur, Titre, AcceptableState, page, pageSize);
+
+                    ViewBag.ShowGeo = "Connecter vous pour utiliser les fonctionnalité de recherche lié à votre position";
+                }
+
+
+
+
+                viewModel.Livres = livre.ToList();
+
+                ViewBag.currentPage = page;
+                ViewBag.PageSize = pageSize;
+                ViewBag.Search = search;
+                ViewBag.typeSearch = typeSearch;
+
+                ViewBag.NbLivreSearch = livre.Count();
+
+                ViewBag.UseLastSearch = true;
+
+                ViewBag.amount1 = amount1; ViewBag.amount2 = amount2; ViewBag.Auteur = Auteur; ViewBag.Titre = Titre; ViewBag.cn = cn; ViewBag.be = be; ViewBag.em = em; ViewBag.u = u; ViewBag.ville = ville; ViewBag.rayon = rayon; ViewBag.range = range;
+
+                return View("Catalogue", viewModel);
+            }
+
+            // en cas de mauvais modèle
+
+            return RedirectToAction("Catalogue","Categories");
+        }
 
         // Détails d'un livre
         public ActionResult DetailsLivre(int id)
