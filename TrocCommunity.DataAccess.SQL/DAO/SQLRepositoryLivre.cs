@@ -7,7 +7,6 @@ using System.Text;
 using System.Threading.Tasks;
 using TrocCommunity.Core.Logic;
 using TrocCommunity.Core.Models;
-using System.Data.Entity;
 using System.Diagnostics;
 using TrocCommunity.Core.Tools;
 
@@ -145,7 +144,7 @@ namespace TrocCommunity.DataAccess.SQL.DAO
             }
             else if ((bool)ville && (bool)rayon)
             {
-                livre = livre.Where(book => book.Client.Adresse.Ville.Equals(adClient.Ville) &&
+                livre = livre.Where(book => book.Client.Adresse.Ville.Equals(adClient.Ville) ||
                                              DistanceOrth.DistanceOrthodromique(adClient.Longitude, adClient.Latitude, book.Client.Adresse.Longitude, book.Client.Adresse.Latitude) < (int)range
                 );
             }
@@ -165,12 +164,12 @@ namespace TrocCommunity.DataAccess.SQL.DAO
 
             livre = (from a1 in livre where AcceptableState.Contains((int)a1.EtatDuLivre) select a1);
 
+
             // Author and Title
 
             livre = livre.Where(book => book.Title.Contains(Titre)
                                    || book.Author.Contains(Auteur));
 
-           
 
             return livre;
         }

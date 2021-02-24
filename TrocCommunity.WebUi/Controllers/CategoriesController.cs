@@ -110,11 +110,11 @@ namespace TrocCommunity.WebUi.Controllers
         {
 
             // Test Calcul Distance entre Paris 18 et la proche banlieue : resultat environ 4 kilomètre.
-            //double lon1 = 2.3370638;
-            //double lat1 = 48.8842813;
-            //double lon2 = 2.3402471;
-            //double lat2 = 48.92362;
-            //double dist = DistanceOrth.DistanceOrthodromique(lon2, lat2, lon1, lat1);
+            double lon1 = 2.3370638;
+            double lat1 = 48.8842813;
+            double lon2 = 2.3402471;
+            double lat2 = 48.92362;
+            double dist = DistanceOrth.DistanceOrthodromique(lon2, lat2, lon1, lat1);
             if (Auteur == null) Auteur = "";
             if (Titre == null) Titre= "";
 

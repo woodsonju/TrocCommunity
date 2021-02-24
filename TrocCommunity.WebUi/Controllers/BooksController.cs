@@ -50,7 +50,7 @@ namespace TrocCommunity.WebUi.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> AddBook(Livre livre)
+        public ActionResult AddBook(Livre livre)
         {
             if (ModelState.IsValid)
             {
@@ -68,7 +68,7 @@ namespace TrocCommunity.WebUi.Controllers
 
                 Categorie categorie = ((SQLRepositoryCategorie)contextCategory).FindByName(livre.Categorie.NomCategorie);
 
-                livre.Categorie = categorie;
+                livre.Categorie = null;
                 livre.CatgorieId = categorie.Id;
 
                 livre.Price = service.GetPoints(livre.Price, livre.EtatDuLivre, livre.IsExchange);

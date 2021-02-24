@@ -103,11 +103,11 @@
                 
 
                 <br>
-                <b>Etat du Livre Accepté</b>
-                
+           
 
-        //if (Session["connexion"] != null)
-        //{
+
+        if (Session["connexion"] != null)
+        {
                 <b>Géolocalisation</b>
                 <div>
 
@@ -123,15 +123,15 @@
                     <div id="slider-GeoLoc" class="col-md-4 col-sm-12" style="display:none"></div>
 
                 </div>
-                @*}*@
+        }
 
 
 
                 <input type="submit" value="Recherche Avancée" />
-                }
+     }
 
 
-            </div>
+</div>
             @helper buildLinks(int start, int end, string innerContent)
             {
                 for (int i = start; i <= end; i++)
