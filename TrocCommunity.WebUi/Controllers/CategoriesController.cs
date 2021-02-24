@@ -30,7 +30,6 @@ namespace TrocCommunity.WebUi.Controllers
             this.contextCategorie = new SQLRepository<Categorie>(new MyContext());
             this.contextLivre = new SQLRepository<Livre>(new MyContext());
 
-
         }
 
 
@@ -48,8 +47,7 @@ namespace TrocCommunity.WebUi.Controllers
             CategorieLivre viewModel = new CategorieLivre();
             IEnumerable<Livre> Livres = contextLivre.Collection().Where(p => search == null
             || p.Author.Contains(search));
-            
-
+           
             viewModel.Categories = contextCategorie.Collection().ToList();
             
             var list = contextLivre.Collection().ToList();

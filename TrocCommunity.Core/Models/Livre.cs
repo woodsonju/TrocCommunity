@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TrocCommunity.Core.Models
 {
@@ -15,8 +16,9 @@ namespace TrocCommunity.Core.Models
         public string Editor { get; set; }
 
         
-        [DataType(DataType.Date)]
-        public DateTime DateEdition { get; set; }
+     /*   [DataType(DataType.Date)]*/
+     //Retourne la date (yy)
+        public int DateEdition { get; set; }
 
         [Required]
         public long  ISBN { get; set; }
@@ -29,17 +31,38 @@ namespace TrocCommunity.Core.Models
        /* [Required]*/
         public string Image { get; set; }
 
-    /*    [Required]*/
+        /*    [Required]*/
+
+    //    [ForeignKey("CatgorieId")]
         public Categorie Categorie { get; set; }
+
+/*        public int CatgorieId { get; set; }*/
 
         public bool Disponible { get; set; }
 
+
+        private bool isExchange = false;
+
+        public bool IsExchange
+        {
+            get { return isExchange; }
+            set { isExchange = value; }
+        }
+
+
         public Client Client { get; set; }
 
-        [EnumDataType(typeof(string))]
         public EtatDuLivre EtatDuLivre { get; set; }
 
-        public int PointDuLivre { get; set; }
+        public double PointDuLivre { get; set; }
+
+        public double AvancePoints { get; set; }
+
+        public double Price { get; set; }
+
+
+
+
 
     }
 }

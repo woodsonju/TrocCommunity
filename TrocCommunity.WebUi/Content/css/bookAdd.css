@@ -1,0 +1,48 @@
+﻿ body {
+}
+.livreHeader, .bg-info {
+   color: white;
+}
+
+.bookInfo {
+    text-align: center;
+}
+
+.isbn {
+    text-align: center;
+}
+
+.imgBook {
+    text-align: center;
+}
+
+
+.resume {
+    min-height: 65px;
+    word-break: break-all;
+}
+
+    .resume .title, .bg-info .resume .amount {
+        color: white;
+    }
+
+.amount {
+    font-size: 30px;
+}
+
+.resume-footer {
+    padding: 5px 0 0;
+    border-top: 1px dotted #ddd;
+    text-align: right;
+    color: white;
+}
+
+a {
+    outline: none !important;
+    text-decoration: none;
+    background-color: transparent;
+}
+
+.jouterCeLivre {
+    margin-top: 20px;
+}

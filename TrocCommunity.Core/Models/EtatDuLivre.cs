@@ -2,9 +2,9 @@
 {
     public enum EtatDuLivre
     {
-        COMMENEUF,
-        BONETAT,
-        ETATMOYEN,
-        USE
+        COMMENEUF = 85,
+        BONETAT = 70,
+        ETATMOYEN = 50,
+        USE = 25
     }
 }
