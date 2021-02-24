@@ -7,7 +7,7 @@ namespace TrocCommunity.DataAccess.SQL.Migrations
     {
         public override void Up()
         {
-            AlterColumn ("dbo.Livres", "DateEdition", c => c.Int(nullable: false));
+            AlterColumn ("dbo.Livres", "DateEdition", c => c.String(nullable: false));
         }
         
         public override void Down()

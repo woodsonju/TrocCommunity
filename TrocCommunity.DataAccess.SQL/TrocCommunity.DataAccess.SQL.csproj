@@ -149,6 +149,10 @@
     <Compile Include="Migrations\202102241505348_ModifLivreString.Designer.cs">
       <DependentUpon>202102241505348_ModifLivreString.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202102241629334_MergeWithWoodSon.cs" />
+    <Compile Include="Migrations\202102241629334_MergeWithWoodSon.Designer.cs">
+      <DependentUpon>202102241629334_MergeWithWoodSon.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MyContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -232,6 +236,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202102221012584_noLimitPassWord.resx">
       <DependentUpon>202102221012584_noLimitPassWord.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102241629334_MergeWithWoodSon.resx">
+      <DependentUpon>202102241629334_MergeWithWoodSon.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
