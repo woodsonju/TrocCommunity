@@ -1,0 +1,110 @@
+﻿@model TrocCommunity.Core.ViewModels.LivreCategorieViewModel
+<link rel="stylesheet" href=@Url.Content("/Content/css/bookAdd.css")>
+
+
+
+@using (Html.BeginForm("AddBook", "Books", FormMethod.Post, new { enctype = "multipart/form-data" }))
+
+
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Livre</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="card border-info mb-3" style="max-width: 18rem;">
+
+            <div class="card-header bg-info bookInfo">
+                @Html.DisplayFor(model => model.Livre.DateEdition, new { htmlAttributes = new { @class = "form-control livreHeader" } })
+            </div>
+            <div class="card-body text-info">
+                <div class="imgBook">
+                    @if (Model.Livre.Image.StartsWith("http"))
+                    {
+                        <img src="@Model.Livre.Image" class="img-responsive" height="220" width="200" />
+                    }
+                    else
+                    {
+                        <img src="@Url.Content(Model.Livre.Image)" class="img-responsive" height="220" width="200" />
+                    }
+
+                </div>
+                <h5 class="card-text isbn">
+                    ISBN
+                    @Html.DisplayFor(model => model.Livre.ISBN, new { htmlAttributes = new { @class = "form-control" } })
+                </h5>
+                @Html.EnumDropDownListFor(Model => Model.Livre.EtatDuLivre, htmlAttributes: new { @class = "form-control", id = "etatId", onchange = "updatePoint();" })
+
+                <p class="card-text" id="priceId" style="display:none;">
+                    @Html.DisplayFor(model => model.Livre.Price, new { htmlAttributes = new { @class = "form-control" } })
+                </p>
+
+                <p class="card-text" id="nbPointId">
+                    @Html.DisplayFor(model => model.Livre.PointDuLivre, new { htmlAttributes = new { @class = "form-control" } }) points
+                </p>
+
+                <p class="card-text">
+                    Catégorie:
+                    @Html.DropDownListFor(model => model.Livre.Categorie.NomCategorie, new SelectList(Model.Categories, "NomCategorie", "NomCategorie"), new { @class = "form-control" })
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel-body bg-info">
+                <div class="resume">
+                    <h4 class="title">Valeur d'échange total de points</h4>
+                    <div class="info">
+                        <strong class="amount" id="total_value">@Model.Livre.PointDuLivre</strong>
+                    </div>
+                </div>
+                <div class="resume-footer">
+                    <a class="text-uppercase">Dès que les objets trouvent preneurs</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="panel-body bg-secondary">
+                <div class="resume">
+                    <h4 class="title">Avance de points</h4>
+                    <div class="info">
+                        <strong class="amount" id="avance_point">@Model.Livre.AvancePoints</strong>
+                    </div>
+                </div>
+                <div class="resume-footer">
+                    <a class="text-uppercase">Utilisable sans attendre</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @Html.HiddenFor(model => model.Livre.Price)
+    @Html.HiddenFor(model => model.Livre.PointDuLivre)
+    @Html.HiddenFor(model => model.Livre.AvancePoints)
+
+    @Html.HiddenFor(model => model.Livre.DateEdition)
+
+    @Html.HiddenFor(model => model.Livre.Categorie.NomCategorie)
+
+    @Html.HiddenFor(model => model.Livre.Client)
+
+    @Html.HiddenFor(model => model.Livre.Image)
+
+    <hr />
+
+    <div class="row">
+        <div class="form-group text-center col-md-12">
+            <div class="col-md-10">
+                <input type="submit" value="Ajouter ce livre" class="btn btn-lg btn-block btn-success" />
+            </div>
+        </div>
+    </div>
+
+
+}

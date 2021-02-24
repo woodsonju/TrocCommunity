@@ -35,13 +35,13 @@ namespace TrocCommunity.Core.Models
 
         [Required]
         [DataType(DataType.Password)]
-        [ MinLength(6)]
+        [MinLength(6)]
        // [Display(Name = "Mot de passe ")]
         public string Password { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
-        [ MinLength(6)]
+        [MinLength(6)]
       //  [Display(Name = "Entrez le mot de passe à nouveau ")]
         public string Confirmpwd { get; set; }
 

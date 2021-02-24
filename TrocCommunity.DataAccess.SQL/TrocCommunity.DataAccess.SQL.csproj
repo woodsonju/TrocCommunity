@@ -52,6 +52,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAO\SQLRepositoryCategorie.cs" />
+    <Compile Include="DAO\QueryLivre.cs" />
     <Compile Include="DAO\SQLRepository.cs" />
     <Compile Include="DAO\SQLRepositoryLivre.cs" />
     <Compile Include="DAO\SQLRepositoryUtilisateur.cs" />
@@ -99,13 +101,57 @@
     <Compile Include="Migrations\202102171744445_DateEdition.Designer.cs">
       <DependentUpon>202102171744445_DateEdition.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202102181726312_ProblemContext_MdodifBook.cs" />
+    <Compile Include="Migrations\202102181726312_ProblemContext_MdodifBook.Designer.cs">
+      <DependentUpon>202102181726312_ProblemContext_MdodifBook.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\202102180919261_AddComponentsAdresse1.cs" />
     <Compile Include="Migrations\202102180919261_AddComponentsAdresse1.Designer.cs">
       <DependentUpon>202102180919261_AddComponentsAdresse1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202102221604568_noLimitPassWord.cs" />
-    <Compile Include="Migrations\202102221604568_noLimitPassWord.Designer.cs">
-      <DependentUpon>202102221604568_noLimitPassWord.cs</DependentUpon>
+    <Compile Include="Migrations\202102221012584_noLimitPassWord.cs" />
+    <Compile Include="Migrations\202102221012584_noLimitPassWord.Designer.cs">
+      <DependentUpon>202102221012584_noLimitPassWord.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102181451596_AddIsbnRequiredOthersNo.cs" />
+    <Compile Include="Migrations\202102181451596_AddIsbnRequiredOthersNo.Designer.cs">
+      <DependentUpon>202102181451596_AddIsbnRequiredOthersNo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102181814543_ProblemAdressMail.cs" />
+    <Compile Include="Migrations\202102181814543_ProblemAdressMail.Designer.cs">
+      <DependentUpon>202102181814543_ProblemAdressMail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102202157121_modifClassLivre.cs" />
+    <Compile Include="Migrations\202102202157121_modifClassLivre.Designer.cs">
+      <DependentUpon>202102202157121_modifClassLivre.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102211546284_modifClassLivreDate.cs" />
+    <Compile Include="Migrations\202102211546284_modifClassLivreDate.Designer.cs">
+      <DependentUpon>202102211546284_modifClassLivreDate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102232345282_AjoutAvanceDePointsLivre.cs" />
+    <Compile Include="Migrations\202102232345282_AjoutAvanceDePointsLivre.Designer.cs">
+      <DependentUpon>202102232345282_AjoutAvanceDePointsLivre.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102240912092_ModifLivreForeignKey.cs" />
+    <Compile Include="Migrations\202102240912092_ModifLivreForeignKey.Designer.cs">
+      <DependentUpon>202102240912092_ModifLivreForeignKey.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102241256094_ModifLivreVirtual.cs" />
+    <Compile Include="Migrations\202102241256094_ModifLivreVirtual.Designer.cs">
+      <DependentUpon>202102241256094_ModifLivreVirtual.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102241326099_ModifCLientId.cs" />
+    <Compile Include="Migrations\202102241326099_ModifCLientId.Designer.cs">
+      <DependentUpon>202102241326099_ModifCLientId.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102241505348_ModifLivreString.cs" />
+    <Compile Include="Migrations\202102241505348_ModifLivreString.Designer.cs">
+      <DependentUpon>202102241505348_ModifLivreString.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102241629334_MergeWithWoodSon.cs" />
+    <Compile Include="Migrations\202102241629334_MergeWithWoodSon.Designer.cs">
+      <DependentUpon>202102241629334_MergeWithWoodSon.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MyContext.cs" />
@@ -155,11 +201,44 @@
     <EmbeddedResource Include="Migrations\202102171744445_DateEdition.resx">
       <DependentUpon>202102171744445_DateEdition.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102181726312_ProblemContext_MdodifBook.resx">
+      <DependentUpon>202102181726312_ProblemContext_MdodifBook.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202102180919261_AddComponentsAdresse1.resx">
       <DependentUpon>202102180919261_AddComponentsAdresse1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202102221604568_noLimitPassWord.resx">
-      <DependentUpon>202102221604568_noLimitPassWord.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202102181451596_AddIsbnRequiredOthersNo.resx">
+      <DependentUpon>202102181451596_AddIsbnRequiredOthersNo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102181814543_ProblemAdressMail.resx">
+      <DependentUpon>202102181814543_ProblemAdressMail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102202157121_modifClassLivre.resx">
+      <DependentUpon>202102202157121_modifClassLivre.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102211546284_modifClassLivreDate.resx">
+      <DependentUpon>202102211546284_modifClassLivreDate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102232345282_AjoutAvanceDePointsLivre.resx">
+      <DependentUpon>202102232345282_AjoutAvanceDePointsLivre.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102240912092_ModifLivreForeignKey.resx">
+      <DependentUpon>202102240912092_ModifLivreForeignKey.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102241256094_ModifLivreVirtual.resx">
+      <DependentUpon>202102241256094_ModifLivreVirtual.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102241326099_ModifCLientId.resx">
+      <DependentUpon>202102241326099_ModifCLientId.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102241505348_ModifLivreString.resx">
+      <DependentUpon>202102241505348_ModifLivreString.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102221012584_noLimitPassWord.resx">
+      <DependentUpon>202102221012584_noLimitPassWord.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102241629334_MergeWithWoodSon.resx">
+      <DependentUpon>202102241629334_MergeWithWoodSon.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

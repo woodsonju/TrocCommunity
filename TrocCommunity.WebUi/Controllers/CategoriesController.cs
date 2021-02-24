@@ -32,7 +32,6 @@ namespace TrocCommunity.WebUi.Controllers
             this.contextCategorie = new SQLRepository<Categorie>(new MyContext());
             this.contextLivre = new SQLRepositoryLivre(new MyContext());
 
-
         }
 
 

@@ -10,6 +10,7 @@ namespace TrocCommunity.Core.Models
     public class Adresse : BaseEntity
     {
         public string FullName { get; set; }
+
         public string NomDeVoie { get; set; }
 
  /*       [Required] 

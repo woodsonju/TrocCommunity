@@ -289,21 +289,21 @@
                             @foreach (var item in Model.Livres)
                             {
 
-                                <div class="col-md-4 col-sm-12 section-book-card">
-                                    <div class="section-picture-book-image thumbnail">
-                                        <a class="text-center" href='@Url.Action("DetailsLivre", "Categories")/@item.Id'>
-                                            <img src="~/Content/TEMPLATE/images/Livres/@item.Image" alt="Livre" class="img-fluid w-50 h-100" />
-                                        </a>
-                                    </div>
-                                    <div>
-                                        <h3 class="text-center titre-books-thumbnail">Titre</h3>
-                                        <p class="text-center">@Html.DisplayFor(modelItem => item.Author)</p>
-                                        <div class="books-items">
-                                            <p class="books-points text-center">100 points</p>
-                                        </div>
-                                        <p class="text-left">Ville</p>
-                                    </div>
-                                </div>
+                    <div class="col-md-4 col-sm-12 section-book-card">
+                        <div class="section-picture-book-image thumbnail">
+                            <a class="text-center" href='@Url.Action("DetailsLivre", "Categories")/@item.Id'>
+                                <img src="@Url.Content(item.Image)" alt="Livre" class="img-fluid w-100 h-100" />
+                            </a>
+                        </div>
+                        <div>
+                            <h3 class="text-center titre-books-thumbnail">Titre</h3>
+                            <p class="text-center">@Html.DisplayFor(modelItem => item.Author)</p>
+                            <div class="books-items">
+                                <p class="books-points text-center">100 points</p>
+                            </div>
+                            <p class="text-left">Ville</p>
+                        </div>
+                    </div>
 
                             }
                         </div>
