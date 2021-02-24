@@ -9,8 +9,6 @@ namespace TrocCommunity.Core.Tools
 {
     public class CryptingData
     {
-
-
         public static string Protect(string unprotectedText)
         {
             var unprotectedBytes = Encoding.UTF8.GetBytes(unprotectedText);

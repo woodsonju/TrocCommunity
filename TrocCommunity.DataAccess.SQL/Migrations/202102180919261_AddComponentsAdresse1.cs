@@ -7,10 +7,10 @@ namespace TrocCommunity.DataAccess.SQL.Migrations
     {
         public override void Up()
         {
-            AddColumn("dbo.Adresses", "FullName", c => c.String());
+/*            AddColumn("dbo.Adresses", "FullName", c => c.String());
             AddColumn("dbo.Adresses", "Longitude", c => c.Double(nullable: false));
             AddColumn("dbo.Adresses", "Latitude", c => c.Double(nullable: false));
-            AddColumn("dbo.Adresses", "PlaceId", c => c.String());
+            AddColumn("dbo.Adresses", "PlaceId", c => c.String());*/
             DropColumn("dbo.Adresses", "TypeDeVoie");
         }
         

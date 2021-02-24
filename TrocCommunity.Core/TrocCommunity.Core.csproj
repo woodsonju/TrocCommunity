@@ -64,6 +64,7 @@
     <Compile Include="Tools\HashTools.cs" />
     <Compile Include="ViewModels\AdresseViewModel.cs" />
     <Compile Include="Tools\CategorieLivre.cs" />
+    <Compile Include="ViewModels\LivreCategorieViewModel.cs" />
     <Compile Include="ViewModels\UtilisateurViewModel.cs" />
     <Compile Include="Models\WishList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

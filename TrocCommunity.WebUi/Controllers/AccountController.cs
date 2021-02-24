@@ -115,6 +115,7 @@ namespace TrocCommunity.WebUi.Controllers
                     Session["TypeUtilisateur"] = utilisateur.TypeUtilisateur;
                     Session["Photo"] = utilisateur.Photo;
                     Session["Email"] = utilisateur.Email;
+                    Session["Id"] = utilisateur.Id;
 
                     /**
                         * Partie Woodson : Compte Client
