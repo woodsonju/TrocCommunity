@@ -28,7 +28,7 @@ namespace TrocCommunity.WebUi.Controllers
         public CategoriesController()
         {
             this.contextCategorie = new SQLRepository<Categorie>(new MyContext());
-            this.contextLivre = new SQLRepository<Livre>(new MyContext());
+            this.contextLivre = new SQLRepositoryLivre(new MyContext());
 
         }
 
@@ -41,28 +41,28 @@ namespace TrocCommunity.WebUi.Controllers
         }
 
         // GET: Categories
-        public ActionResult Catalogue(int page = 1,  string search = null)
+        public ActionResult Catalogue(int page = 1, string cat = null)
         {
 
             CategorieLivre viewModel = new CategorieLivre();
-            IEnumerable<Livre> Livres = contextLivre.Collection().Where(p => search == null
-            || p.Author.Contains(search));
-           
+
+
+            IEnumerable<Livre>list = new List<Livre>();
+
+
+            //IEnumerable<Livre> LivresSearch = ((SQLRepositoryLivre)contextLivre).Search(search);
             viewModel.Categories = contextCategorie.Collection().ToList();
-            
-            var list = contextLivre.Collection().ToList();
-            ViewBag.TotalPages = (int)Math.Ceiling((decimal)list.Count() / pageSize);
-            Livres = Livres.OrderBy(x => x.Id).Skip((page - 1) * pageSize).Take(pageSize).ToList();
+
+            ViewBag.TotalPages = (int)Math.Ceiling((decimal)((SQLRepositoryLivre)contextLivre).Count(cat) / pageSize);
+            //var list = contextLivre.Collection().ToList();
+
+            var Livres = ((SQLRepositoryLivre)contextLivre).NbPagination(page, pageSize,cat);
+            viewModel.Livres = Livres;
+            //LivresSearch = ((SQLRepositoryLivre)contextLivre).NbPagination(search, page, pageSize);
             ViewBag.currentPage = page;
             ViewBag.PageSize = pageSize;
-            ViewBag.Search = search;
-            ViewBag.NoSearch = 0;
+            ViewBag.Search = null;
 
-            if (contextLivre.Collection().Where(p => p.Author.Contains(search)).Count() > 0)
-            {
-                var NbLivreRecherche = contextLivre.Collection().Where(p =>p.Author.Contains(search)).Count();
-                ViewBag.NbLivreSearch = NbLivreRecherche;
-            }
 
             viewModel.Livres = Livres;
 
@@ -70,197 +70,51 @@ namespace TrocCommunity.WebUi.Controllers
             return View(viewModel) ;
         }
 
+        public ActionResult Search(int page = 1,string search = null)
+        {
+            CategorieLivre viewModel = new CategorieLivre();
+            viewModel.Categories = contextCategorie.Collection().ToList();
+
+           
+
+
+            ViewBag.TotalPages = (int)Math.Ceiling((decimal)((SQLRepositoryLivre)contextLivre).SearchCount(search) / pageSize);
+
+            //var list = contextLivre.Collection().ToList();
+
+            var Livres = ((SQLRepositoryLivre)contextLivre).NbPaginationSearch(page, pageSize,search);
+            viewModel.Livres = Livres;
+            //LivresSearch = ((SQLRepositoryLivre)contextLivre).NbPagination(search, page, pageSize);
+            ViewBag.currentPage = page;
+            ViewBag.PageSize = pageSize;
+            ViewBag.Search = search;
+
+            
+            ViewBag.NbLivreSearch = Livres.Count();
+
+
+            
+
+
+            return View("Catalogue",viewModel);
+        }
 
 
         // Vue Littérature
-        public ActionResult Lit(int page = 1, bool isAsc = true, string search = null)
-        {
-            CategorieLivre viewModel = new CategorieLivre();
-            var vps = contextLivre.Collection().Where(a => a.Categorie.NomCategorie.Substring(0, 3) == "Lit").ToList();
-            viewModel.Livres = vps;
-            ViewBag.TotalPages = (int)Math.Ceiling((double)vps.Count() / pageSize);
-            viewModel.Livres = vps.OrderBy(x => x.Id).Skip((page - 1) * pageSize).Take(pageSize).ToList();
-            viewModel.Categories = contextCategorie.Collection().ToList();
-
-            viewModel.Livres = vps.Where(x => search == null || x.Author.Contains(search));
-            ViewBag.currentPage = page;
-            ViewBag.PageSize = pageSize;
-            ViewBag.Search = search;
-
-            ViewBag.IsAsc = isAsc;
+        /* public ActionResult Lit(int page = 1, string search = null, string categorie = null)
+         {
+             CategorieLivre viewModel = new CategorieLivre();
+             var vps = ((SQLRepositoryLivre)contextLivre).NomCategorie(((SQLRepositoryLivre)contextLivre).NbPagination(search, page, pageSize),"Lit");
+             viewModel.Livres = vps;
+             ViewBag.TotalPages = (int)Math.Ceiling((double)vps.Count() / pageSize);
+             viewModel.Categories = contextCategorie.Collection().ToList();
+             ViewBag.currentPage = page;
+             ViewBag.PageSize = pageSize;
+             ViewBag.Search = search;
+             return View(viewModel);
+         }*/
 
 
-            return View(viewModel);
-        }
-
-        //Vue Bien être, santé et vie pratique
-        public ActionResult Bie(int page = 1, bool isAsc = true, string search = null)
-        {
-            CategorieLivre viewModel = new CategorieLivre();
-            var vps = contextLivre.Collection().Where(a => a.Categorie.NomCategorie.Substring(0, 3) == "Bie").ToList();
-            viewModel.Livres = vps;
-            ViewBag.TotalPages = (int)Math.Ceiling((double)vps.Count() / pageSize);
-            viewModel.Livres = vps.OrderBy(x => x.Id).Skip((page - 1) * pageSize).Take(pageSize).ToList();
-            viewModel.Categories = contextCategorie.Collection().ToList();
-
-            viewModel.Livres = vps.Where(x => search == null || x.Author.Contains(search));
-            ViewBag.currentPage = page;
-            ViewBag.PageSize = pageSize;
-            ViewBag.Search = search;
-
-            ViewBag.IsAsc = isAsc;
-
-
-            return View(viewModel);
-        }
-
-        //Vue Jeunesse
-        public ActionResult Jeu(int page = 1, bool isAsc = true, string search = null)
-        {
-            CategorieLivre viewModel = new CategorieLivre();
-            var vps = contextLivre.Collection().Where(a => a.Categorie.NomCategorie.Substring(0, 3) == "Jeu").ToList();
-            viewModel.Livres = vps;
-            ViewBag.TotalPages = (int)Math.Ceiling((double)vps.Count() / pageSize);
-            viewModel.Livres = vps.OrderBy(x => x.Id).Skip((page - 1) * pageSize).Take(pageSize).ToList();
-            viewModel.Categories = contextCategorie.Collection().ToList();
-
-            viewModel.Livres = vps.Where(x => search == null || x.Author.Contains(search));
-            ViewBag.currentPage = page;
-            ViewBag.PageSize = pageSize;
-            ViewBag.Search = search;
-
-            ViewBag.IsAsc = isAsc;
-
-
-            return View(viewModel);
-        }
-
-        //Vue  Bande dessinées et Mangas
-        public ActionResult Ban(int page = 1, bool isAsc = true, string search = null)
-        {
-            CategorieLivre viewModel = new CategorieLivre();
-            var vps = contextLivre.Collection().Where(a => a.Categorie.NomCategorie.Substring(0, 3) == "Ban").ToList();
-            viewModel.Livres = vps;
-            ViewBag.TotalPages = (int)Math.Ceiling((double)vps.Count() / pageSize);
-            viewModel.Livres = vps.OrderBy(x => x.Id).Skip((page - 1) * pageSize).Take(pageSize).ToList();
-            viewModel.Categories = contextCategorie.Collection().ToList();
-
-            viewModel.Livres = vps.Where(x => search == null || x.Author.Contains(search));
-            ViewBag.currentPage = page;
-            ViewBag.PageSize = pageSize;
-            ViewBag.Search = search;
-
-            ViewBag.IsAsc = isAsc;
-
-
-            return View(viewModel);
-        }
-
-        //Vue Art et Sciences humaines
-        public ActionResult Art(int page = 1, bool isAsc = true, string search = null)
-        {
-            CategorieLivre viewModel = new CategorieLivre();
-            var vps = contextLivre.Collection().Where(a => a.Categorie.NomCategorie.Substring(0, 3) == "Art").ToList();
-            viewModel.Livres = vps;
-            ViewBag.TotalPages = (int)Math.Ceiling((double)vps.Count() / pageSize);
-            viewModel.Livres = vps.OrderBy(x => x.Id).Skip((page - 1) * pageSize).Take(pageSize).ToList();
-            viewModel.Categories = contextCategorie.Collection().ToList();
-
-            viewModel.Livres = vps.Where(x => search == null || x.Author.Contains(search));
-            ViewBag.currentPage = page;
-            ViewBag.PageSize = pageSize;
-            ViewBag.Search = search;
-
-            ViewBag.IsAsc = isAsc;
-
-
-            return View(viewModel);
-        }
-
-        //Vue Scolaire et Pédagogie
-        public ActionResult Sco(int page = 1, bool isAsc = true, string search = null)
-        {
-            CategorieLivre viewModel = new CategorieLivre();
-            var vps = contextLivre.Collection().Where(a => a.Categorie.NomCategorie.Substring(0, 3) == "Sco").ToList();
-            viewModel.Livres = vps;
-            ViewBag.TotalPages = (int)Math.Ceiling((double)vps.Count() / pageSize);
-            viewModel.Livres = vps.OrderBy(x => x.Id).Skip((page - 1) * pageSize).Take(pageSize).ToList();
-            viewModel.Categories = contextCategorie.Collection().ToList();
-
-            viewModel.Livres = vps.Where(x => search == null || x.Author.Contains(search));
-            ViewBag.currentPage = page;
-            ViewBag.PageSize = pageSize;
-            ViewBag.Search = search;
-
-            ViewBag.IsAsc = isAsc;
-
-
-            return View(viewModel);
-        }
-
-        //Vue Loisirs créatifs, nature et voyages
-        public ActionResult Loi(int page = 1, bool isAsc = true, string search = null)
-        {
-            CategorieLivre viewModel = new CategorieLivre();
-            var vps = contextLivre.Collection().Where(a => a.Categorie.NomCategorie.Substring(0, 3) == "Loi").ToList();
-            viewModel.Livres = vps;
-            ViewBag.TotalPages = (int)Math.Ceiling((double)vps.Count() / pageSize);
-            viewModel.Livres = vps.OrderBy(x => x.Id).Skip((page - 1) * pageSize).Take(pageSize).ToList();
-            viewModel.Categories = contextCategorie.Collection().ToList();
-
-            viewModel.Livres = vps.Where(x => search == null || x.Author.Contains(search));
-            ViewBag.currentPage = page;
-            ViewBag.PageSize = pageSize;
-            ViewBag.Search = search;
-
-            ViewBag.IsAsc = isAsc;
-
-
-            return View(viewModel);
-        }
-
-        //Vue Sciences, Techniques et Médecine
-        public ActionResult Sci(int page = 1, bool isAsc = true, string search = null)
-        {
-            CategorieLivre viewModel = new CategorieLivre();
-            var vps = contextLivre.Collection().Where(a => a.Categorie.NomCategorie.Substring(0, 3) == "Sci").ToList();
-            viewModel.Livres = vps;
-            ViewBag.TotalPages = (int)Math.Ceiling((double)vps.Count() / pageSize);
-            viewModel.Livres = vps.OrderBy(x => x.Id).Skip((page - 1) * pageSize).Take(pageSize).ToList();
-            viewModel.Categories = contextCategorie.Collection().ToList();
-
-            viewModel.Livres = vps.Where(x => search == null || x.Author.Contains(search));
-            ViewBag.currentPage = page;
-            ViewBag.PageSize = pageSize;
-            ViewBag.Search = search;
-
-            ViewBag.IsAsc = isAsc;
-
-
-            return View(viewModel);
-        }
-
-        //Vue Entreprise, Droit, Economie
-        public ActionResult Ent(int page = 1, bool isAsc = true, string search = null)
-        {
-            CategorieLivre viewModel = new CategorieLivre();
-            var vps = contextLivre.Collection().Where(a => a.Categorie.NomCategorie.Substring(0, 3) == "Ent").ToList();
-            viewModel.Livres = vps;
-            viewModel.Livres = vps.Where(x => search == null || x.Author.Contains(search));
-            ViewBag.TotalPages = (int)Math.Ceiling((double)vps.Count() / pageSize);
-            viewModel.Livres = vps.OrderBy(x => x.Id).Skip((page - 1) * pageSize).Take(pageSize).ToList();
-            viewModel.Categories = contextCategorie.Collection().ToList();
-
-            
-            ViewBag.currentPage = page;
-            ViewBag.PageSize = pageSize;
-            ViewBag.Search = search;
-
-            ViewBag.IsAsc = isAsc;
-
-
-            return View(viewModel);
-        }
 
         // Détails d'un livre
         public ActionResult DetailsLivre(int id)

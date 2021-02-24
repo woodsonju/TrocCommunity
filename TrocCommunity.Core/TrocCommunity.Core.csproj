@@ -61,6 +61,7 @@
     <Compile Include="Models\TypeCategorie.cs" />
     <Compile Include="Models\TypeUtilisateur.cs" />
     <Compile Include="Models\Utilisateur.cs" />
+    <Compile Include="Tools\HashTools.cs" />
     <Compile Include="ViewModels\AdresseViewModel.cs" />
     <Compile Include="Tools\CategorieLivre.cs" />
     <Compile Include="ViewModels\LivreCategorieViewModel.cs" />

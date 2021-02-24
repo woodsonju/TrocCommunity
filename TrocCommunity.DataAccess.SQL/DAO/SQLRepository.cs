@@ -22,7 +22,7 @@ namespace TrocCommunity.DataAccess.SQL.DAO
         }
 
         public IQueryable<T> Collection()
-        {           
+        {
             return dbSet;
         }
 
@@ -49,7 +49,7 @@ namespace TrocCommunity.DataAccess.SQL.DAO
         public void SaveChanges()
         {
             dataContext.SaveChanges();
-            
+
         }
 
         public void Update(T t)

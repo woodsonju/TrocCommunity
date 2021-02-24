@@ -7,7 +7,7 @@ using TrocCommunity.Core.Models;
 
 namespace TrocCommunity.Core.Tools
 {
-    public class CategorieLivre
+    public class CategorieLivre 
     {
         public IEnumerable<Livre> Livres { get; set; }
 

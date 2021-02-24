@@ -258,6 +258,8 @@
     <Compile Include="Service\CategorieService.cs" />
     <Compile Include="Service\IBookService.cs" />
     <Compile Include="Service\ICategorieService.cs" />
+    <Compile Include="Service\IUtilisateurService.cs" />
+    <Compile Include="Service\UtilisateurService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -734,16 +736,6 @@
     <Content Include="Views\Admin\Delete.cshtml" />
     <Content Include="Views\Admin\Details.cshtml" />
     <Content Include="Views\Categories\Catalogue.cshtml" />
-    <Content Include="Views\Categories\Lit.cshtml" />
-    <Content Include="Views\Categories\Bie.cshtml" />
-    <Content Include="Views\Categories\Jeu.cshtml" />
-    <Content Include="Views\Categories\Ban.cshtml" />
-    <Content Include="Views\Categories\Art.cshtml" />
-    <Content Include="Views\Categories\Sco.cshtml" />
-    <Content Include="Views\Categories\Loi.cshtml" />
-    <Content Include="Views\Categories\Sci.cshtml" />
-    <Content Include="Views\Categories\Ent.cshtml" />
-    <Content Include="Views\Categories\Catalogue1.cshtml" />
     <Content Include="Views\Categories\DetailsLivre.cshtml" />
     <Content Include="Views\Books\AddBook.cshtml" />
     <Content Include="Views\Books\_BookInfos.cshtml" />

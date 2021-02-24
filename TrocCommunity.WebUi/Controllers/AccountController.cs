@@ -14,6 +14,7 @@ using TrocCommunity.Core.Tools;
 using TrocCommunity.Core.ViewModels;
 using TrocCommunity.DataAccess.SQL;
 using TrocCommunity.DataAccess.SQL.DAO;
+using TrocCommunity.WebUi.Service;
 
 namespace TrocCommunity.WebUi.Controllers
 {
@@ -21,22 +22,26 @@ namespace TrocCommunity.WebUi.Controllers
     {
         private IRepository<Utilisateur> contextUser;
         private IRepository<Adresse> contextAdresse;
-
+        private IUtilisateurService serviceUser;
         public AccountController()
         {
             contextUser = new SQLRepositoryUtilisateur(new MyContext());
             contextAdresse = new SQLRepository<Adresse>(new MyContext());
+
+            serviceUser = new UtilisateurService(contextUser);
         }
 
         public AccountController(IRepository<Utilisateur> contextUser)
         {
             this.contextUser = contextUser;
+            serviceUser = new UtilisateurService(contextUser);
         }
 
         public AccountController(IRepository<Utilisateur> contextUser, IRepository<Adresse> contextAdresse)
         {
             this.contextUser = contextUser;
             this.contextAdresse = contextAdresse;
+            serviceUser = new UtilisateurService(contextUser);
         }
 
         public ActionResult Index()
@@ -64,13 +69,13 @@ namespace TrocCommunity.WebUi.Controllers
             if (ModelState.IsValid)
             {
                 Utilisateur utilisateur = new Client(formRegister.UserName, formRegister.Email, formRegister.Password, formRegister.Confirmpwd, formRegister.DateNaissance);
-                
-                //Lors de la création d'un utilisateur je crée un adresse par défaut
-    /*            utilisateur.Adresse = new Adresse {
-                  TypeDeVoie="", NomDeVoie="", NumVoie=0, CodePostale="00000", Ville="", Pays="" };*/
 
-                contextUser.Insert(utilisateur); //Ajoute dans la liste d'utilisateur en mémoire (la liste locale)
-                contextUser.SaveChanges();  //Ensuite Actualise dans la base de données (la liste distante: remote)
+                //Lors de la création d'un utilisateur je crée un adresse par défaut
+                /*            utilisateur.Adresse = new Adresse {
+                              TypeDeVoie="", NomDeVoie="", NumVoie=0, CodePostale="00000", Ville="", Pays="" };*/
+
+                serviceUser.Insert(utilisateur); //Ajoute dans la liste d'utilisateur en mémoire (la liste locale)
+                serviceUser.SaveChanges();  //Ensuite Actualise dans la base de données (la liste distante: remote)
 
                 ViewData["UserName"] = utilisateur.UserName;
                 
@@ -94,62 +99,55 @@ namespace TrocCommunity.WebUi.Controllers
         {
             if (ModelState.IsValid)
             {
-                Utilisateur utilisateur = ((SQLRepositoryUtilisateur)contextUser).findByEmail(Email);
+                Utilisateur utilisateur = serviceUser.CheckLogin(Email,Password) ;
 
 
                 if (utilisateur == null)
                 {
                     ModelState.Clear();
-                    ViewBag.ErrorLog = "L'adresse renseignée n'existe pas";
+                    ViewBag.ErrorLog = "L'adresse renseignée n'existe pas ou le mdp est faux";
                 }
                 else
                 {
-                    if (utilisateur.Password != Password)
-                    {
+                    
+                    // Connexion Réussite
+                    Session["Connexion"] = utilisateur.UserName;
+                    Session["TypeUtilisateur"] = utilisateur.TypeUtilisateur;
+                    Session["Photo"] = utilisateur.Photo;
+                    Session["Email"] = utilisateur.Email;
+                    Session["Id"] = utilisateur.Id;
 
-                        ViewBag.ErrorLog = "La Combinaison email,mot de passe n'est pas la bonne";
+                    /**
+                        * Partie Woodson : Compte Client
+                        */
+                    //Username
+                    TempData["UserName"] = utilisateur.UserName;
+     
+                    //ID
+                    TempData["ID"] = utilisateur.Id;
+
+                    //img : photo
+                    if (utilisateur.Photo == null)
+                    {
+                        TempData["Photo"] = "~/Content/TEMPLATE/images/AccountImages/imgProfile.png";
                     }
                     else
                     {
-                        // Connexion Réussite
-                        Session["Connexion"] = utilisateur.UserName;
-                        Session["user"] = utilisateur;
-                        Session["TypeUtilisateur"] = utilisateur.TypeUtilisateur;
-                        Session["Photo"] = utilisateur.Photo;
-                        Session["Email"] = utilisateur.Email;
-                        Session["Id"] = utilisateur.Id;
-
-                        /**
-                         * Partie Woodson : Compte Client
-                         */
-                        //Username
-                        TempData["UserName"] = utilisateur.UserName;
-     
-                        //ID
-                        TempData["ID"] = utilisateur.Id;
-
-                        //img : photo
-                        if (utilisateur.Photo == null)
-                        {
-                            TempData["Photo"] = "~/Content/TEMPLATE/images/AccountImages/imgProfile.png";
-                        }
-                        else
-                        {
-                            TempData["Photo"] = Session["Photo"];
-                        }
-
-                       // TempData["Photo"] = utilisateur.Photo;
-
-                        // TempData["Photo"] = utilisateur.Photo;
-                        // TempData["AdresseId"] = utilisateur.Adresse.Id;
-
-                        /*          int id_adresse = utilisateur.Adresse.Id;*//*
-                                  //TempData["ID_ADRESSE"] = id_adresse;*/
-
-                        TempData.Keep();
-
-                        return RedirectToAction("Index", "Home");
+                        TempData["Photo"] = Session["Photo"];
                     }
+
+                    // TempData["Photo"] = utilisateur.Photo;
+
+                    // TempData["Photo"] = utilisateur.Photo;
+                    // TempData["AdresseId"] = utilisateur.Adresse.Id;
+
+                    /*          int id_adresse = utilisateur.Adresse.Id;*//*
+                                //TempData["ID_ADRESSE"] = id_adresse;*/
+
+                    TempData.Keep();
+
+                    return RedirectToAction("Index", "Home");
+                    
 
                 }
 
@@ -177,7 +175,7 @@ namespace TrocCommunity.WebUi.Controllers
         public ActionResult ConfirmNewPassWord(string mail)
         {
             string decrypt = CryptingData.Unprotect( mail );
-            Utilisateur u = ((SQLRepositoryUtilisateur)contextUser).findByEmail(decrypt);
+            Utilisateur u = serviceUser.FindByEmail(decrypt);
             
             if (u != null)
             {
@@ -195,17 +193,17 @@ namespace TrocCommunity.WebUi.Controllers
         public ActionResult ConfirmNewPassWord(FormRegister u )
         {
 
-            Utilisateur ut = ((SQLRepositoryUtilisateur)contextUser).findByEmail(u.Email);
+            Utilisateur ut = serviceUser.FindByEmail(u.Email);
 
-            ut.Password = u.Password;
+            //ut.Password = u.Password;
             ut.Confirmpwd = u.Confirmpwd;
 
             if (ModelState.IsValid)
             {
-                if (ut.Password.Equals(ut.Confirmpwd))
+                if (u.Password.Equals(u.Confirmpwd))
                 {
-                    contextUser.Update(ut);
-                    contextUser.SaveChanges();
+                    serviceUser.Update(ut);
+                    serviceUser.SaveChanges();
                     return RedirectToAction("Index", "Home");
                 }
                 else
@@ -240,7 +238,7 @@ namespace TrocCommunity.WebUi.Controllers
             if (ModelState.IsValid)
             {
 
-                if (((SQLRepositoryUtilisateur)contextUser).findByEmail(Email) != null)
+                if ( serviceUser.FindByEmail(Email) != null)
                 {
 
                     // Encryptind Data
@@ -280,7 +278,7 @@ namespace TrocCommunity.WebUi.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Utilisateur utilisateur = contextUser.FindById((int)id);
+            Utilisateur utilisateur = serviceUser.FindById((int)id);
             if (utilisateur == null)
             {
                 return HttpNotFound();
@@ -296,10 +294,10 @@ namespace TrocCommunity.WebUi.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Utilisateur utilisateur = contextUser.FindById((int)id);
+            Utilisateur utilisateur = serviceUser.FindById((int)id);
             /* int adresseId = utilisateur.AdresseId;*/
             string mail = utilisateur.Email;
-            Utilisateur uAdresse = ((SQLRepositoryUtilisateur)contextUser).findByEmail(mail);
+            Utilisateur uAdresse = serviceUser.FindByEmail(mail);
             if (uAdresse == null)
             {
                 return HttpNotFound();
@@ -339,8 +337,8 @@ namespace TrocCommunity.WebUi.Controllers
                 TempData["UserName"] = client.UserName;
                 Session["Connexion"] = client.UserName;
                 TempData.Keep();
-                contextUser.Update(client);
-                contextUser.SaveChanges();
+                serviceUser.Update(client);
+                serviceUser.SaveChanges();
                 //img : photo
               
 

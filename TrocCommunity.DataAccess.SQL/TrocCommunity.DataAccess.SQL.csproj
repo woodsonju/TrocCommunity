@@ -55,7 +55,6 @@
     <Compile Include="DAO\SQLRepositoryCategorie.cs" />
     <Compile Include="DAO\QueryLivre.cs" />
     <Compile Include="DAO\SQLRepository.cs" />
-    <Compile Include="DAO\SQLRepositoryAnnonce.cs" />
     <Compile Include="DAO\SQLRepositoryLivre.cs" />
     <Compile Include="DAO\SQLRepositoryUtilisateur.cs" />
     <Compile Include="Migrations\202101210843411_InitialModel.cs" />
@@ -109,6 +108,10 @@
     <Compile Include="Migrations\202102180919261_AddComponentsAdresse1.cs" />
     <Compile Include="Migrations\202102180919261_AddComponentsAdresse1.Designer.cs">
       <DependentUpon>202102180919261_AddComponentsAdresse1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102221012584_noLimitPassWord.cs" />
+    <Compile Include="Migrations\202102221012584_noLimitPassWord.Designer.cs">
+      <DependentUpon>202102221012584_noLimitPassWord.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\202102181451596_AddIsbnRequiredOthersNo.cs" />
     <Compile Include="Migrations\202102181451596_AddIsbnRequiredOthersNo.Designer.cs">
@@ -226,6 +229,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202102241505348_ModifLivreString.resx">
       <DependentUpon>202102241505348_ModifLivreString.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102221012584_noLimitPassWord.resx">
+      <DependentUpon>202102221012584_noLimitPassWord.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
