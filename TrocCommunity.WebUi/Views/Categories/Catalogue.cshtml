@@ -20,226 +20,350 @@
 
         <input type="submit" value="Valider" />
     }
+
+
+
     <p>Recherche Avancée</p>
-    @using (Html.BeginForm("AdvancedSearch", "Categories", FormMethod.Get))
+    @using (Html.BeginForm("AdvancedSearch", "Categories", FormMethod.Get, new { amount1 = "#amount1", amount2 = "#amount2" }))
     {
 
-        <div class="col-md-12 col-sm-12">
-            <label>Auteur:</label> <input type="text">
-            <label>Titre:</label> <input type="text">
-        </div>
-        <br>
-        <label for="amount1" class="col-md-1 col-sm-12">Points : </label>
-        <input type="text" id="amount1" class="col-md-1 col-sm-12" style="border:0; color:#f6931f; font-weight:bold;">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-6" >
+                    <label>Auteur:  </label> <input type="text" name="Auteur">
+                </div>
 
-        <input type="text" id="amount2" class="col-md-1 col-sm-12" style="border:0; color:#f6931f; font-weight:bold;">
-        <br>
+                <div class="col-sm-6">
+                    <label>Titre:  </label> <input type="text" name="Titre">
+                </div>
+            </div>
+            <br>
+            <br>
 
-        <div id="slider-rangeTest" class="col-md-4 col-sm-12" display="inline-block" margin-right=70></div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <b class=" = "row">Nombre de points</b>
 
-        <br>
+                    <div class="row">
 
-
-        <input type="submit" value="Valider" />
-    }
-
-
-</div>
-@helper buildLinks(int start, int end, string innerContent)
-{
-    for (int i = start; i <= end; i++)
-    {
-
-        if (ViewBag.Search == null)
-        {
-            <a class="@(i == ViewBag.CurrentPage ? "current" : "")"
-               href="@Url.Action("Catalogue", "Categories", new { page = i, search = ViewBag.Search })">@(innerContent ?? i.ToString())</a>
-        }
-        else
-        {
-            <a class="@(i == ViewBag.CurrentPage ? "current" : "")"
-               href="@Url.Action("Search", "Categories", new { page = i, search = ViewBag.Search })">@(innerContent ?? i.ToString())</a>
-        }
-    }
-
-}
-
-@helper pageLinks()
-{
-    const int maxPages = 11;
+                        <label for="amount1" class ="col-sm-2 " >Min  </label>
+                        <input type="text" name="amount1" id="amount1"  class ="col-sm-2 "style="border:0; color:#f6931f; font-weight:bold;">
+                        <label for="amount2" class ="col-sm-2 ">Max  </label>
+                        <input type="text" name="amount2" id="amount2" class ="col-sm-2 " style="border:0; color:#f6931f; font-weight:bold;">
 
 
-    if (ViewBag.TotalPages <= maxPages)
-    {
-        if (ViewBag.NbLivreSearch == null && ViewBag.Search != null)
-        {
-            @buildLinks(1, (int)ViewBag.NoSearch, null)
+                    </div>
 
-            return;
-        }
+                    <div class="row; col-sm-6" id="slider-rangeTest" style="display:flex" ></div>
+                </div>
 
-        if (ViewBag.NbLivreSearch <= 9)
-        {
-            @buildLinks(1, (int)ViewBag.TotalPages, null)
+                <div class="col-sm-6">
+                    <b class="row">Etat du Livre Accepté</b>
+                    <br />
 
-            return;
-        }
-        else
-        {
-            @buildLinks(1, (int)ViewBag.TotalPages, null)
+                    <div class="">
 
-            return;
-        }
+                        @Html.CheckBox("cn", false, new { id = "cn" })
+                        <label for="cn">Comme neuf</label>
+                    </div>
 
+                    <div class="">
 
+                        @Html.CheckBox("be", false, new { id = "be" })
+                        <label for="be">Bon état</label>
+                    </div>
+                    <div class="">
 
-    }
+                        @Html.CheckBox("em", false, new { id = "em" })
+                        <label for="em">état moyen</label>
+                    </div>
+                    <div class="">
 
-    int pagesAfter = ViewBag.TotalPages - ViewBag.CurrentPage; // Number of pages after current
-    int pagesBefore = ViewBag.CurrentPage - 1; // Number of pages before current
-
-    if (pagesAfter <= 4)
-    {
-        @buildLinks(1, 1, null) // Show 1st page
-
-        int pageSubset = ViewBag.TotalPages - maxPages - 1 > 1 ? ViewBag.TotalPages - maxPages - 1 : 2;
-        @buildLinks(pageSubset, pageSubset, "...") // Show page subset (...)
-
-        @buildLinks(ViewBag.TotalPages - maxPages + 3, ViewBag.TotalPages, null) // Show last pages
-
-        return; // Exit
-    }
-
-    if (pagesBefore <= 4)
-    {
-        @buildLinks(1, maxPages - 2, null) // Show 1st pages
-
-
-        int pageSubset = maxPages + 2 < ViewBag.TotalPages ? maxPages + 2 : ViewBag.TotalPages - 1;
-        @buildLinks(pageSubset, pageSubset, "...") // Show page subset (...)
-
-        @buildLinks(ViewBag.TotalPages, ViewBag.TotalPages, null) // Show last page
-
-        return; // Exit
-
-    }
-
-    if (pagesAfter > 4)
-    {
-        @buildLinks(1, 1, null) // Show 1st pages
-
-        int pageSubset1 = ViewBag.CurrentPage - 7 > 1 ? ViewBag.CurrentPage - 7 : 2;
-        int pageSubset2 = ViewBag.CurrentPage + 7 < ViewBag.TotalPages ? ViewBag.CurrentPage + 7 : ViewBag.TotalPages - 1;
-
-        @buildLinks(pageSubset1, pageSubset1, pageSubset1 == ViewBag.CurrentPage - 4 ? null : "...") // Show 1st page subset (...)
-
-        @buildLinks(ViewBag.CurrentPage - 3, ViewBag.CurrentPage + 3, null) // Show middle pages
-
-        // Show 2nd page subset (...)
-        // only show ... if page is contigous to the previous one.
-        @buildLinks(pageSubset2, pageSubset2, pageSubset2 == ViewBag.CurrentPage + 4 ? null : "...")
-        @buildLinks(ViewBag.TotalPages, ViewBag.TotalPages, null)// Show last page
-
-        return; // Exit
-
-    }
-}
-
-
-
-<div class="container-fluid" id="container-categorie-livre">
-    <div class="row" id="categorie-livre-row">
-
-        <div class="col-md-4" style="padding : 0!important">
-
-            <div class="bs-example">
-                <div class="accordion" id="accordionExample">
-
-                    <div class="card">
-                        @foreach (var item in Model.Categories)
-                        {
-                            <div class="card-header" id="@item.Description.Substring(0, 3)">
-                                <h2 class="mb-0 category-btn">
-                                    <button type="button" class="btn btn-link ">
-                                        @Html.ActionLink(item.NomCategorie, "Catalogue", new { cat = item.NomCategorie.Substring(0, 3) }, null)
-                                    </button>
-                                    <i class="fas fa-sort-down  collapsed ml-lg-2" data-toggle="collapse" data-target="#@item.NomCategorie.Substring(0, 3)"></i>
-                                </h2>
-                            </div>
-                            <div id="@item.NomCategorie.Substring(0, 3)" class="collapse " aria-labelledby="@item.Description.Substring(0, 3)" data-parent="#accordionExample">
-                                <div class="card-body">
-                                    <p>@Html.DisplayFor(modelItem => item.Description)</p>
-                                </div>
-                            </div>
-                        }
+                        @Html.CheckBox("u", false, new { id = "u" })
+                        <label for="u">Usé</label>
                     </div>
 
                 </div>
-            </div>
+
+
+                </div>
         </div>
 
+                <div class="col-md-12 col-sm-12">
+                    
+                    
+                </div>
+
+
+                <br>
+                //<label for="amount1" class="col-md-1 col-sm-12">Points : </label>
+                
+                <br>
+
+                
+
+                <br>
+                <b>Etat du Livre Accepté</b>
+                
+
+        //if (Session["connexion"] != null)
+        //{
+                <b>Géolocalisation</b>
+                <div>
+
+                    @Html.CheckBox("Ville", false, new { id = "Ville" })
+                    <label for="Ville">Echange dans la même ville</label>
+                </div>
+                <div>
+
+                    @Html.CheckBox("Rayon", false, new { id = "Rayon", onclick = "appear()" })
+                    <label for="Rayon">Echange autour de chez moi</label>
+
+                    <input type="text" name="range" id="range" class="col-md-1 col-sm-12" style="display:none; border:0; color:#f6931f; font-weight:bold;">
+                    <div id="slider-GeoLoc" class="col-md-4 col-sm-12" style="display:none"></div>
+
+                </div>
+                @*}*@
 
 
 
-
-        <div class="col-md-8">
-
-
-
-
-
-            <div class="row" id="row-section-book-card">
-                @if (ViewBag.NbLivreSearch == null && ViewBag.Search != null)
-                {
-                    <p>Il n'y a pas de livres correspondant à cette recherche.</p>
+                <input type="submit" value="Recherche Avancée" />
                 }
-                @foreach (var item in Model.Livres)
+
+
+            </div>
+            @helper buildLinks(int start, int end, string innerContent)
+            {
+                for (int i = start; i <= end; i++)
                 {
 
-                    <div class="col-md-4 col-sm-12 section-book-card">
-                        <div class="section-picture-book-image thumbnail">
-                            <a class="text-center" href='@Url.Action("DetailsLivre", "Categories")/@item.Id'>
-                                <img src="~/Content/TEMPLATE/images/Livres/@item.Image" alt="Livre" class="img-fluid w-50 h-100" />
-                            </a>
-                        </div>
-                        <div>
-                            <h3 class="text-center titre-books-thumbnail">Titre</h3>
-                            <p class="text-center">@Html.DisplayFor(modelItem => item.Author)</p>
-                            <div class="books-items">
-                                <p class="books-points text-center">100 points</p>
+                    if (ViewBag.typeSearch == "Catalogue")
+                    {
+                        <a class="@(i == ViewBag.CurrentPage ? "current" : "")"
+                           href="@Url.Action("Catalogue", "Categories", new { page = i })">@(innerContent ?? i.ToString())</a>
+                    }
+
+                    else if (ViewBag.typeSearch == "AdvancedSearch")
+                    {
+                        <a class="@(i == ViewBag.CurrentPage ? "current" : "")"
+                           href="@Url.Action("AdvancedSearch", "Categories", new { amount1 = ViewBag.amount1, amount2 = ViewBag.amount2 , Auteur= ViewBag.Auteur , Titre=ViewBag.Titre  , cn=ViewBag.cn  , be=ViewBag.be, em=ViewBag.em , u =ViewBag.u, ville=ViewBag.ville,rayon= ViewBag.rayon  ,range=ViewBag.range  , page = i })">@(innerContent ?? i.ToString())</a>
+                    }
+                    else
+                    {
+                        <a class="@(i == ViewBag.CurrentPage ? "current" : "")"
+                           href="@Url.Action("Search", "Categories", new { page = i,search = ViewBag.search })">@(innerContent ?? i.ToString())</a>
+                    }
+                }
+
+            }
+
+            @helper pageLinks()
+            {
+                const int maxPages = 11;
+
+
+                if (ViewBag.TotalPages <= maxPages)
+                {
+                    if (ViewBag.NbLivreSearch == null && ViewBag.Search != null)
+                    {
+                        @buildLinks(1, (int)ViewBag.NoSearch, null)
+
+                        return;
+                    }
+
+                    if (ViewBag.NbLivreSearch <= 9)
+                    {
+                        @buildLinks(1, (int)ViewBag.TotalPages, null)
+
+                        return;
+                    }
+                    else
+                    {
+                        @buildLinks(1, (int)ViewBag.TotalPages, null)
+
+                        return;
+                    }
+
+
+
+                }
+
+                int pagesAfter = ViewBag.TotalPages - ViewBag.CurrentPage; // Number of pages after current
+                int pagesBefore = ViewBag.CurrentPage - 1; // Number of pages before current
+
+                if (pagesAfter <= 4)
+                {
+                    @buildLinks(1, 1, null) // Show 1st page
+
+                    int pageSubset = ViewBag.TotalPages - maxPages - 1 > 1 ? ViewBag.TotalPages - maxPages - 1 : 2;
+                    @buildLinks(pageSubset, pageSubset, "...") // Show page subset (...)
+
+                    @buildLinks(ViewBag.TotalPages - maxPages + 3, ViewBag.TotalPages, null) // Show last pages
+
+                    return; // Exit
+                }
+
+                if (pagesBefore <= 4)
+                {
+                    @buildLinks(1, maxPages - 2, null) // Show 1st pages
+
+
+                    int pageSubset = maxPages + 2 < ViewBag.TotalPages ? maxPages + 2 : ViewBag.TotalPages - 1;
+                    @buildLinks(pageSubset, pageSubset, "...") // Show page subset (...)
+
+                    @buildLinks(ViewBag.TotalPages, ViewBag.TotalPages, null) // Show last page
+
+                    return; // Exit
+
+                }
+
+                if (pagesAfter > 4)
+                {
+                    @buildLinks(1, 1, null) // Show 1st pages
+
+                    int pageSubset1 = ViewBag.CurrentPage - 7 > 1 ? ViewBag.CurrentPage - 7 : 2;
+                    int pageSubset2 = ViewBag.CurrentPage + 7 < ViewBag.TotalPages ? ViewBag.CurrentPage + 7 : ViewBag.TotalPages - 1;
+
+                    @buildLinks(pageSubset1, pageSubset1, pageSubset1 == ViewBag.CurrentPage - 4 ? null : "...") // Show 1st page subset (...)
+
+                    @buildLinks(ViewBag.CurrentPage - 3, ViewBag.CurrentPage + 3, null) // Show middle pages
+
+                    // Show 2nd page subset (...)
+                    // only show ... if page is contigous to the previous one.
+                    @buildLinks(pageSubset2, pageSubset2, pageSubset2 == ViewBag.CurrentPage + 4 ? null : "...")
+                    @buildLinks(ViewBag.TotalPages, ViewBag.TotalPages, null)// Show last page
+
+                    return; // Exit
+
+                }
+            }
+
+
+
+            <div class="container-fluid" id="container-categorie-livre">
+                <div class="row" id="categorie-livre-row">
+
+                    <div class="col-md-4" style="padding : 0!important">
+
+                        <div class="bs-example">
+                            <div class="accordion" id="accordionExample">
+
+                                <div class="card">
+                                    @foreach (var item in Model.Categories)
+                                    {
+                                        <div class="card-header" id="@item.Description.Substring(0, 3)">
+                                            <h2 class="mb-0 category-btn">
+                                                <button type="button" class="btn btn-link ">
+                                                    @Html.ActionLink(item.NomCategorie, "Catalogue", new { cat = item.NomCategorie.Substring(0, 3) }, null)
+                                                </button>
+                                                <i class="fas fa-sort-down  collapsed ml-lg-2" data-toggle="collapse" data-target="#@item.NomCategorie.Substring(0, 3)"></i>
+                                            </h2>
+                                        </div>
+                                        <div id="@item.NomCategorie.Substring(0, 3)" class="collapse " aria-labelledby="@item.Description.Substring(0, 3)" data-parent="#accordionExample">
+                                            <div class="card-body">
+                                                <p>@Html.DisplayFor(modelItem => item.Description)</p>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+
                             </div>
-                            <p class="text-left">Ville</p>
                         </div>
                     </div>
 
-                }
+
+
+
+
+                    <div class="col-md-8">
+
+
+
+
+
+                        <div class="row" id="row-section-book-card">
+                            @if (ViewBag.NbLivreSearch == null && ViewBag.Search != null)
+                            {
+                                <p>Il n'y a pas de livres correspondant à cette recherche.</p>
+                            }
+                            @foreach (var item in Model.Livres)
+                            {
+
+                                <div class="col-md-4 col-sm-12 section-book-card">
+                                    <div class="section-picture-book-image thumbnail">
+                                        <a class="text-center" href='@Url.Action("DetailsLivre", "Categories")/@item.Id'>
+                                            <img src="~/Content/TEMPLATE/images/Livres/@item.Image" alt="Livre" class="img-fluid w-50 h-100" />
+                                        </a>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-center titre-books-thumbnail">Titre</h3>
+                                        <p class="text-center">@Html.DisplayFor(modelItem => item.Author)</p>
+                                        <div class="books-items">
+                                            <p class="books-points text-center">100 points</p>
+                                        </div>
+                                        <p class="text-left">Ville</p>
+                                    </div>
+                                </div>
+
+                            }
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+                <div class="row" id="row-pagination">
+                    <div class="pagination">
+                        @pageLinks()
+                    </div>
+                </div>
             </div>
 
+            <script>
+                $("#slider-rangeTest").slider({
+                    range: true,
+                    min: 0,
+                    max: 1000,
+                    values: [0, 1000],
+                    slide: function (event, ui) {
+                        $("#amount1").val(ui.values[0]);
+                        $("#amount2").val(ui.values[1]);
 
-        </div>
+                    }
+                });
+
+                $("#amount1").val($("#slider-rangeTest").slider("values", 0));
+                $("#amount2").val($("#slider-rangeTest").slider("values", 1));
+
+                function appear() {
+
+                    var checkBox = document.getElementById("Rayon");
+                    var divSlider = document.getElementById("slider-GeoLoc");
+                    var rangeText = document.getElementById("range");
+
+                    if (checkBox.checked) {
+                        divSlider.style.display = "block";
+                        rangeText.style.display = "block";
+                    }
+                    else {
+                        divSlider.style.display = "none";
+                        rangeText.style.display = "none";
+                    }
+                }
+
+                $("#slider-GeoLoc").slider({
+                    range: false,
+                    min: 0,
+                    max: 100,
+                    values: [0],
+                    slide: function (event, ui) {
+                        $("#range").val(ui.values[0]);
+
+                    }
+                });
+
+                $("#range").val($("#slider-rangeTest").slider("values", 0));
 
 
-    </div>
-    <div class="row" id="row-pagination">
-        <div class="pagination">
-            @pageLinks()
-        </div>
-    </div>
-</div>
-
-<script>
-    $("#slider-rangeTest").slider({
-        range: true,
-        min: 0,
-        max: 700,
-        values: [75, 300],
-        slide: function (event, ui) {
-            $("#amount1").val(ui.values[0]);
-            $("#amount2").val(ui.values[1]);
-
-        }
-    });
-
-    $("#amount1").val($("#slider-rangeTest").slider("values", 0));
-    $("#amount2").val($("#slider-rangeTest").slider("values", 1));
-</script>
+            </script>

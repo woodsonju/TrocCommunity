@@ -6,7 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 using TrocCommunity.Core.Logic;
 using TrocCommunity.Core.Models;
-
+using System.Data.Entity;
+using System.Diagnostics;
+using TrocCommunity.Core.Tools;
 
 namespace TrocCommunity.DataAccess.SQL.DAO
 {
@@ -15,7 +17,7 @@ namespace TrocCommunity.DataAccess.SQL.DAO
     {
 
         
-
+        
         public SQLRepositoryLivre(MyContext DataContext) : base(DataContext)
         {
             
@@ -85,34 +87,91 @@ namespace TrocCommunity.DataAccess.SQL.DAO
         }
 
 
-        //AdvancedSearch
-        public IEnumerable<Livre> findByKeyWord(string keyWord)
-        {
-            return dataContext.Livres.AsNoTracking().Where(book => book.Title.Contains(keyWord)
-                                   || book.Author.Contains(keyWord)
-                                   || book.Editor.Contains(keyWord));
-        }
 
-        public List<Livre> findByPoints(int min, int max)
+        public List<Livre> NbPaginationAdvancedSearchWithGeo(int min, int max, string Auteur, string Titre, List<int> AcceptableState, bool? ville, bool? rayon, int? range, Adresse adClient,int page, int pageSize)
         {
-            return dataContext.Livres.AsNoTracking().Where(book => book.PointDuLivre >= min && book.PointDuLivre <= max).ToList();
+            return AdvancedSearchWithGeo(min, max, Auteur, Titre, AcceptableState, ville, rayon, range, adClient).OrderBy(x => x.Id).Skip((page - 1) * pageSize).Take(pageSize).ToList();
 
         }
-
-        public List<Livre> findByState(List<int> AcceptableState)
+        public List<Livre> NbPaginationAdvancedSearch(int min, int max, string Auteur, string Titre, List<int> AcceptableState,int page, int pageSize)
         {
-
-            var request = (from a1 in dbSet where AcceptableState.Contains((int)a1.EtatDuLivre) select a1).ToList();
-            return request;
+            return AdvancedSearch(min, max, Auteur, Titre, AcceptableState).OrderBy(x => x.Id).Skip((page - 1) * pageSize).Take(pageSize).ToList();
 
         }
 
-        public List<Livre> findByDate(DateTime limitDate)
+
+
+        public int CountAdvancedSearchWithGeo(int min, int max, string Auteur, string Titre, List<int> AcceptableState, bool? ville, bool? rayon, int? range, Adresse adClient)
         {
 
-            var request = (from a1 in dataContext.Livres where limitDate > a1.DateEdition select a1).ToList();
-            return request;
+            return AdvancedSearchWithGeo(min,max,Auteur,Titre,AcceptableState,ville,rayon,range,adClient).Count();
+            
+        }
 
+
+
+        public int CountAdvancedSearch(int min, int max, string Auteur, string Titre, List<int> AcceptableState)
+        {
+            return AdvancedSearch(min, max, Auteur, Titre, AcceptableState).Count();
+        }
+
+            //AdvancedSearch
+            public IEnumerable<Livre> AdvancedSearchWithGeo(int min, int max, string Auteur, string Titre, List<int> AcceptableState, bool? ville, bool? rayon, int? range, Adresse adClient)
+        {
+
+            IEnumerable<Livre> livre = AdvancedSearch(min, max, Auteur, Titre, AcceptableState);
+
+
+            // Géolocalisation
+
+            if (ville == null && rayon == null || (ville == false && rayon == false))
+            {
+                return livre;
+            }
+
+            else if ((bool)ville && !(bool)rayon)
+            {
+
+                livre = livre.Where(book => book.Client.Adresse.Ville.Equals(adClient.Ville));
+
+
+
+            }
+            else if (!(bool)ville && (bool)rayon)
+            {
+
+                livre = livre.Where(book => DistanceOrth.DistanceOrthodromique(adClient.Longitude,adClient.Latitude, book.Client.Adresse.Longitude, book.Client.Adresse.Latitude)<(int)range );
+            }
+            else if ((bool)ville && (bool)rayon)
+            {
+                livre = livre.Where(book => book.Client.Adresse.Ville.Equals(adClient.Ville) &&
+                                             DistanceOrth.DistanceOrthodromique(adClient.Longitude, adClient.Latitude, book.Client.Adresse.Longitude, book.Client.Adresse.Latitude) < (int)range
+                );
+            }
+
+            return livre;
+        }
+
+
+        public IEnumerable<Livre> AdvancedSearch(int min, int max, string Auteur, string Titre, List<int> AcceptableState)
+        {
+
+            // Price
+
+            IEnumerable<Livre> livre = dataContext.Livres.Include(book => book.Client).Include(book => book.Client.Adresse).AsNoTracking().Where(book => book.PointDuLivre >= min && book.PointDuLivre <= max );
+
+            // State
+
+            livre = (from a1 in livre where AcceptableState.Contains((int)a1.EtatDuLivre) select a1);
+
+            // Author and Title
+
+            livre = livre.Where(book => book.Title.Contains(Titre)
+                                   || book.Author.Contains(Auteur));
+
+           
+
+            return livre;
         }
 
 

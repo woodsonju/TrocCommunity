@@ -166,6 +166,9 @@ namespace TrocCommunity.WebUi.Controllers
         {
             Session["Connexion"] = null;
             Session["TypeUtilisateur"] = null;
+            Session["Photo"] = null;
+            Session["Email"] = null;
+            Session["Id"] = null;
 
             return RedirectToAction("Index", "Home");
         }
@@ -336,6 +339,7 @@ namespace TrocCommunity.WebUi.Controllers
                 TempData["Photo"] = Session["Photo"];
                 TempData["UserName"] = client.UserName;
                 Session["Connexion"] = client.UserName;
+                Session["Id"] = client.Id;
                 TempData.Keep();
                 contextUser.Update(client);
                 contextUser.SaveChanges();
