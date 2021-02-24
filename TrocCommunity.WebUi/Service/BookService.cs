@@ -71,9 +71,11 @@ namespace TrocCommunity.WebUi.Service
                            {*/
             if (book.SelectToken("items[0].volumeInfo.imageLinks.thumbnail") == null)
             {
-                image = "imageParDefaut.jpg";
-/*                image = "~/Content/TEMPLATE/images/AccountImages/Livres/imageParDefaut";
-*/            }
+                image = "~/Content/TEMPLATE/images/Livres/imageParDefaut.jpg";
+            } else
+            {
+                image = book.SelectToken("items[0].volumeInfo.imageLinks.thumbnail").ToString();
+            }
             //  }
 
             return image;

@@ -157,7 +157,7 @@ if (ViewBag.TotalPages <= maxPages)
                     <div class="col-md-4 col-sm-12 section-book-card">
                         <div class="section-picture-book-image thumbnail">
                             <a class="text-center" href='@Url.Action("DetailsLivre", "Categories")/@item.Id'>
-                                <img src="~/Content/TEMPLATE/images/Livres/@item.Image" alt="Livre" class="img-fluid w-50 h-100" />
+                                <img src="@Url.Content(item.Image)" alt="Livre" class="img-fluid w-100 h-100" />
                             </a>
                         </div>
                         <div>

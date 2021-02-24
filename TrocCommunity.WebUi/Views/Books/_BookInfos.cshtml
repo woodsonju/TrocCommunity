@@ -21,7 +21,15 @@
             </div>
             <div class="card-body text-info">
                 <div class="imgBook">
-                    <img src="~/Content/TEMPLATE/images/Livres/@Model.Livre.Image" class="img-responsive" height="220" width="200" />
+                    @if (Model.Livre.Image.StartsWith("http"))
+                    {
+                        <img src="@Model.Livre.Image" class="img-responsive" height="220" width="200" />
+                    }
+                    else
+                    {
+                        <img src="@Url.Content(Model.Livre.Image)" class="img-responsive" height="220" width="200" />
+                    }
+
                 </div>
                 <h5 class="card-text isbn">
                     ISBN
@@ -39,7 +47,7 @@
 
                 <p class="card-text">
                     Catégorie:
-                    @Html.DropDownListFor(model => model.Livre.Categorie, new SelectList(Model.Categories, "NomCategorie", "NomCategorie"), new { @class = "form-control" })
+                    @Html.DropDownListFor(model => model.Livre.Categorie.NomCategorie, new SelectList(Model.Categories, "NomCategorie", "NomCategorie"), new { @class = "form-control" })
                 </p>
             </div>
 
@@ -66,7 +74,7 @@
                 <div class="resume">
                     <h4 class="title">Avance de points</h4>
                     <div class="info">
-                        <strong class="amount" id="avance_point">@Model.Livre.AvancePoints</strong> 
+                        <strong class="amount" id="avance_point">@Model.Livre.AvancePoints</strong>
                     </div>
                 </div>
                 <div class="resume-footer">
@@ -75,7 +83,19 @@
             </div>
         </div>
     </div>
+
     @Html.HiddenFor(model => model.Livre.Price)
+    @Html.HiddenFor(model => model.Livre.PointDuLivre)
+    @Html.HiddenFor(model => model.Livre.AvancePoints)
+
+    @Html.HiddenFor(model => model.Livre.DateEdition)
+
+    @Html.HiddenFor(model => model.Livre.Categorie.NomCategorie)
+
+    @Html.HiddenFor(model => model.Livre.Client)
+
+    @Html.HiddenFor(model => model.Livre.Image)
+
     <hr />
 
     <div class="row">

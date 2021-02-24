@@ -18,7 +18,7 @@ namespace TrocCommunity.Core.Models
         
      /*   [DataType(DataType.Date)]*/
      //Retourne la date (yy)
-        public int DateEdition { get; set; }
+        public string DateEdition { get; set; }
 
         [Required]
         public long  ISBN { get; set; }
@@ -33,10 +33,9 @@ namespace TrocCommunity.Core.Models
 
         /*    [Required]*/
 
-    //    [ForeignKey("CatgorieId")]
+        [ForeignKey("CatgorieId")]
         public Categorie Categorie { get; set; }
-
-/*        public int CatgorieId { get; set; }*/
+        public int CatgorieId { get; set; }
 
         public bool Disponible { get; set; }
 
@@ -49,8 +48,9 @@ namespace TrocCommunity.Core.Models
             set { isExchange = value; }
         }
 
-
+        [ForeignKey("ClientId")]
         public Client Client { get; set; }
+        public int ClientId { get; set; }
 
         public EtatDuLivre EtatDuLivre { get; set; }
 

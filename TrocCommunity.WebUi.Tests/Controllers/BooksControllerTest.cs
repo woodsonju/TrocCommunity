@@ -24,6 +24,8 @@ namespace TrocCommunity.WebUi.Tests.Controllers
             /* isbn = "9780631168522";   The Berbers*/
             /* isbn = "9780810867307";   No Country for Old Men*/
 
+            /*9782757807224  avec image*/
+
             service = new BookService();
         }
 

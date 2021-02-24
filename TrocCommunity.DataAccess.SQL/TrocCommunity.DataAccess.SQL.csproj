@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAO\SQLRepositoryCategorie.cs" />
     <Compile Include="DAO\QueryLivre.cs" />
     <Compile Include="DAO\SQLRepository.cs" />
     <Compile Include="DAO\SQLRepositoryAnnonce.cs" />
@@ -129,6 +130,22 @@
     <Compile Include="Migrations\202102232345282_AjoutAvanceDePointsLivre.Designer.cs">
       <DependentUpon>202102232345282_AjoutAvanceDePointsLivre.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202102240912092_ModifLivreForeignKey.cs" />
+    <Compile Include="Migrations\202102240912092_ModifLivreForeignKey.Designer.cs">
+      <DependentUpon>202102240912092_ModifLivreForeignKey.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102241256094_ModifLivreVirtual.cs" />
+    <Compile Include="Migrations\202102241256094_ModifLivreVirtual.Designer.cs">
+      <DependentUpon>202102241256094_ModifLivreVirtual.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102241326099_ModifCLientId.cs" />
+    <Compile Include="Migrations\202102241326099_ModifCLientId.Designer.cs">
+      <DependentUpon>202102241326099_ModifCLientId.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102241505348_ModifLivreString.cs" />
+    <Compile Include="Migrations\202102241505348_ModifLivreString.Designer.cs">
+      <DependentUpon>202102241505348_ModifLivreString.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MyContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -197,6 +214,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202102232345282_AjoutAvanceDePointsLivre.resx">
       <DependentUpon>202102232345282_AjoutAvanceDePointsLivre.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102240912092_ModifLivreForeignKey.resx">
+      <DependentUpon>202102240912092_ModifLivreForeignKey.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102241256094_ModifLivreVirtual.resx">
+      <DependentUpon>202102241256094_ModifLivreVirtual.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102241326099_ModifCLientId.resx">
+      <DependentUpon>202102241326099_ModifCLientId.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102241505348_ModifLivreString.resx">
+      <DependentUpon>202102241505348_ModifLivreString.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

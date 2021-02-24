@@ -20,12 +20,16 @@ namespace TrocCommunity.WebUi.Controllers
         private GoogleBookApiFunctions api = new GoogleBookApiFunctions();
         private IBookService service;
         IRepository<Categorie> contextCategory;
+        IRepository<Utilisateur> contextUser;
+
+        IRepository<Livre> contextBook;
 
         public BooksController()
         {
             this.service = new BookService();
-            contextCategory = new SQLRepository<Categorie>(new MyContext());
-
+            contextCategory = new SQLRepositoryCategorie(new MyContext());
+            contextUser = new SQLRepository<Utilisateur>(new MyContext());
+            contextBook = new SQLRepositoryLivre(new MyContext());
         }
 
 
@@ -50,9 +54,29 @@ namespace TrocCommunity.WebUi.Controllers
         {
             if (ModelState.IsValid)
             {
-                livre.Client.Id = (int)Session["Id"];
+                //Récupération des autres informations du livre vers l'api
+                /*                string isbnString = livre.ISBN.ToString();
+                                string author = await service.GetAuthors(isbnString);*/
+
+                livre.ClientId = (int)Session["Id"];
+
+
+                /*                Utilisateur utilisateur = contextUser.FindById((int)Session["Id"]);
+                                livre.Client = (Client)utilisateur;*/
+
+               
+
+                Categorie categorie = ((SQLRepositoryCategorie)contextCategory).FindByName(livre.Categorie.NomCategorie);
+
+                livre.Categorie = categorie;
+                livre.CatgorieId = categorie.Id;
+
                 livre.Price = service.GetPoints(livre.Price, livre.EtatDuLivre, livre.IsExchange);
-                return View("AddBook", livre);
+
+                contextBook.Insert(livre);
+                contextBook.SaveChanges();
+
+                return RedirectToAction("Catalogue", "Categories"); ;
 
             }
                 return View();
@@ -97,12 +121,13 @@ namespace TrocCommunity.WebUi.Controllers
                 livre.Price = price;
                 livre.PointDuLivre = nbrePoints;
                 livre.AvancePoints = avancePoints;
-                livre.DateEdition = Convert.ToInt32(editionDate);
+                livre.DateEdition = editionDate;
                 /*                livre.DateEdition = DateTime.Parse(editionDate).Year;
                 */
 
                 LivreCategorieViewModel viewModel = new LivreCategorieViewModel();
                 viewModel.Livre = livre;
+
                 viewModel.Categories = contextCategory.Collection().ToList();
 
 
