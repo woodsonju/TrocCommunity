@@ -16,7 +16,7 @@ window.onload = Erase;
 
 const listePicture = document.querySelectorAll('.section-picture-card');
 const PictureRow = document.getElementById('section-picture');
-const pictureContainer = document.getElementById('titre');
+const pictureContainer = document.getElementById('title-section-raisons');
 
 const tlpicture = new TimelineMax();
 

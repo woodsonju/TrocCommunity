@@ -1,54 +1,42 @@
 ﻿/*************************** LAYOUT CONTAINER **********************/
 #layout-container {
-    padding : 0;
+    padding: 0;
 }
 
-
-/********************************  MEDIA QUERY NAVBAR *****************/
-@media only screen and (max-width: 461px) {
-    .js-logo-clone {
-        font-size : 12px!important;
-    }
-
+.push {
+    margin-right: auto;
 }
 
-@media only screen and (max-width: 368px) {
-    .js-logo-clone {
-        font-size: 10px !important;
-    }
-}
-
-@media only screen and (max-width: 344px) {
-    .js-logo-clone {
-        visibility : hidden;
-    }
-}
 
 
 /********************************* CAROUSEL *******************************/
 .carousel {
-    padding : 0!important;
-    margin-top : 85px;
-    margin-bottom : 95px;
-
+    padding: 0 !important;
+    margin-top: 50px;
+    margin-bottom: 95px;
 }
 
 .carousel-item img {
-    height: 700px!important;
-    border-radius : 5px;
+    height: 535px !important;
+    width : 70%;
+    border-radius: 5px;
+    margin: 0 auto;
 }
 
-
-
-/****************************** SECTION PICTURE *****************************/
-#container-section-picture{
-    background-color: lavender;
+/*.carousel-control-next-icon, .carousel-control-prev-icon {
+    background-color: black !important;
     border-radius : 5px;
+}*/
+/****************************** SECTION PICTURE *****************************/
+#container-section-picture {
+    background-color: lavender;
+    border-radius: 5px;
     margin-top: 50px;
+
 }
 
 #section-picture {
-    height: 500px;
+    height: 335px;
     display: flex;
     align-items: center;
 }
@@ -59,68 +47,54 @@
     margin-top: 30px;
 }
 
-.section-picture-image{
+.section-picture-image {
     display: flex;
     align-content: center;
-    justify-content : center;
-    height : 200px;
+    justify-content: center;
+    height: 150px;
 }
-
+#title-section-raisons {
+    padding: 10px !important;
+}
 
 .section-picture-card img {
     border-radius: 50%;
 }
 
 .section-picture-titre-card {
-    margin-top : 30px;
-    margin-bottom : 30px;
+    margin-top: 30px;
+    margin-bottom: 30px;
 }
 
-
-/******************************  MEDIA QUERY PICTURE SECTION ***********************************/
-@media only screen and (max-width: 845px) {
-    #section-picture {
-        min-height: 700px;
-    }
-    .title-picture {
-        font-size: 19px;
-    }
-    .picture-image {
-        width: 75%;
-    }
-}
-@media only screen and (max-width: 845px) {
-    #section-picture {
-        min-height: 1000px;
-    }
-
-    .title-picture {
-        font-size: 15px;
-    }
-
-    .picture-image {
-        width: 55%;
-    }
+.picture-image {
+    width : 46%;
+    height : 150px;
 }
 
-
-/***************************************** SECTION LAST BOOKS ***************************************/
-.container-last-books{
-    height : 500px;
+/***************************************** SECTION  BOOKS ***************************************/
+.container-last-books {
+    height: 500px;
 }
 
-#row-section-book-card{
-    margin-left : 5px;
+#section-last-books {
+    margin-top: 80px;
+    margin-bottom: 80px;
 }
+
+#row-section-book-card {
+    display : flex;
+    justify-content : center;
+}
+
 #title-section-last-books {
-    margin-top: 50px;
+    margin-top: 80px;
 }
 
 .section-book-card {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    margin-bottom : 30px;
+    margin-bottom: 30px;
 }
 
 .section-picture-book-image {
@@ -131,29 +105,36 @@
 }
 
 .titre-books-thumbnail {
-    margin-top : 20px;
-    text-decoration : underline;
+    margin-top: 20px;
+    text-decoration: underline;
 }
 
 .books-items {
     display: flex;
     justify-content: center;
 }
+
 .books-points {
     background-color: forestgreen;
     border-radius: 5px;
     width: 50%;
 }
 
+/************************** PAGINATION ***************************/
 #row-pagination {
-    display:flex;
+    display: flex;
     justify-content: center;
 }
+
 .pagination a {
-    padding : 10px 10px;
+    padding: 10px 10px;
 }
 
-
+/************** CATALOGUE ****************/
+.image-livre-catalogue{
+    width : 100px;
+    height : 180px;
+}
 /*********************** IMAGE PARALLAX PAGE D'ACCUEIL **************************/
 /* Section Parallax */
 .section-parallax {
@@ -170,6 +151,7 @@
     justify-content: center;
     text-shadow: 3px 5px 2px #474747;
     border-radius: 5px;
+    margin-bottom: 80px;
 }
 
 .txt-par {
@@ -187,12 +169,12 @@
     align-items: center;
     height: 150px;
     border-radius: 5px;
-    margin-bottom : 20px;
+    margin-bottom: 20px;
 }
 
-#footer a {
-    color : darkgrey;
-}
+    #footer a {
+        color: darkgrey;
+    }
 
 
 
@@ -200,32 +182,32 @@
 /********************************************** CONTACT ***********************************************/
 
 form {
-    margin-top : 30px;
+    margin-top: 30px;
 }
 
 #Contact-title {
-    margin-top : 50px;
+    margin-top: 50px;
 }
 
 
 /************************************** TABLE SECTION ADMIN **************************************/
-#myTable{
-    margin-bottom : 20px;
+#myTable {
+    margin-bottom: 20px;
 }
 
-#myTable th {
-    text-align: center !important;
-}
-
-#myTable td {
-    text-align : center!important;
-}
-
-    #myTable td .btn {
-        height: 25px !important;
-        margin-right: 6px !important;
-        margin-left: 6px !important;
+    #myTable th {
+        text-align: center !important;
     }
+
+    #myTable td {
+        text-align: center !important;
+    }
+
+        #myTable td .btn {
+            height: 25px !important;
+            margin-right: 6px !important;
+            margin-left: 6px !important;
+        }
 
 
 
@@ -243,6 +225,9 @@ form {
     display: flex;
     justify-content: space-between;
 }
+.category-btn a{
+    font-size : 9px!important;
+}
 
     .category-btn .fas {
         color: #ee4266 !important;
@@ -255,4 +240,240 @@ form {
 
 .card-body:nth-last-child(odd) {
     border-bottom: 1px solid rgba(0, 0, 0, 0.125) !important;
+}
+
+
+
+/********************************** DETAILS LIVRE ***********************************/
+#row-details-livre {
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+
+#bouton-wishlist {
+    display: flex;
+    justify-content: center;
+}
+
+    #bouton-wishlist span {
+        margin-right: 10px;
+    }
+
+    #bouton-wishlist .btn {
+        display: block;
+        width: 80%;
+    }
+
+#detail-livre-left-side {
+    display: flex;
+    flex-direction: column;
+}
+
+    #detail-livre-left-side img {
+        justify-content: center !important;
+        width: 50%;
+        margin-bottom: 50px;
+    }
+
+#div-img {
+    display: flex;
+    justify-content: center;
+}
+
+#bouton-wishlist .btn {
+    height: 37.2px !important
+}
+/*************************************** WISHLIST TABLE ************************************/
+#myTable td .btn {
+    height: 40px !important;
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+    letter-spacing: 2.5px;
+}
+
+#myTable td img {
+    width: 100px !important;
+}
+
+.dataTables_wrapper {
+    margin-top: 100px !important;
+}
+
+
+
+
+/******************** MEDIA QUERIES *************************/
+
+/********************************  MEDIA QUERY NAVBAR *****************/
+
+@media only screen and (max-width: 607px) {
+    .js-logo-clone {
+        margin-left : 15px;
+    }
+}
+
+@media only screen and (max-width: 461px) {
+    .js-logo-clone {
+        font-size: 12px !important;
+    }
+}
+
+@media only screen and (max-width: 300px) {
+    .js-logo-clone {
+        font-size: 10px !important;
+    }
+}
+
+
+
+/********************************* CAROUSEL MEDIA QUERY *******************************/
+
+@media only screen and (max-width: 991px) {
+    .carousel-item img {
+        margin-right: 20px !important;
+        width: 505px!important;
+        height: 335px!important;
+        margin: auto auto!important;
+    }
+}
+
+@media only screen and (max-width: 586px) {
+    .carousel-item img {
+        height: 335px!important;
+        width: 378px!important;
+        border-radius: 5px;
+    }
+}
+
+@media only screen and (max-width: 453px) {
+    .carousel-item img {
+        height: 252px !important;
+        width: 378px !important;
+        border-radius: 5px;
+    }
+}
+
+@media only screen and (max-width: 431px) {
+    .carousel-item img {
+        margin-right: 20px !important;
+    }
+
+    .picture-image {
+        width: 75% !important;
+    }
+}
+
+@media only screen and (max-width: 395px) {
+    .carousel-item img {
+        height: auto!important;
+        width: auto!important;
+    }
+}
+
+/******************************  MEDIA QUERY PICTURE SECTION ***********************************/
+
+@media only screen and (max-width: 991px) {
+    .picture-image {
+        width: 60%!important;
+        height: 160px!important;
+    }
+}
+
+    @media only screen and (max-width: 845px) {
+
+        /*.title-picture {
+            font-size: 15px;
+        }*/
+/*
+        .section-picture-titre-card {
+            margin-top: 0;
+            margin-bottom: 0;
+        }*/
+    }
+
+    @media only screen and (max-width: 767px) {
+
+        #section-picture{
+            min-height: 700px!important;
+        }
+
+        .picture-image {
+            width: 30% !important;
+            height: 140px !important;
+        }
+
+        .section-picture-titre-card {
+            margin-top: 0 !important;
+            margin-bottom: 0 !important;
+        }
+
+        .section-picture-image {
+            height: 150px;
+        }
+    }
+
+
+    @media only screen and (max-width: 633px) {
+        /*    #section-picture {
+        min-height: 1000px;
+    }
+
+    .title-picture {
+        font-size: 15px;
+    }*/
+
+        .picture-image {
+            width: 153px !important;
+            height: 140px !important;
+        }
+
+        .section-picture-titre-card {
+            margin-top: 0 !important;
+            margin-bottom: 0 !important;
+        }
+    }
+
+@media only screen and (max-width: 575px) {
+    .container #container-section-picture {
+        margin-right : 10px!important;
+    }
+    #section-picture {
+        min-height: 700px;
+    }
+
+    
+}
+
+@media only screen and (max-width: 330px) {
+
+    .picture-image {
+        width: 120px !important;
+        height: 100px !important;
+    }
+    #title-section-raisons, #title-section-last-books {
+        font-size: 25px !important
+    }
+    .title-picture{
+        font-size : 20px!important;
+    }
+}
+
+/******************************** CATEGORIE ******************************/
+@media only screen and (max-width: 767px) {
+    #row-section-book-card {
+        margin-top: 50px !important;
+    }
+
+}
+
+@media only screen and (max-width: 606px) {
+    .product-search {
+        margin-left: 15px;
+    }
+}
+
+/*************************************************** LOGIN PAGE *****************************************/
+.login-page {
+    margin-bottom: 90px !important;
+    margin-top: 90px !important;
 }

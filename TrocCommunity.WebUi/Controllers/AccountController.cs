@@ -14,6 +14,7 @@ using TrocCommunity.Core.Tools;
 using TrocCommunity.Core.ViewModels;
 using TrocCommunity.DataAccess.SQL;
 using TrocCommunity.DataAccess.SQL.DAO;
+using TrocCommunity.WebUi.Interceptors;
 using TrocCommunity.WebUi.Service;
 
 namespace TrocCommunity.WebUi.Controllers
@@ -22,11 +23,14 @@ namespace TrocCommunity.WebUi.Controllers
     {
         private IRepository<Utilisateur> contextUser;
         private IRepository<Adresse> contextAdresse;
+        private IRepository<WishList> contextWishList;
+
         private IUtilisateurService serviceUser;
         public AccountController()
         {
             contextUser = new SQLRepositoryUtilisateur(new MyContext());
             contextAdresse = new SQLRepository<Adresse>(new MyContext());
+            contextWishList = new SQLRepositoryWishList(new MyContext());
 
             serviceUser = new UtilisateurService(contextUser);
         }
@@ -37,10 +41,11 @@ namespace TrocCommunity.WebUi.Controllers
             serviceUser = new UtilisateurService(contextUser);
         }
 
-        public AccountController(IRepository<Utilisateur> contextUser, IRepository<Adresse> contextAdresse)
+        public AccountController(IRepository<Utilisateur> contextUser, IRepository<Adresse> contextAdresse, IRepository<WishList> contextWishList)
         {
             this.contextUser = contextUser;
             this.contextAdresse = contextAdresse;
+            this.contextWishList = contextWishList;
             serviceUser = new UtilisateurService(contextUser);
         }
 
@@ -109,12 +114,23 @@ namespace TrocCommunity.WebUi.Controllers
                 }
                 else
                 {
+                    if (utilisateur.Password != Password)
+                    {
+
+                        ViewBag.ErrorLog = "La Combinaison email,mot de passe n'est pas la bonne";
+                    }
+                    else
+                    {
+                        // Connexion Réussite
+                        Session["Connexion"] = utilisateur.UserName;
+                        Session["TypeUtilisateur"] = utilisateur.TypeUtilisateur;
+                        Session["Photo"] = utilisateur.Photo;
+                        Session["Email"] = utilisateur.Email;
+                        Session["idCurrentClient"] = utilisateur.Id;
+                        int CurrentIdClient = (int)Session["idCurrentClient"];
+                        Session["count"] = (((SQLRepositoryWishList)contextWishList).listWLbyIdClient(CurrentIdClient)).Count();
                     
-                    // Connexion Réussite
-                    Session["Connexion"] = utilisateur.UserName;
-                    Session["TypeUtilisateur"] = utilisateur.TypeUtilisateur;
-                    Session["Photo"] = utilisateur.Photo;
-                    Session["Email"] = utilisateur.Email;
+                   
                     Session["Id"] = utilisateur.Id;
 
                     /**
@@ -162,6 +178,7 @@ namespace TrocCommunity.WebUi.Controllers
 
         }
 
+        [LoginFilter]
         public ActionResult LogOut()
         {
             Session["Connexion"] = null;

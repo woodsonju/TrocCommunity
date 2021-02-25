@@ -25,6 +25,10 @@ namespace TrocCommunity.DataAccess.SQL
         public virtual DbSet<Utilisateur> Utilisateurs { get; set; }
         public virtual DbSet<WishList> WishLists { get; set; }
 
+
+
+
+
     }
 
     //public class MyEntity

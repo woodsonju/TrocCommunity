@@ -1,27 +1,22 @@
 ﻿
 @if (Session["Connexion"] == null)
-{
-
-
-    <li>@Html.ActionLink("Créer un compte", "Register", "Account")</li>
-
-
-
-    <li>@Html.ActionLink("Connexion", "Login", "Account")</li>
-}
-else
-{
+    {
+        <li>@Html.ActionLink("Créer un compte", "Register", "Account")</li>
+        <li>@Html.ActionLink("Connexion", "Login", "Account")</li>
+    }
+    else
+    {
     if ((int)Session["TypeUtilisateur"] == 0)
     {
 
-        <li class="has-children active">
-            @Html.ActionLink("Admin " + Session["Connexion"], "Index", "Home")
-            <ul class="dropdown">
-                <li>@Html.ActionLink("Mon Compte", "LogOut", "Account")</li>
-                <li>@Html.ActionLink("Gestion des utilisateurs", "Index", "Admin")</li>
-                <li>@Html.ActionLink("Déconnexion", "LogOut", "Account")</li>
-            </ul>
-        </li>
+    <li class="has-children active list-navbar">
+        @Html.ActionLink("Admin " + Session["Connexion"], "Index", "Home")
+        <ul class="dropdown">
+            <li>@Html.ActionLink("Mon Compte", "LogOut", "Account")</li>
+            <li>@Html.ActionLink("Gestion des utilisateurs", "Index", "Admin")</li>
+            <li>@Html.ActionLink("Déconnexion", "LogOut", "Account")</li>
+        </ul>
+    </li>
     }
     else
     {
@@ -35,4 +30,4 @@ else
             </ul>
         </li>
     }
-}
+    }

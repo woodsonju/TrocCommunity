@@ -1,0 +1,25 @@
+﻿@model TrocCommunity.Core.Models.WishList
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Etes-vous certain de vouloir supprimer ce livre de votre WishList</h3>
+<div>
+
+    <hr />
+    <dl class="dl-horizontal">
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Index", "Home")
+        </div>
+    }
+</div>

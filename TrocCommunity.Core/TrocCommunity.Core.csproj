@@ -55,6 +55,7 @@
     <Compile Include="Models\Client.cs" />
     <Compile Include="Models\EtatDuLivre.cs" />
     <Compile Include="Models\GestionnaireDePoint.cs" />
+    <Compile Include="Models\gmail.cs" />
     <Compile Include="Models\LigneDeCommande.cs" />
     <Compile Include="Models\Livre.cs" />
     <Compile Include="Models\TableauDeBord.cs" />
@@ -73,6 +74,7 @@
     <Compile Include="Tools\FormRegister.cs" />
     <Compile Include="Tools\TestControllerAdmin.cs" />
     <Compile Include="Tools\UpdateDatabaseAdmin.cs" />
+    <Compile Include="ViewModels\WishListViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

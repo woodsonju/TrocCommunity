@@ -20,7 +20,7 @@ namespace TrocCommunity.DataAccess.SQL.DAO
         
         public SQLRepositoryLivre(MyContext DataContext) : base(DataContext)
         {
-            
+
         }
         public int Count(string cat = null)
         {
@@ -48,10 +48,10 @@ namespace TrocCommunity.DataAccess.SQL.DAO
         {
             IEnumerable<Livre> book = new List<Livre>();
 
-                
-           book = dataContext.Livres.AsNoTracking().Where(p => search == null
-            || p.Author.Contains(search));
-            
+
+            book = dataContext.Livres.AsNoTracking().Where(p => search == null
+             ||p.Title.Contains(search) || p.Author.Contains(search));
+
             return book;
         }
 
@@ -61,7 +61,7 @@ namespace TrocCommunity.DataAccess.SQL.DAO
             return Search(search).OrderBy(x => x.Id).Skip((page - 1) * pageSize).Take(pageSize).ToList();
         }
 
-        public List<Livre> NbPagination(int page, int pageSize,string cat)
+        public List<Livre> NbPagination(int page, int pageSize, string cat)
         {
             IEnumerable<Livre> result = new List<Livre>();
 
@@ -73,7 +73,7 @@ namespace TrocCommunity.DataAccess.SQL.DAO
             {
                 result = LivreParCategorie(cat).OrderBy(x => x.Id).Skip((page - 1) * pageSize).Take(pageSize);
             }
-            
+
 
             return result.ToList();
         }
@@ -108,6 +108,19 @@ namespace TrocCommunity.DataAccess.SQL.DAO
             
         }
 
+        public IEnumerable<Livre> TroisDerniersLivresAjoutes()
+        {
+            IEnumerable<Livre> result = dataContext.Livres.OrderByDescending(x => x.Id).Take(3);
+            return result;
+        }
+
+        public Livre FindMailByBook(int id)
+        {
+
+            Livre book = dataContext.Livres.Include(bookClient => bookClient.Client).SingleOrDefault(bookClient => bookClient.Id == id);
+            return book;
+
+        }
 
 
         public int CountAdvancedSearch(int min, int max, string Auteur, string Titre, List<int> AcceptableState)
