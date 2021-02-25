@@ -10,9 +10,12 @@ using TrocCommunity.DataAccess.SQL;
 using TrocCommunity.DataAccess.SQL.DAO;
 using DataTables;
 using System.Net;
+using TrocCommunity.WebUi.Interceptors;
 
 namespace TrocCommunity.WebUi.Controllers
 {
+    [LoginFilter]
+    [RolesFilter(TypeUtilisateur.ADMIN)]
     public class AdminController : Controller
     {
 

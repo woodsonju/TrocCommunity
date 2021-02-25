@@ -14,6 +14,7 @@ using TrocCommunity.Core.Tools;
 using TrocCommunity.Core.ViewModels;
 using TrocCommunity.DataAccess.SQL;
 using TrocCommunity.DataAccess.SQL.DAO;
+using TrocCommunity.WebUi.Interceptors;
 
 namespace TrocCommunity.WebUi.Controllers
 {
@@ -21,11 +22,13 @@ namespace TrocCommunity.WebUi.Controllers
     {
         private IRepository<Utilisateur> contextUser;
         private IRepository<Adresse> contextAdresse;
+        private IRepository<WishList> contextWishList;
 
         public AccountController()
         {
             contextUser = new SQLRepositoryUtilisateur(new MyContext());
             contextAdresse = new SQLRepository<Adresse>(new MyContext());
+            contextWishList = new SQLRepositoryWishList(new MyContext());
         }
 
         public AccountController(IRepository<Utilisateur> contextUser)
@@ -33,10 +36,11 @@ namespace TrocCommunity.WebUi.Controllers
             this.contextUser = contextUser;
         }
 
-        public AccountController(IRepository<Utilisateur> contextUser, IRepository<Adresse> contextAdresse)
+        public AccountController(IRepository<Utilisateur> contextUser, IRepository<Adresse> contextAdresse, IRepository<WishList> contextWishList)
         {
             this.contextUser = contextUser;
             this.contextAdresse = contextAdresse;
+            this.contextWishList = contextWishList;
         }
 
         public ActionResult Index()
@@ -116,6 +120,9 @@ namespace TrocCommunity.WebUi.Controllers
                         Session["TypeUtilisateur"] = utilisateur.TypeUtilisateur;
                         Session["Photo"] = utilisateur.Photo;
                         Session["Email"] = utilisateur.Email;
+                        Session["idCurrentClient"] = utilisateur.Id;
+                        int CurrentIdClient = (int)Session["idCurrentClient"];
+                        Session["count"] = (((SQLRepositoryWishList)contextWishList).listWLbyIdClient(CurrentIdClient)).Count();
 
                         /**
                          * Partie Woodson : Compte Client
@@ -162,6 +169,7 @@ namespace TrocCommunity.WebUi.Controllers
 
         }
 
+        [LoginFilter]
         public ActionResult LogOut()
         {
             Session["Connexion"] = null;

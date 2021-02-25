@@ -55,6 +55,7 @@
     <Compile Include="DAO\SQLRepository.cs" />
     <Compile Include="DAO\SQLRepositoryLivre.cs" />
     <Compile Include="DAO\SQLRepositoryUtilisateur.cs" />
+    <Compile Include="DAO\SQLRespositoryWishList.cs" />
     <Compile Include="Migrations\202101210843411_InitialModel.cs" />
     <Compile Include="Migrations\202101210843411_InitialModel.Designer.cs">
       <DependentUpon>202101210843411_InitialModel.cs</DependentUpon>
@@ -102,6 +103,30 @@
     <Compile Include="Migrations\202102180919261_AddComponentsAdresse1.cs" />
     <Compile Include="Migrations\202102180919261_AddComponentsAdresse1.Designer.cs">
       <DependentUpon>202102180919261_AddComponentsAdresse1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102211608299_ChangeWishList.cs" />
+    <Compile Include="Migrations\202102211608299_ChangeWishList.Designer.cs">
+      <DependentUpon>202102211608299_ChangeWishList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102222051501_ChangeWishListBook.cs" />
+    <Compile Include="Migrations\202102222051501_ChangeWishListBook.Designer.cs">
+      <DependentUpon>202102222051501_ChangeWishListBook.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102231952070_gmail.cs" />
+    <Compile Include="Migrations\202102231952070_gmail.Designer.cs">
+      <DependentUpon>202102231952070_gmail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102231955086_RemoveGmail.cs" />
+    <Compile Include="Migrations\202102231955086_RemoveGmail.Designer.cs">
+      <DependentUpon>202102231955086_RemoveGmail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102232011101_gmailAdd.cs" />
+    <Compile Include="Migrations\202102232011101_gmailAdd.Designer.cs">
+      <DependentUpon>202102232011101_gmailAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102240822502_RemoveGmail1.cs" />
+    <Compile Include="Migrations\202102240822502_RemoveGmail1.Designer.cs">
+      <DependentUpon>202102240822502_RemoveGmail1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MyContext.cs" />
@@ -153,6 +178,24 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202102180919261_AddComponentsAdresse1.resx">
       <DependentUpon>202102180919261_AddComponentsAdresse1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102211608299_ChangeWishList.resx">
+      <DependentUpon>202102211608299_ChangeWishList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102222051501_ChangeWishListBook.resx">
+      <DependentUpon>202102222051501_ChangeWishListBook.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102231952070_gmail.resx">
+      <DependentUpon>202102231952070_gmail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102231955086_RemoveGmail.resx">
+      <DependentUpon>202102231955086_RemoveGmail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102232011101_gmailAdd.resx">
+      <DependentUpon>202102232011101_gmailAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102240822502_RemoveGmail1.resx">
+      <DependentUpon>202102240822502_RemoveGmail1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

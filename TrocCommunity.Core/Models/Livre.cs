@@ -40,5 +40,6 @@ namespace TrocCommunity.Core.Models
 
         public int PointDuLivre { get; set; }
 
+
     }
 }

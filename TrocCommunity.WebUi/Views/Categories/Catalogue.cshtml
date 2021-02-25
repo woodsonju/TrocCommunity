@@ -130,7 +130,7 @@
                             <div class="card-header" id="@item.Description.Substring(0, 3)">
                                 <h2 class="mb-0 category-btn">
                                     <button type="button" class="btn btn-link ">
-                                        @Html.ActionLink(item.NomCategorie, "Catalogue", new { cat = item.NomCategorie.Substring(0, 3) }, null)
+                                        @Html.ActionLink(item.NomCategorie, "Catalogue", new { cat = item.NomCategorie.Substring(0, 3), category = item.NomCategorie.Replace(" ", "-").Replace(",", "-") })
                                     </button>
                                     <i class="fas fa-sort-down  collapsed ml-lg-2" data-toggle="collapse" data-target="#@item.NomCategorie.Substring(0, 3)"></i>
                                 </h2>
@@ -153,10 +153,6 @@
 
         <div class="col-md-8">
 
-
-
-
-
             <div class="row" id="row-section-book-card">
                 @if (ViewBag.NbLivreSearch == null && ViewBag.Search != null)
                 {
@@ -165,19 +161,19 @@
                 @foreach (var item in Model.Livres)
                 {
 
-                    <div class="col-md-4 col-sm-12 section-book-card">
+                    <div class="col-lg-4 col-md-6  col-sm-12 section-book-card">
                         <div class="section-picture-book-image thumbnail">
                             <a class="text-center" href='@Url.Action("DetailsLivre", "Categories")/@item.Id'>
-                                <img src="~/Content/TEMPLATE/images/Livres/@item.Image" alt="Livre" class="img-fluid w-50 h-100" />
+                                <img src="~/Content/TEMPLATE/images/Livres/@item.Image" alt="Livre" class="img-fluid image-livre-catalogue" />
                             </a>
                         </div>
                         <div>
-                            <h3 class="text-center titre-books-thumbnail">Titre</h3>
+                            <p class="text-center titre-books-thumbnail">@Html.DisplayFor(modelItem => item.Title)</p>
                             <p class="text-center">@Html.DisplayFor(modelItem => item.Author)</p>
                             <div class="books-items">
                                 <p class="books-points text-center">100 points</p>
                             </div>
-                            <p class="text-left">Ville</p>
+                            <p class="text-center">Ville</p>
                         </div>
                     </div>
 

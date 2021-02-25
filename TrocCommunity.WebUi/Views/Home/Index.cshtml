@@ -1,4 +1,5 @@
-﻿<script src="js/jquery-1.7.1.min.js"></script>
+﻿@model IEnumerable<TrocCommunity.Core.Models.Livre>
+<script src="js/jquery-1.7.1.min.js"></script>
 <script src="js/bootstrap.js"></script>
 @{
     ViewBag.Title = "Home Page";
@@ -9,8 +10,9 @@
 }
 
 <hr />
+
 <div id="carouselExampleIndicators" class="carousel slide container" data-ride="carousel">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" ></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
     <ol class="carousel-indicators">
         <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -21,19 +23,19 @@
     </ol>
     <div class="carousel-inner">
         <div class="carousel-item active">
-            <img src="~/Content/TEMPLATE/images/CarrouselImages/echangeLivreCarroussel1.jpg"  class="d-block w-100 h-100 img-fluid" alt="carousel-image">
+            <img src="~/Content/TEMPLATE/images/CarrouselImages/echangeLivreCarroussel1.jpg" class="d-block  img-fluid img-caroussel" alt="carousel-image">
         </div>
         <div class="carousel-item">
-            <img src="~/Content/TEMPLATE/images/CarrouselImages/echangeLivreCarroussel2.jpg"  class="d-block w-100 h-100 img-fluid" alt="carousel-image">
+            <img src="~/Content/TEMPLATE/images/CarrouselImages/echangeLivreCarroussel2.jpg" class="d-block  img-fluid" alt="carousel-image">
         </div>
         <div class="carousel-item">
-            <img src="~/Content/TEMPLATE/images/CarrouselImages/echangeLivreCarroussel3.jpg"  class="d-block w-100 h-100 img-fluid" alt="carousel-image">
+            <img src="~/Content/TEMPLATE/images/CarrouselImages/echangeLivreCarroussel3.jpg" class="d-block  img-fluid" alt="carousel-image">
         </div>
         <div class="carousel-item">
-            <img src="~/Content/TEMPLATE/images/CarrouselImages/echangeLivreCarroussel4.jpg"  class="d-block w-100 h-100 img-fluid" alt="carousel-image">
+            <img src="~/Content/TEMPLATE/images/CarrouselImages/echangeLivreCarroussel4.jpg" class="d-block img-fluid" alt="carousel-image">
         </div>
         <div class="carousel-item">
-            <img src="~/Content/TEMPLATE/images/CarrouselImages/echangeLivreCarroussel5.jpg"  class="d-block w-100 h-100 img-fluid" alt="carousel-image">
+            <img src="~/Content/TEMPLATE/images/CarrouselImages/echangeLivreCarroussel5.jpg" class="d-block  img-fluid" alt="carousel-image">
         </div>
     </div>
     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -49,9 +51,11 @@
 
 
 <div class="container" id="container-section-picture">
-    <div id="titre"></div>
+    <div class="row">
+        <h2 id="title-section-raisons">Pourquoi ce site ?</h2>
+    </div>
     <div class="row" id="section-picture">
-        <div class="col-md-4 col-sm-6 section-picture-card">
+        <div class="col-md-4 col-sm-12 section-picture-card">
             <div class="section-picture-image">
                 <img src="~/Content/TEMPLATE/images/livre2.jpg" alt="Découverte" class="img-fluid picture-image" />
             </div>
@@ -59,7 +63,7 @@
                 <h3 class="text-center title-picture">Découverte</h3>
             </div>
         </div>
-        <div class="col-md-4 col-sm-6 section-picture-card">
+        <div class="col-md-4 col-sm-12 section-picture-card">
             <div class="section-picture-image">
                 <img src="~/Content/TEMPLATE/images/rencontrer.jpg" alt="rencontre" class="img-fluid picture-image" />
             </div>
@@ -67,7 +71,7 @@
                 <h3 class="text-center title-picture">Echange</h3>
             </div>
         </div>
-        <div class="col-md-4 col-sm-6 section-picture-card">
+        <div class="col-md-4 col-sm-12 section-picture-card">
             <div class="section-picture-image">
                 <img src="~/Content/TEMPLATE/images/ecology.jpg" alt="Ecologie" class="img-fluid picture-image" />
             </div>
@@ -85,47 +89,24 @@
     <h2 id="title-section-last-books">Derniers ajouts</h2>
     <div class="row" id="section-last-books">
 
-        <div class="col-md-4 col-sm-12 section-book-card">
-            <div class="section-picture-book-image thumbnail">
-                <img src="~/Content/TEMPLATE/images/Musso.jpg" alt="Découverte" class="img-fluid" />
-            </div>
-            <div>
-                <h3 class="text-center titre-books-thumbnail">Titre</h3>
-                <p class="text-center">Auteur</p>
-                <div class="books-items">
-                    <p class="books-points text-center">100 points</p>
-                </div>
-                <p class="text-left">Ville</p>
-            </div>
-        </div>
+        @foreach (var item in Model)
+        {
+            <div class="col-md-4 col-sm-12 section-book-card">
 
-        <div class="col-md-4 col-sm-12 section-book-card">
-            <div class="section-picture-book-image thumbnail">
-                <img src="~/Content/TEMPLATE/images/Musso.jpg" alt="Découverte" class="img-fluid" />
-            </div>
-            <div>
-                <h3 class="text-center titre-books-thumbnail">Titre</h3>
-                <p class="text-center">Auteur</p>
-                <div class="books-items">
-                    <p class="books-points text-center">100 points</p>
+                <div class="section-picture-book-image thumbnail">
+                    <img src="~/Content/TEMPLATE/images/Livres/@item.Image" alt="Découverte" class="img-fluid image-livre-catalogue" />
                 </div>
-                <p class="text-left">Ville</p>
-            </div>
-        </div>
+                <div>
+                    <h3 class="text-center titre-books-thumbnail">@item.Title</h3>
+                    <p class="text-center">@item.Author</p>
+                    <div class="books-items">
+                        <p class="books-points text-center">100 points</p>
+                    </div>
+                    <p class="text-center">Ville</p>
+                </div>
 
-        <div class="col-md-4 col-sm-12 section-book-card">
-            <div class="section-picture-book-image thumbnail">
-                <img src="~/Content/TEMPLATE/images/Musso.jpg" alt="Découverte" class="img-fluid" />
             </div>
-            <div>
-                <h3 class="text-center titre-books-thumbnail">Titre</h3>
-                <p class="text-center">Auteur</p>
-                <div class="books-items">
-                    <p class="books-points text-center">100 points</p>
-                </div>
-                <p class="text-left">Ville</p>
-            </div>
-        </div>
+        }
 
     </div>
 </div>

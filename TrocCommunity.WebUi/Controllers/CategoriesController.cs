@@ -4,15 +4,18 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.WebPages;
 using TrocCommunity.Core.Logic;
 using TrocCommunity.Core.Models;
 using TrocCommunity.Core.Tools;
+using TrocCommunity.Core.ViewModels;
 using TrocCommunity.DataAccess.SQL;
 using TrocCommunity.DataAccess.SQL.DAO;
-
+using TrocCommunity.WebUi.Interceptors;
+using TrocCommunity.WebUi.Service;
 
 namespace TrocCommunity.WebUi.Controllers
 {
@@ -21,7 +24,9 @@ namespace TrocCommunity.WebUi.Controllers
         const int pageSize = 9;
 
         IRepository<Categorie> contextCategorie;
-        IRepository<Livre> contextLivre; 
+        IRepository<Livre> contextLivre;
+        IRepository<WishList> contextWishList;
+        private LivreService serviceBook;
 
 
 
@@ -29,20 +34,23 @@ namespace TrocCommunity.WebUi.Controllers
         {
             this.contextCategorie = new SQLRepository<Categorie>(new MyContext());
             this.contextLivre = new SQLRepositoryLivre(new MyContext());
-
+            this.contextWishList = new SQLRepositoryWishList(new MyContext());
+            serviceBook = new LivreService(contextLivre);
 
         }
 
 
-        public CategoriesController(IRepository<Categorie> contextCategorie, IRepository<Livre> contextLivre)
+        public CategoriesController(IRepository<Categorie> contextCategorie, IRepository<Livre> contextLivre, IRepository<WishList> contextWishList)
         {
             this.contextCategorie = contextCategorie;
             this.contextLivre = contextLivre;
+            this.contextWishList = contextWishList;
+            serviceBook = new LivreService(contextLivre);
 
         }
 
         // GET: Categories
-        public ActionResult Catalogue(int page = 1, string cat = null)
+        public ActionResult Catalogue(int page = 1, string cat = null, string category = null)
         {
 
             CategorieLivre viewModel = new CategorieLivre();
@@ -54,10 +62,10 @@ namespace TrocCommunity.WebUi.Controllers
             //IEnumerable<Livre> LivresSearch = ((SQLRepositoryLivre)contextLivre).Search(search);
             viewModel.Categories = contextCategorie.Collection().ToList();
 
-            ViewBag.TotalPages = (int)Math.Ceiling((decimal)((SQLRepositoryLivre)contextLivre).Count(cat) / pageSize);
+            ViewBag.TotalPages = (int)Math.Ceiling((decimal)serviceBook.Count(cat) / pageSize);
             //var list = contextLivre.Collection().ToList();
 
-            var Livres = ((SQLRepositoryLivre)contextLivre).NbPagination(page, pageSize,cat);
+            var Livres = serviceBook.NbPagination(page, pageSize,cat);
             viewModel.Livres = Livres;
             //LivresSearch = ((SQLRepositoryLivre)contextLivre).NbPagination(search, page, pageSize);
             ViewBag.currentPage = page;
@@ -76,26 +84,18 @@ namespace TrocCommunity.WebUi.Controllers
             CategorieLivre viewModel = new CategorieLivre();
             viewModel.Categories = contextCategorie.Collection().ToList();
 
-           
-
-
             ViewBag.TotalPages = (int)Math.Ceiling((decimal)((SQLRepositoryLivre)contextLivre).SearchCount(search) / pageSize);
 
             //var list = contextLivre.Collection().ToList();
 
-            var Livres = ((SQLRepositoryLivre)contextLivre).NbPaginationSearch(page, pageSize,search);
+            var Livres = serviceBook.NbPaginationSearch(page, pageSize,search);
             viewModel.Livres = Livres;
             //LivresSearch = ((SQLRepositoryLivre)contextLivre).NbPagination(search, page, pageSize);
             ViewBag.currentPage = page;
             ViewBag.PageSize = pageSize;
             ViewBag.Search = search;
-
-            
+         
             ViewBag.NbLivreSearch = Livres.Count();
-
-
-            
-
 
             return View("Catalogue",viewModel);
         }
@@ -118,15 +118,31 @@ namespace TrocCommunity.WebUi.Controllers
 
 
         // Détails d'un livre
+        [LoginFilter]
         public ActionResult DetailsLivre(int id)
         {
-            Livre livre = contextLivre.FindById(id);
-            if (livre == null)
+            //Livre livre = contextLivre.FindById(id);
+            WishListViewModel viewModelWL = new WishListViewModel();
+            viewModelWL.book = contextLivre.FindById(id);
+            Session["idBook"] = viewModelWL.book.Id;
+            Session["author"] = viewModelWL.book.Author;
+            Session["title"] = viewModelWL.book.Title;
+            Session["image"] = viewModelWL.book.Image;
+            var estPresent = true;
+            Session["estPresent"] = estPresent;
+            
+            
+            int CurrentIdClient = (int)Session["idCurrentClient"];
+            viewModelWL.wishList = ((SQLRepositoryWishList)contextWishList).listWLbyIdClient(CurrentIdClient);
+
+            if (viewModelWL == null)
             {
                 return HttpNotFound();
             }
-            return View(livre);
+            return View(viewModelWL);
         }
+
+        
 
 
 
