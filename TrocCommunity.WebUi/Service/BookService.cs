@@ -8,6 +8,7 @@ using TrocCommunity.Core.Logic;
 using TrocCommunity.Core.Models;
 using TrocCommunity.DataAccess.SQL.DAO;
 using TrocCommunity.WebUi.ApiClient;
+using TrocCommunity.WebUi.ExceptionTC;
 
 namespace TrocCommunity.WebUi.Service
 {
@@ -292,6 +293,7 @@ namespace TrocCommunity.WebUi.Service
         }
 
 
+        //throw new BookNotFoundException("Code-barres invalide (doit comporter 12 ou 13 chiffres)");
         private async Task<JObject> GetJObjectBook(string isbn)
         {
             var output = await api.GetBookByISBN(isbn);
@@ -302,6 +304,14 @@ namespace TrocCommunity.WebUi.Service
             //JObject.Parse convertit une chaine json en un objet csharp
             //Parse le JSON en un objet C#
             JObject book = JObject.Parse(result);
+
+            int totalItems =  Convert.ToInt32(book.SelectToken("totalItems"));
+
+            if(totalItems == 0)
+            {
+                throw new BookNotFoundException("Code-barres invalide (doit comporter 12 ou 13 chiffres)");
+            }
+
             return book;
         }
 

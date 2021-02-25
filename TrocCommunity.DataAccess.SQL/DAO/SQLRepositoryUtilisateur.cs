@@ -32,6 +32,18 @@ namespace TrocCommunity.DataAccess.SQL.DAO
 
         }
 
+        public Utilisateur findByUserName(string userName)
+        {
+
+            Utilisateur ut = (Utilisateur)dataContext
+                                                    .Utilisateurs.Include(u => u.Adresse)
+                                                    .SingleOrDefault(Utilisateur => Utilisateur.UserName == userName);
+
+            return ut;
+
+        }
+
+
 
         public Utilisateur FindByMailWithAdressId(string mail, int adresseId)
         {
