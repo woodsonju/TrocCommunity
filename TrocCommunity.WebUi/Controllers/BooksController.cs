@@ -95,18 +95,9 @@ namespace TrocCommunity.WebUi.Controllers
             if (ModelState.IsValid)
             {
                 string isbnString = livre.ISBN.ToString();
-                string title = await service.GetTitle(isbnString);
-                double price = await service.GetPrice(isbnString);
-                double nbrePoints = service.GetPoints(price, EtatDuLivre.COMMENEUF);
-                double avancePoints = service.GetPoints(price, EtatDuLivre.COMMENEUF, livre.IsExchange);
-                string editionDate = await service.GetDateEdition(isbnString);
-                string description = await service.GetDescription(isbnString);
 
-                string image = await service.GetImage(isbnString);
-
-
-                string title, editionDate, image = "";
-                double price, nbrePoints, avancePoints = 0.0;
+                string title = "", editionDate ="", image = "", description = "";
+                double price = 0.0, nbrePoints = 0.0, avancePoints = 0.0;
                 try
                 {
                     title = await service.GetTitle(isbnString);
@@ -115,6 +106,7 @@ namespace TrocCommunity.WebUi.Controllers
                     avancePoints = service.GetPoints(price, EtatDuLivre.COMMENEUF, livre.IsExchange);
                     editionDate = await service.GetDateEdition(isbnString);
                     image = await service.GetImage(isbnString);
+                    description = await service.GetDescription(isbnString);
                 }
                 catch (BookNotFoundException bookException)
                 {

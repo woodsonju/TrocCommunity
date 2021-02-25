@@ -148,7 +148,16 @@ namespace TrocCommunity.WebUi.Service
         public async Task<string> GetDescription(string isbn)
         {
             JObject book = await GetJObjectBook(isbn);
-            return (book.SelectToken("items[0].volumeInfo.description")).ToString();
+            string description = "";
+            if(book.SelectToken("items[0].volumeInfo.description") == null)
+            {
+                description = "Pas description pour ce livre";
+            } 
+            else
+            {
+                description = (book.SelectToken("items[0].volumeInfo.description")).ToString();
+            }
+            return description;
 
         }
 
