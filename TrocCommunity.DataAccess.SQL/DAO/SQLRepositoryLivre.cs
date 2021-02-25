@@ -114,6 +114,12 @@ namespace TrocCommunity.DataAccess.SQL.DAO
             return result;
         }
 
+        public IEnumerable<Livre> BookByClient(int id)
+        {
+            IEnumerable<Livre> result = dataContext.Livres.Include(bookClient => bookClient.Client).Where(bookClient => bookClient.Client.Id == id);
+            return result;
+        }
+
         public Livre FindMailByBook(int id)
         {
 

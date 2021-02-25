@@ -762,6 +762,7 @@
     <Content Include="Views\EmailSetup\Index.cshtml" />
     <Content Include="Views\Books\AddBook.cshtml" />
     <Content Include="Views\Books\_BookInfos.cshtml" />
+    <Content Include="Views\Categories\ListBookUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

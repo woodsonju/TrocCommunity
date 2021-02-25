@@ -14,51 +14,44 @@
         <div class="col-md-6">
             @Html.DisplayFor(model => model.FullName)
         </div>
+
+        <div class="col-md-6">
+            @Html.DisplayNameFor(model => model.NumVoie)
+        </div>
+        <div class="col-md-6">
+            @Html.DisplayFor(model => model.NumVoie)
+        </div>
+
+        <div class="col-md-6">
+            @Html.DisplayNameFor(model => model.NomDeVoie)
+        </div>
+        <div class="col-md-6">
+            @Html.DisplayFor(model => model.NomDeVoie)
+        </div>
+
+        <div class="col-md-6">
+            @Html.DisplayNameFor(model => model.CodePostale)
+        </div>
+        <div class="col-md-6">
+            @Html.DisplayFor(model => model.CodePostale)
+        </div>
+
+        <div class="col-md-6">
+            @Html.DisplayNameFor(model => model.Ville)
+        </div>
+        <div class="col-md-6">
+            @Html.DisplayFor(model => model.Ville)
+        </div>
+
+        <div class="col-md-6">
+            @Html.DisplayNameFor(model => model.Pays)
+        </div>
+        <div class="col-md-6">
+            @Html.DisplayFor(model => model.Pays)
+        </div>
     </div>
 </div>
 
-<div>
-    <hr />
-    <dl class="dl-horizontal">
-
-        <dt>
-            @Html.DisplayNameFor(model => model.NumVoie)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.NumVoie)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.NomDeVoie)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.NomDeVoie)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.CodePostale)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CodePostale)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Ville)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Ville)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Pays)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Pays)
-        </dd>
-
-    </dl>
-</div>
 <p>
     @Html.ActionLink("Edit", "EditAdresse", new { id = Model.Id }) |
     @Html.ActionLink("Retour vers Compte Utilisateur", "Index", "Account")

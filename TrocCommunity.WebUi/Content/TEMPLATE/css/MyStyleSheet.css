@@ -91,9 +91,9 @@
 }
 
 .section-book-card {
-    display: flex;
+    /*display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-around;*/
     margin-bottom: 30px;
 }
 
@@ -120,271 +120,281 @@
     width: 50%;
 }
 
-/************************** PAGINATION ***************************/
-#row-pagination {
-    display: flex;
-    justify-content: center;
+.list-books {
+    font-size : 10px;
+    margin-left : 5px;
 }
-
-.pagination a {
-    padding: 10px 10px;
+@media only screen and (max-width: 461px) {
+    .list-books {
+        font-size: 8px;
+    }
 }
+    /************************** PAGINATION ***************************/
+    #row-pagination {
+        display: flex;
+        justify-content: center;
+    }
 
-/************** CATALOGUE ****************/
-.image-livre-catalogue{
-    width : 100px;
-    height : 180px;
-}
-/*********************** IMAGE PARALLAX PAGE D'ACCUEIL **************************/
-/* Section Parallax */
-.section-parallax {
-    background-image: url("/Content/TEMPLATE/images/books-1204029_1920.jpg");
-    height: 200px;
-    width: 100%;
-    background-attachment: fixed;
-    background-position: right;
-    background-repeat: no-repeat;
-    background-size: cover;
-    filter: grayscale(60%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-shadow: 3px 5px 2px #474747;
-    border-radius: 5px;
-    margin-bottom: 80px;
-}
+    .pagination a {
+        padding: 10px 10px;
+    }
 
-.txt-par {
-    font-size: 50px;
-    font-weight: bold;
-    color: #fff;
-}
+    /************** CATALOGUE ****************/
+    .image-livre-catalogue {
+        width: 100px;
+        height: 180px;
+    }
+    /*********************** IMAGE PARALLAX PAGE D'ACCUEIL **************************/
+    /* Section Parallax */
+    .section-parallax {
+        background-image: url("/Content/TEMPLATE/images/books-1204029_1920.jpg");
+        height: 200px;
+        width: 100%;
+        background-attachment: fixed;
+        background-position: right;
+        background-repeat: no-repeat;
+        background-size: cover;
+        filter: grayscale(60%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-shadow: 3px 5px 2px #474747;
+        border-radius: 5px;
+        margin-bottom: 80px;
+    }
 
-
-/************************************ FOOTER **************************************************/
-#footer {
-    background-color: lavender;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 150px;
-    border-radius: 5px;
-    margin-bottom: 20px;
-}
-
-    #footer a {
-        color: darkgrey;
+    .txt-par {
+        font-size: 50px;
+        font-weight: bold;
+        color: #fff;
     }
 
 
-
-
-/********************************************** CONTACT ***********************************************/
-
-form {
-    margin-top: 30px;
-}
-
-#Contact-title {
-    margin-top: 50px;
-}
-
-
-/************************************** TABLE SECTION ADMIN **************************************/
-#myTable {
-    margin-bottom: 20px;
-}
-
-    #myTable th {
-        text-align: center !important;
+    /************************************ FOOTER **************************************************/
+    #footer {
+        background-color: lavender;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 150px;
+        border-radius: 5px;
+        margin-bottom: 20px;
     }
 
-    #myTable td {
-        text-align: center !important;
-    }
-
-        #myTable td .btn {
-            height: 25px !important;
-            margin-right: 6px !important;
-            margin-left: 6px !important;
+        #footer a {
+            color: darkgrey;
         }
 
 
 
-/*************************** CATEGORIE LIVRE *****************************/
-#container-categorie-livre {
-    margin-top: 50px !important;
-    margin-bottom: 50px !important;
-}
 
-    #container-categorie-livre .col-md-4 {
+    /********************************************** CONTACT ***********************************************/
+
+    form {
+        margin-top: 30px;
+    }
+
+    #Contact-title {
+        margin-top: 50px;
+    }
+
+
+    /************************************** TABLE SECTION ADMIN **************************************/
+    #myTable {
+        margin-bottom: 20px;
+    }
+
+        #myTable th {
+            text-align: center !important;
+        }
+
+        #myTable td {
+            text-align: center !important;
+        }
+
+            #myTable td .btn {
+                height: 25px !important;
+                margin-right: 6px !important;
+                margin-left: 6px !important;
+            }
+
+
+
+    /*************************** CATEGORIE LIVRE *****************************/
+    #container-categorie-livre {
+        margin-top: 50px !important;
+        margin-bottom: 50px !important;
+    }
+
+        #container-categorie-livre .col-md-4 {
+            padding: 0 !important;
+        }
+
+    .category-btn {
+        display: flex;
+        justify-content: space-between;
+    }
+
+        .category-btn a {
+            font-size: 9px !important;
+        }
+
+        .category-btn .fas {
+            color: #ee4266 !important;
+            cursor: pointer;
+        }
+
+    .body-content {
         padding: 0 !important;
     }
 
-.category-btn {
-    display: flex;
-    justify-content: space-between;
-}
-.category-btn a{
-    font-size : 9px!important;
-}
-
-    .category-btn .fas {
-        color: #ee4266 !important;
-        cursor: pointer;
+    .card-body:nth-last-child(odd) {
+        border-bottom: 1px solid rgba(0, 0, 0, 0.125) !important;
     }
 
-.body-content {
-    padding: 0 !important;
-}
-
-.card-body:nth-last-child(odd) {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.125) !important;
-}
 
 
+    /********************************** DETAILS LIVRE ***********************************/
+    #row-details-livre {
+        margin-top: 100px;
+        margin-bottom: 100px;
+    }
 
-/********************************** DETAILS LIVRE ***********************************/
-#row-details-livre {
-    margin-top: 100px;
-    margin-bottom: 100px;
-}
+    #bouton-wishlist {
+        display: flex;
+        justify-content: center;
+    }
 
-#bouton-wishlist {
-    display: flex;
-    justify-content: center;
-}
+        #bouton-wishlist span {
+            margin-right: 10px;
+        }
 
-    #bouton-wishlist span {
-        margin-right: 10px;
+        #bouton-wishlist .btn {
+            display: block;
+            width: 80%;
+        }
+
+    #detail-livre-left-side {
+        display: flex;
+        flex-direction: column;
+    }
+
+        #detail-livre-left-side img {
+            justify-content: center !important;
+            width: 50%;
+            margin-bottom: 50px;
+        }
+
+    #div-img {
+        display: flex;
+        justify-content: center;
     }
 
     #bouton-wishlist .btn {
-        display: block;
-        width: 80%;
+        height: 37.2px !important
+    }
+    /*************************************** WISHLIST TABLE ************************************/
+    #myTable td .btn {
+        height: 40px !important;
+        margin-right: 0 !important;
+        margin-left: 0 !important;
+        letter-spacing: 2.5px;
     }
 
-#detail-livre-left-side {
-    display: flex;
-    flex-direction: column;
-}
-
-    #detail-livre-left-side img {
-        justify-content: center !important;
-        width: 50%;
-        margin-bottom: 50px;
+    #myTable td img {
+        width: 100px !important;
     }
 
-#div-img {
-    display: flex;
-    justify-content: center;
-}
-
-#bouton-wishlist .btn {
-    height: 37.2px !important
-}
-/*************************************** WISHLIST TABLE ************************************/
-#myTable td .btn {
-    height: 40px !important;
-    margin-right: 0 !important;
-    margin-left: 0 !important;
-    letter-spacing: 2.5px;
-}
-
-#myTable td img {
-    width: 100px !important;
-}
-
-.dataTables_wrapper {
-    margin-top: 100px !important;
-}
-
-
-
-
-/******************** MEDIA QUERIES *************************/
-
-/********************************  MEDIA QUERY NAVBAR *****************/
-
-@media only screen and (max-width: 607px) {
-    .js-logo-clone {
-        margin-left : 15px;
-    }
-}
-
-@media only screen and (max-width: 461px) {
-    .js-logo-clone {
-        font-size: 12px !important;
-    }
-}
-
-@media only screen and (max-width: 300px) {
-    .js-logo-clone {
-        font-size: 10px !important;
-    }
-}
-
-
-
-/********************************* CAROUSEL MEDIA QUERY *******************************/
-
-@media only screen and (max-width: 991px) {
-    .carousel-item img {
-        margin-right: 20px !important;
-        width: 505px!important;
-        height: 335px!important;
-        margin: auto auto!important;
-    }
-}
-
-@media only screen and (max-width: 586px) {
-    .carousel-item img {
-        height: 335px!important;
-        width: 378px!important;
-        border-radius: 5px;
-    }
-}
-
-@media only screen and (max-width: 453px) {
-    .carousel-item img {
-        height: 252px !important;
-        width: 378px !important;
-        border-radius: 5px;
-    }
-}
-
-@media only screen and (max-width: 431px) {
-    .carousel-item img {
-        margin-right: 20px !important;
+    .dataTables_wrapper {
+        margin-top: 100px !important;
     }
 
-    .picture-image {
-        width: 75% !important;
-    }
-}
 
-@media only screen and (max-width: 395px) {
-    .carousel-item img {
-        height: auto!important;
-        width: auto!important;
-    }
-}
 
-/******************************  MEDIA QUERY PICTURE SECTION ***********************************/
 
-@media only screen and (max-width: 991px) {
-    .picture-image {
-        width: 60%!important;
-        height: 160px!important;
+    /******************** MEDIA QUERIES *************************/
+
+    /********************************  MEDIA QUERY NAVBAR *****************/
+
+    @media only screen and (max-width: 607px) {
+        .js-logo-clone {
+            margin-left: 15px;
+        }
     }
-}
+
+    @media only screen and (max-width: 461px) {
+        .js-logo-clone {
+            font-size: 12px !important;
+        }
+    }
+
+    @media only screen and (max-width: 300px) {
+        .js-logo-clone {
+            font-size: 10px !important;
+        }
+    }
+
+
+
+    /********************************* CAROUSEL MEDIA QUERY *******************************/
+
+    @media only screen and (max-width: 991px) {
+        .carousel-item img {
+            margin-right: 20px !important;
+            width: 505px !important;
+            height: 335px !important;
+            margin: auto auto !important;
+        }
+    }
+
+    @media only screen and (max-width: 586px) {
+        .carousel-item img {
+            height: 335px !important;
+            width: 378px !important;
+            border-radius: 5px;
+        }
+    }
+
+    @media only screen and (max-width: 453px) {
+        .carousel-item img {
+            height: 252px !important;
+            width: 378px !important;
+            border-radius: 5px;
+        }
+    }
+
+    @media only screen and (max-width: 431px) {
+        .carousel-item img {
+            margin-right: 20px !important;
+        }
+
+        .picture-image {
+            width: 75% !important;
+        }
+    }
+
+    @media only screen and (max-width: 395px) {
+        .carousel-item img {
+            height: auto !important;
+            width: auto !important;
+        }
+    }
+
+    /******************************  MEDIA QUERY PICTURE SECTION ***********************************/
+
+    @media only screen and (max-width: 991px) {
+        .picture-image {
+            width: 60% !important;
+            height: 160px !important;
+        }
+    }
 
     @media only screen and (max-width: 845px) {
 
         /*.title-picture {
             font-size: 15px;
         }*/
-/*
+        /*
         .section-picture-titre-card {
             margin-top: 0;
             margin-bottom: 0;
@@ -393,8 +403,8 @@ form {
 
     @media only screen and (max-width: 767px) {
 
-        #section-picture{
-            min-height: 700px!important;
+        #section-picture {
+            min-height: 700px !important;
         }
 
         .picture-image {
@@ -433,66 +443,66 @@ form {
         }
     }
 
-@media only screen and (max-width: 575px) {
-    .container #container-section-picture {
-        margin-right : 10px!important;
-    }
-    #section-picture {
-        min-height: 700px;
-    }
+    @media only screen and (max-width: 575px) {
+        .container #container-section-picture {
+            margin-right: 10px !important;
+        }
 
-    
-}
-
-@media only screen and (max-width: 330px) {
-
-    .picture-image {
-        width: 120px !important;
-        height: 100px !important;
-    }
-    #title-section-raisons, #title-section-last-books {
-        font-size: 25px !important
-    }
-    .title-picture{
-        font-size : 20px!important;
-    }
-}
-
-/******************************** CATEGORIE ******************************/
-@media only screen and (max-width: 767px) {
-    #row-section-book-card {
-        margin-top: 50px !important;
+        #section-picture {
+            min-height: 700px;
+        }
     }
 
-}
+    @media only screen and (max-width: 330px) {
 
-@media only screen and (max-width: 606px) {
-    .product-search {
-        margin-left: 15px;
-    }
-}
+        .picture-image {
+            width: 120px !important;
+            height: 100px !important;
+        }
 
-/*************************************************** LOGIN PAGE *****************************************/
-.login-page {
-    margin-bottom: 90px !important;
-    margin-top: 90px !important;
-}
+        #title-section-raisons, #title-section-last-books {
+            font-size: 25px !important
+        }
 
-
-
-/****************************************** MEDIA QUERY ADDBOOK***********************************************/
-@media only screen and (max-width: 991px) {
-    .title-valeur-point {
-        font-size: 20px !important;
-    }
-    .message-points {
-        font-size: 10px !important;
-    }
-}
-
-@media only screen and (max-width: 767px) {
-    .div-points-left {
-        margin-bottom : 20px;
+        .title-picture {
+            font-size: 20px !important;
+        }
     }
 
-}
+    /******************************** CATEGORIE ******************************/
+    @media only screen and (max-width: 767px) {
+        #row-section-book-card {
+            margin-top: 50px !important;
+        }
+    }
+
+    @media only screen and (max-width: 606px) {
+        .product-search {
+            margin-left: 15px;
+        }
+    }
+
+    /*************************************************** LOGIN PAGE *****************************************/
+    .login-page {
+        margin-bottom: 90px !important;
+        margin-top: 90px !important;
+    }
+
+
+
+    /****************************************** MEDIA QUERY ADDBOOK***********************************************/
+    @media only screen and (max-width: 991px) {
+        .title-valeur-point {
+            font-size: 20px !important;
+        }
+
+        .message-points {
+            font-size: 10px !important;
+        }
+    }
+
+    @media only screen and (max-width: 767px) {
+        .div-points-left {
+            margin-bottom: 20px;
+        }
+    }
