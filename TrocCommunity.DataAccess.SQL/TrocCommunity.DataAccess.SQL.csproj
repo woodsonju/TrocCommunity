@@ -182,6 +182,10 @@
     <Compile Include="Migrations\202102250908597_WishList.Designer.cs">
       <DependentUpon>202102250908597_WishList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202102251453276_AddDescription.cs" />
+    <Compile Include="Migrations\202102251453276_AddDescription.Designer.cs">
+      <DependentUpon>202102251453276_AddDescription.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MyContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -289,6 +293,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202102250908597_WishList.resx">
       <DependentUpon>202102250908597_WishList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102251453276_AddDescription.resx">
+      <DependentUpon>202102251453276_AddDescription.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -110,6 +110,7 @@ namespace TrocCommunity.WebUi.Controllers
                 double nbrePoints = service.GetPoints(price, EtatDuLivre.COMMENEUF);
                 double avancePoints = service.GetPoints(price, EtatDuLivre.COMMENEUF, livre.IsExchange);
                 string editionDate = await service.GetDateEdition(isbnString);
+                string description = await service.GetDescription(isbnString);
 
                 string image = await service.GetImage(isbnString);
 
@@ -118,6 +119,7 @@ namespace TrocCommunity.WebUi.Controllers
                 livre.ISBN = Convert.ToInt64(isbnString);
                 livre.Title = title;
                 livre.Image = image;
+                livre.Description = description;
                 livre.Price = price;
                 livre.PointDuLivre = nbrePoints;
                 livre.AvancePoints = avancePoints;

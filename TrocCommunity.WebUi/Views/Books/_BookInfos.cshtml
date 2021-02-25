@@ -7,6 +7,7 @@
 
 
 {
+    @Html.HiddenFor(model => model.Livre.Title)
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
@@ -54,17 +55,17 @@
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-md-6">
+    <div class="row m-md-5">
+        <div class="col-md-6 div-points-left">
             <div class="panel-body bg-info">
                 <div class="resume">
-                    <h4 class="title">Valeur d'échange total de points</h4>
+                    <h4 class="title-valeur-point">Valeur d'échange total de points</h4>
                     <div class="info">
-                        <strong class="amount" id="total_value">@Model.Livre.PointDuLivre</strong>
+                        <strong class="amount" id="total_value">@Model.Livre.PointDuLivre points</strong>
                     </div>
                 </div>
                 <div class="resume-footer">
-                    <a class="text-uppercase">Dès que les objets trouvent preneurs</a>
+                    <a class="text-uppercase mr-3 message-points">Dès que les objets trouvent preneurs</a>
                 </div>
             </div>
         </div>
@@ -72,13 +73,13 @@
         <div class="col-md-6">
             <div class="panel-body bg-secondary">
                 <div class="resume">
-                    <h4 class="title">Avance de points</h4>
+                    <h4 class="title-valeur-point">Avance de points</h4>
                     <div class="info">
-                        <strong class="amount" id="avance_point">@Model.Livre.AvancePoints</strong>
+                        <strong class="amount" id="avance_point">@Model.Livre.AvancePoints points</strong>
                     </div>
                 </div>
                 <div class="resume-footer">
-                    <a class="text-uppercase">Utilisable sans attendre</a>
+                    <a class="text-uppercase mr-3 message-points">Utilisable sans attendre</a>
                 </div>
             </div>
         </div>
@@ -87,6 +88,7 @@
     @Html.HiddenFor(model => model.Livre.Price)
     @Html.HiddenFor(model => model.Livre.PointDuLivre)
     @Html.HiddenFor(model => model.Livre.AvancePoints)
+    @Html.HiddenFor(model => model.Livre.Description)
 
     @Html.HiddenFor(model => model.Livre.DateEdition)
 
@@ -99,9 +101,9 @@
     <hr />
 
     <div class="row">
-        <div class="form-group text-center col-md-12">
-            <div class="col-md-10">
-                <input type="submit" value="Ajouter ce livre" class="btn btn-lg btn-block btn-success" />
+        <div class="form-group text-center col-md-12 justify-content-center text-center">
+            <div class="col-md-10 m-md-5" >
+                <input type="submit" value="Ajouter ce livre" class="btn btn-lg btn-block btn-success m-auto" />
             </div>
         </div>
     </div>

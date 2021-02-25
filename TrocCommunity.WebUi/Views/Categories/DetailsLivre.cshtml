@@ -15,7 +15,7 @@
         <div class="row" id="row-details-livre">
             <div class="col-md-4" id="detail-livre-left-side">
                 <div id="div-img">
-                    <img src="~/Content/TEMPLATE/images/Livres/@Html.DisplayFor(model => model.book.Image)" alt="Découverte" class="img-fluid justify-content-center" />
+                    <img src=@Url.Content(Model.book.Image) alt="Découverte" class="img-fluid justify-content-center" />
                 </div>
                 <div id="bouton-wishlist">
                     @foreach (var item in Model.wishList)
@@ -60,10 +60,10 @@
                 </div>
             </div>
                 <div class="col-md-8">
-                    <p>@Html.DisplayFor(model => model.book.Author)</p>
-                    <p>@Html.DisplayFor(model => model.book.Title)</p>
-                    <p>Edition</p>
-                    <p>Description</p>
+                    <p>Auteur : @Html.DisplayFor(model => model.book.Author)</p>
+                    <p>Titre : @Html.DisplayFor(model => model.book.Title)</p>
+                    <p>Année d'édition : @Html.DisplayFor(model => model.book.Editor)</p>
+                    <p>Description : @Html.DisplayFor(model => model.book.Description)</p>
 
 
                     <!-- Modal -->

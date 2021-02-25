@@ -477,3 +477,22 @@ form {
     margin-bottom: 90px !important;
     margin-top: 90px !important;
 }
+
+
+
+/****************************************** MEDIA QUERY ADDBOOK***********************************************/
+@media only screen and (max-width: 991px) {
+    .title-valeur-point {
+        font-size: 20px !important;
+    }
+    .message-points {
+        font-size: 10px !important;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .div-points-left {
+        margin-bottom : 20px;
+    }
+
+}

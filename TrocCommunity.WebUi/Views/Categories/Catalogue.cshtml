@@ -10,26 +10,230 @@
 
 <div class="product-search">
 
+    <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Recherche</a>
+            <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Recherche avancée</a>
+            @*<a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Contact</a>*@
+        </div>
+    </nav>
+    <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+            @using (Html.BeginForm("Search", "Categories", FormMethod.Get))
+            {
+
+                <input id="search" name="search" type="text" value="@ViewBag.Search" placeholder="Rechercher..." />
+
+                <input type="submit" value="Valider" />
+            }
+        </div>
+        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+
+            @using (Html.BeginForm("AdvancedSearch", "Categories", FormMethod.Get, new { amount1 = "#amount1", amount2 = "#amount2" }))
+            {
+
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-3">
+                            @*<div class="col-sm-6">
+                <label>Auteur:  </label> <input type="text" name="Auteur">
+            </div>*@
+                            <p class=" justify-content-center text-center">
+                                <a class="btn btn-primary d-block" data-toggle="collapse" href="#collapseTitre" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                    Auteur
+                                </a>
+                            </p>
+                            <div class="collapse" id="collapseTitre">
+                                <div class="card card-body mr-2">
+                                    <input type="text" name="Auteur">
+                                </div>
+                            </div>
+                        </div>
+
+                        @*<div class="col-sm-6">
+            <label>Titre:  </label> <input type="text" name="Titre">
+        </div>*@
+                        <div class="col-md-3">
+                            <p class=" justify-content-center text-center">
+                                <a class="btn btn-primary d-block" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                    Titre
+                                </a>
+                            </p>
+                            <div class="collapse mr-2" id="collapseExample">
+                                <div class="card card-body">
+                                    <input type="text" name="Titre">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <p class=" justify-content-center text-center">
+                                <a class="btn btn-primary d-block" data-toggle="collapse" href="#collapsePoints" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                    Nombre de points
+                                </a>
+                            </p>
+                            <div class="collapse" id="collapsePoints">
+                                <div class="card card-body mr-2">
+                                    <div class="row">
+
+                                        <label for="amount1">Min  </label>
+                                        <input type="text" name="amount1" id="amount1"  style="border:0; color:#f6931f; font-weight:bold;">
+                                        <label for="amount2">Max  </label>
+                                        <input type="text" name="amount2" id="amount2"  style="border:0; color:#f6931f; font-weight:bold;">
+
+
+                                    </div>
+
+                                    <div id="slider-rangeTest"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <p class=" justify-content-center text-center">
+                                <a class="btn btn-primary d-block" data-toggle="collapse" href="#collapseGeolocalisation" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                    Géolocalisation
+                                </a>
+                            </p>
+                            <div class="collapse" id="collapseGeolocalisation">
+                                <div class="card card-body">
+                                    @if (Session["connexion"] != null)
+                                    {
+                                        <b>Géolocalisation</b>
+                                        <div>
+
+                                            @Html.CheckBox("Ville", false, new { id = "Ville" })
+                                            <label for="Ville">Echange dans la même ville</label>
+                                        </div>
+                                        <div>
+
+                                            @Html.CheckBox("Rayon", false, new { id = "Rayon", onclick = "appear()" })
+                                            <label for="range">Echange autour de chez moi</label>
+
+                                            <input type="text" name="range" id="range"  style="display:none; border:0; color:#f6931f; font-weight:bold;" />
+                                            <div id="slider-GeoLoc"  style="display:none"></div>
+
+                                        </div>
+                                    }
+
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                        <br>
+                        <br>
+
+                        @*<div class="row">
+        <div class="col-sm-6">
+            <b class=" = " row">Nombre de points</b>
+
+            <div class="row">
+
+                <label for="amount1" class="col-sm-2 ">Min  </label>
+                <input type="text" name="amount1" id="amount1" class="col-sm-2 " style="border:0; color:#f6931f; font-weight:bold;">
+                <label for="amount2" class="col-sm-2 ">Max  </label>
+                <input type="text" name="amount2" id="amount2" class="col-sm-2 " style="border:0; color:#f6931f; font-weight:bold;">
+
+
+            </div>
+
+            <div class="row; col-sm-6" id="slider-rangeTest" style="display:flex"></div>
+        </div>*@
+
+                        <div class="col-sm-6">
+                            <b class="row">Etat du Livre Accepté (Obligatoire)</b>
+                            <br />
+
+                            <div class="">
+
+                                @Html.CheckBox("cn", false, new { id = "cn" })
+                                <label for="cn">Comme neuf</label>
+                            </div>
+
+                            <div class="">
+
+                                @Html.CheckBox("be", false, new { id = "be" })
+                                <label for="be">Bon état</label>
+                            </div>
+                            <div class="">
+
+                                @Html.CheckBox("em", false, new { id = "em" })
+                                <label for="em">état moyen</label>
+                            </div>
+                            <div class="">
+
+                                @Html.CheckBox("u", false, new { id = "u" })
+                                <label for="u">Usé</label>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                @*</div>*@
+
+                <div class="col-md-12 col-sm-12">
+
+
+                </div>
+
+
+                <br>
+                //<label for="amount1" class="col-md-1 col-sm-12">Points : </label>
+
+                <br>
 
 
 
-    @using (Html.BeginForm("Search", "Categories", FormMethod.Get))
+                <br>
+
+
+
+                @*if (Session["connexion"] != null)
+                {
+                    <b>Géolocalisation</b>
+                    <div>
+
+                        @Html.CheckBox("Ville", false, new { id = "Ville" })
+                        <label for="Ville">Echange dans la même ville</label>
+                    </div>
+                    <div>
+
+                        @Html.CheckBox("Rayon", false, new { id = "Rayon", onclick = "appear()" })
+                        <label for="Rayon">Echange autour de chez moi</label>
+
+                        <input type="text" name="range" id="range" class="col-md-1 col-sm-12" style="display:none; border:0; color:#f6931f; font-weight:bold;">
+                        <div id="slider-GeoLoc" class="col-md-4 col-sm-12" style="display:none"></div>
+
+                    </div>
+                }*@
+
+
+
+                <input type="submit" value="Recherche Avancée" />
+            }
+        </div>
+        @*<div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">...</div>*@
+    </div>
+
+
+    @*@using (Html.BeginForm("Search", "Categories", FormMethod.Get))
     {
 
         <input id="search" name="search" type="text" value="@ViewBag.Search" placeholder="Rechercher..." />
 
         <input type="submit" value="Valider" />
-    }
+    }*@
 
 
 
-    <p>Recherche Avancée</p>
+    @*<p>Recherche Avancée</p>
     @using (Html.BeginForm("AdvancedSearch", "Categories", FormMethod.Get, new { amount1 = "#amount1", amount2 = "#amount2" }))
     {
 
         <div class="container-fluid">
             <div class="row">
-                <div class="col-sm-6" >
+                <div class="col-sm-6">
                     <label>Auteur:  </label> <input type="text" name="Auteur">
                 </div>
 
@@ -42,19 +246,19 @@
 
             <div class="row">
                 <div class="col-sm-6">
-                    <b class=" = "row">Nombre de points</b>
+                    <b class=" = " row">Nombre de points</b>
 
                     <div class="row">
 
-                        <label for="amount1" class ="col-sm-2 " >Min  </label>
-                        <input type="text" name="amount1" id="amount1"  class ="col-sm-2 "style="border:0; color:#f6931f; font-weight:bold;">
-                        <label for="amount2" class ="col-sm-2 ">Max  </label>
-                        <input type="text" name="amount2" id="amount2" class ="col-sm-2 " style="border:0; color:#f6931f; font-weight:bold;">
+                        <label for="amount1" class="col-sm-2 ">Min  </label>
+                        <input type="text" name="amount1" id="amount1" class="col-sm-2 " style="border:0; color:#f6931f; font-weight:bold;">
+                        <label for="amount2" class="col-sm-2 ">Max  </label>
+                        <input type="text" name="amount2" id="amount2" class="col-sm-2 " style="border:0; color:#f6931f; font-weight:bold;">
 
 
                     </div>
 
-                    <div class="row; col-sm-6" id="slider-rangeTest" style="display:flex" ></div>
+                    <div class="row; col-sm-6" id="slider-rangeTest" style="display:flex"></div>
                 </div>
 
                 <div class="col-sm-6">
@@ -86,49 +290,49 @@
                 </div>
 
 
-                </div>
+            </div>
         </div>
 
-                <div class="col-md-12 col-sm-12">
-                    
-                    
-                </div>
+        <div class="col-md-12 col-sm-12">
 
 
-                <br>
-                //<label for="amount1" class="col-md-1 col-sm-12">Points : </label>
-                
-                <br>
+        </div>
 
-                
 
-                <br>
-           
+        <br>
+        //<label for="amount1" class="col-md-1 col-sm-12">Points : </label>
+
+        <br>
+
+
+
+        <br>
+
 
 
         if (Session["connexion"] != null)
         {
-                <b>Géolocalisation</b>
-                <div>
+            <b>Géolocalisation</b>
+            <div>
 
-                    @Html.CheckBox("Ville", false, new { id = "Ville" })
-                    <label for="Ville">Echange dans la même ville</label>
-                </div>
-                <div>
+                @Html.CheckBox("Ville", false, new { id = "Ville" })
+                <label for="Ville">Echange dans la même ville</label>
+            </div>
+            <div>
 
-                    @Html.CheckBox("Rayon", false, new { id = "Rayon", onclick = "appear()" })
-                    <label for="Rayon">Echange autour de chez moi</label>
+                @Html.CheckBox("Rayon", false, new { id = "Rayon", onclick = "appear()" })
+                <label for="Rayon">Echange autour de chez moi</label>
 
-                    <input type="text" name="range" id="range" class="col-md-1 col-sm-12" style="display:none; border:0; color:#f6931f; font-weight:bold;">
-                    <div id="slider-GeoLoc" class="col-md-4 col-sm-12" style="display:none"></div>
+                <input type="text" name="range" id="range" class="col-md-1 col-sm-12" style="display:none; border:0; color:#f6931f; font-weight:bold;">
+                <div id="slider-GeoLoc" class="col-md-4 col-sm-12" style="display:none"></div>
 
-                </div>
+            </div>
         }
 
 
 
-                <input type="submit" value="Recherche Avancée" />
-     }
+        <input type="submit" value="Recherche Avancée" />
+    }*@
 
 
 </div>
@@ -295,9 +499,9 @@
                             <p class="text-center titre-books-thumbnail">@Html.DisplayFor(modelItem => item.Title)</p>
                             <p class="text-center">@Html.DisplayFor(modelItem => item.Author)</p>
                             <div class="books-items">
-                                <p class="books-points text-center">100 points</p>
+                                <p class="books-points text-center">@Html.DisplayFor(modelItem => item.PointDuLivre) points</p>
                             </div>
-                            <p class="text-center">Ville</p>
+                            <p class="text-center">@Html.DisplayFor(modelItem => item.Client.Adresse.Ville)</p>
                         </div>
                     </div>
 

@@ -40,7 +40,7 @@ namespace TrocCommunity.DataAccess.SQL.DAO
         {
 
             return dataContext.Livres.AsNoTracking().Where(p => search == null
-            || p.Author.Contains(search)).Count();
+            || p.Title.Contains(search)).Count();
 
         }
 
@@ -50,7 +50,7 @@ namespace TrocCommunity.DataAccess.SQL.DAO
 
 
             book = dataContext.Livres.AsNoTracking().Where(p => search == null
-             ||p.Title.Contains(search) || p.Author.Contains(search));
+            || p.Title.Contains(search));
 
             return book;
         }
@@ -67,7 +67,7 @@ namespace TrocCommunity.DataAccess.SQL.DAO
 
             if (cat == null)
             {
-                result = dataContext.Livres.OrderBy(x => x.Id).Skip((page - 1) * pageSize).Take(pageSize);
+                result = dataContext.Livres.Include(bookClient => bookClient.Client).Include(bookClient => bookClient.Client.Adresse).OrderBy(x => x.Id).Skip((page - 1) * pageSize).Take(pageSize);
             }
             else
             {
@@ -81,7 +81,7 @@ namespace TrocCommunity.DataAccess.SQL.DAO
 
         public IEnumerable<Livre> LivreParCategorie(string cat)
         {
-            IQueryable<Livre> result = dataContext.Livres.Where(x => x.Categorie.NomCategorie.Substring(0, 3) == cat);
+            IEnumerable<Livre> result = dataContext.Livres.Where(x => x.Categorie.NomCategorie.Substring(0, 3) == cat);
             return result;
 
         }
@@ -110,7 +110,7 @@ namespace TrocCommunity.DataAccess.SQL.DAO
 
         public IEnumerable<Livre> TroisDerniersLivresAjoutes()
         {
-            IEnumerable<Livre> result = dataContext.Livres.OrderByDescending(x => x.Id).Take(3);
+            IEnumerable<Livre> result = dataContext.Livres.Include(bookClient => bookClient.Client).Include(bookClient => bookClient.Client.Adresse).OrderByDescending(x => x.Id).Take(3);
             return result;
         }
 
@@ -180,13 +180,12 @@ namespace TrocCommunity.DataAccess.SQL.DAO
 
             // Author and Title
 
-            livre = livre.Where(book => book.Title.Contains(Titre)
-                                   || book.Author.Contains(Auteur));
+            livre = livre.Where(book =>(book.Title != null && book.Title.Contains(Titre))
+                                   || (book.Author != null && book.Author.Contains(Auteur)));
 
 
             return livre;
         }
-
 
 
     }

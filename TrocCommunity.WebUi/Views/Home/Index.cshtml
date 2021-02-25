@@ -94,15 +94,15 @@
             <div class="col-md-4 col-sm-12 section-book-card">
 
                 <div class="section-picture-book-image thumbnail">
-                    <img src="~/Content/TEMPLATE/images/Livres/@item.Image" alt="Découverte" class="img-fluid image-livre-catalogue" />
+                    <img src="@Url.Content(item.Image)" alt="Découverte" class="img-fluid image-livre-catalogue" />
                 </div>
                 <div>
                     <h3 class="text-center titre-books-thumbnail">@item.Title</h3>
                     <p class="text-center">@item.Author</p>
                     <div class="books-items">
-                        <p class="books-points text-center">100 points</p>
+                        <p class="books-points text-center" style="color : #fff">@item.PointDuLivre points</p>
                     </div>
-                    <p class="text-center">Ville</p>
+                    <p class="text-center">@item.Client.Adresse.Ville</p>
                 </div>
 
             </div>

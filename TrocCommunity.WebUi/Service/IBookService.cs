@@ -33,6 +33,27 @@ namespace TrocCommunity.WebUi.Service
         double GetPoints(double price, EtatDuLivre etatDuLivre, bool isExchange);
         double GetPoints(double price, EtatDuLivre etatDuLivre);
 
+        int Count(string cat);
+
+        int SearchCount(string search);
+
+
+        IEnumerable<Livre> Search(string search);
+
+
+        List<Livre> NbPaginationSearch(int page, int pageSize, string search);
+
+
+        List<Livre> NbPagination(int page, int pageSize, string cat);
+
+
+        IEnumerable<Livre> LivreParCategorie(string cat);
+
+
+        IEnumerable<Livre> TroisDerniersLivresAjoutes();
+
+        Livre FindMailByBook(int id);
+
 
     }
 }

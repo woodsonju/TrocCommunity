@@ -270,8 +270,6 @@
     <Compile Include="Interceptors\LoginFilter.cs" />
     <Compile Include="Interceptors\RolesFilter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Service\ILivre.cs" />
-    <Compile Include="Service\LivreService.cs" />
     <Compile Include="Service\BookService.cs" />
     <Compile Include="Service\CategorieService.cs" />
     <Compile Include="Service\IBookService.cs" />
@@ -488,6 +486,7 @@
     <Content Include="Content\TEMPLATE\images\hero_1.png" />
     <Content Include="Content\TEMPLATE\images\hero_2.jpg" />
     <Content Include="Content\TEMPLATE\images\livre2.jpg" />
+    <Content Include="Content\TEMPLATE\images\Livres\default-book.jpg" />
     <Content Include="Content\TEMPLATE\images\Livres\imageParDefaut.jpg" />
     <Content Include="Content\TEMPLATE\images\macbook-pro-1050973_1920.jpg" />
     <Content Include="Content\TEMPLATE\images\Livres\manuscrit.jpg" />

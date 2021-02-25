@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
+using TrocCommunity.Core.Logic;
 using TrocCommunity.Core.Models;
+using TrocCommunity.DataAccess.SQL.DAO;
 using TrocCommunity.WebUi.ApiClient;
 
 namespace TrocCommunity.WebUi.Service
@@ -12,6 +14,19 @@ namespace TrocCommunity.WebUi.Service
     public class BookService : IBookService
     {
         private GoogleBookApiFunctions api = new GoogleBookApiFunctions();
+
+        private IRepository<Livre> repo;
+
+
+        public BookService(IRepository<Livre> repo)
+        {
+            this.repo = repo;
+        }
+
+        public BookService()
+        {
+        }
+
 
         /// <summary>
         /// Retourne l'auteur(s) du livre 
@@ -71,7 +86,7 @@ namespace TrocCommunity.WebUi.Service
                            {*/
             if (book.SelectToken("items[0].volumeInfo.imageLinks.thumbnail") == null)
             {
-                image = "~/Content/TEMPLATE/images/Livres/imageParDefaut.jpg";
+                image = "~/Content/TEMPLATE/images/Livres/default-book.jpg";
             } else
             {
                 image = book.SelectToken("items[0].volumeInfo.imageLinks.thumbnail").ToString();
@@ -294,6 +309,47 @@ namespace TrocCommunity.WebUi.Service
         {
             Random random = new Random();
             return random.Next(min, max);
+        }
+
+
+        public int Count(string cat)
+        {
+            return ((SQLRepositoryLivre)repo).Count(cat);
+        }
+
+        public int SearchCount(string search)
+        {
+            return ((SQLRepositoryLivre)repo).SearchCount(search);
+        }
+
+        public IEnumerable<Livre> LivreParCategorie(string cat)
+        {
+            return ((SQLRepositoryLivre)repo).LivreParCategorie(cat);
+        }
+
+        public List<Livre> NbPagination(int page, int pageSize, string cat)
+        {
+            return ((SQLRepositoryLivre)repo).NbPagination(page, pageSize, cat);
+        }
+
+        public List<Livre> NbPaginationSearch(int page, int pageSize, string search)
+        {
+            return ((SQLRepositoryLivre)repo).NbPaginationSearch(page, pageSize, search);
+        }
+
+        public IEnumerable<Livre> Search(string search)
+        {
+            return ((SQLRepositoryLivre)repo).Search(search);
+        }
+
+        public IEnumerable<Livre> TroisDerniersLivresAjoutes()
+        {
+            return ((SQLRepositoryLivre)repo).TroisDerniersLivresAjoutes();
+        }
+
+        public Livre FindMailByBook(int id)
+        {
+            return ((SQLRepositoryLivre)repo).FindMailByBook(id);
         }
 
 

@@ -25,7 +25,7 @@
         {
             <tr>
                 <td>
-                    <img src="~/Content/TEMPLATE/images/Livres/@item.Image" alt="image"  />
+                    <img src="@Url.Content(item.Image)" alt="image"  />
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Title)
