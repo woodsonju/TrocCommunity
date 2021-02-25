@@ -38,7 +38,7 @@ namespace TrocCommunity.DataAccess.SQL.DAO
 
         public T FindById(int id)
         {
-            return dbSet.Find(id);
+            return dbSet.AsNoTracking().SingleOrDefault(x => x.Id == id);
         }
 
         public void Insert(T t)
@@ -52,11 +52,13 @@ namespace TrocCommunity.DataAccess.SQL.DAO
 
         }
 
+
         public void Update(T t)
         {
             dbSet.Attach(t);  //Charge l'objet t dans le contexte
             dataContext.Entry(t).State = EntityState.Modified;
         }
+
     }
 
 }

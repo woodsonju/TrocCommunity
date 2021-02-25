@@ -264,12 +264,15 @@
     <Compile Include="Controllers\MyAccountController.cs" />
     <Compile Include="Controllers\UtilisateursController.cs" />
     <Compile Include="Controllers\WishListController.cs" />
+    <Compile Include="ExceptionTC\BookNotFoundException.cs" />
+    <Compile Include="ExceptionTC\UserNameIsException.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Interceptors\LoginFilter.cs" />
     <Compile Include="Interceptors\RolesFilter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ExceptionTC\EmailIsException.cs" />
     <Compile Include="Service\ILivre.cs" />
     <Compile Include="Service\LivreService.cs" />
     <Compile Include="Service\BookService.cs" />
