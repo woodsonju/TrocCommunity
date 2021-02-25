@@ -112,13 +112,7 @@ namespace TrocCommunity.WebUi.Controllers
                     ModelState.Clear();
                     ViewBag.ErrorLog = "L'adresse renseignée n'existe pas ou le mdp est faux";
                 }
-                else
-                {
-                    if (utilisateur.Password != Password)
-                    {
-
-                        ViewBag.ErrorLog = "La Combinaison email,mot de passe n'est pas la bonne";
-                    }
+                
                     else
                     {
                         // Connexion Réussite

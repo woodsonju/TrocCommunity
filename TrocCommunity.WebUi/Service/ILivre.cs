@@ -23,7 +23,7 @@ namespace TrocCommunity.WebUi.Service
         List<Livre> NbPagination(int page, int pageSize, string cat);
 
 
-        IQueryable<Livre> LivreParCategorie(string cat);
+        IEnumerable<Livre> LivreParCategorie(string cat);
 
 
         IEnumerable<Livre> TroisDerniersLivresAjoutes();

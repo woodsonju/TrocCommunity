@@ -41,9 +41,7 @@ namespace TrocCommunity.WebUi.Controllers
 
         }
 
-
-        public CategoriesController(IRepository<Categorie> contextCategorie, IRepository<Livre> contextLivre, IRepository<WishList> contextWishList)
-        public CategoriesController(IRepository<Utilisateur> contextUser, IRepository<Categorie> contextCategorie, IRepository<Livre> contextLivre)
+        public CategoriesController(IRepository<Utilisateur> contextUser, IRepository<Categorie> contextCategorie, IRepository<Livre> contextLivre, IRepository<WishList> contextWishList)
         {
             this.contextUser = contextUser;
             this.contextCategorie = contextCategorie;

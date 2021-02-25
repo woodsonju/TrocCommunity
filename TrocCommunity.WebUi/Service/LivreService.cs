@@ -26,7 +26,7 @@ namespace TrocCommunity.WebUi.Service
             return ((SQLRepositoryLivre)repo).SearchCount(search);
         }
 
-        public IQueryable<Livre> LivreParCategorie(string cat)
+        public IEnumerable<Livre> LivreParCategorie(string cat)
         {
             return ((SQLRepositoryLivre)repo).LivreParCategorie(cat);
         }

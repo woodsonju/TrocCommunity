@@ -178,6 +178,10 @@
     <Compile Include="Migrations\202102241629334_MergeWithWoodSon.Designer.cs">
       <DependentUpon>202102241629334_MergeWithWoodSon.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202102250908597_WishList.cs" />
+    <Compile Include="Migrations\202102250908597_WishList.Designer.cs">
+      <DependentUpon>202102250908597_WishList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MyContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -282,6 +286,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202102240822502_RemoveGmail1.resx">
       <DependentUpon>202102240822502_RemoveGmail1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102250908597_WishList.resx">
+      <DependentUpon>202102250908597_WishList.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
