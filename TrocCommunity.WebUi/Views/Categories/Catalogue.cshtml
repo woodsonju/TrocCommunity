@@ -481,29 +481,29 @@
 
                     <div class="col-md-8">
 
-            <div class="row" id="row-section-book-card">
-                @if (ViewBag.NbLivreSearch == null && ViewBag.Search != null)
-                {
-                    <p>Il n'y a pas de livres correspondant à cette recherche.</p>
-                }
-                @foreach (var item in Model.Livres)
-                {
+                        <div class="row" id="row-section-book-card">
+                            @if (ViewBag.NbLivreSearch == 0 && ViewBag.Search != null || ViewBag.TotalPages == 0)
+                            {
+                                <p>Il n'y a pas de livres correspondant à cette recherche.</p>
+                            }
+                            @foreach (var item in Model.Livres)
+                            {                            
 
-                    <div class="col-lg-4 col-md-6  col-sm-12 section-book-card">
-                        <div class="section-picture-book-image thumbnail">
-                            <a class="text-center" href='@Url.Action("DetailsLivre", "Categories")/@item.Id'>
-                                <img src="@Url.Content(item.Image)" alt="Livre" class="img-fluid image-livre-catalogue" />
-                            </a>
-                        </div>
-                        <div>
-                            <p class="text-center titre-books-thumbnail">@Html.DisplayFor(modelItem => item.Title)</p>
-                            <p class="text-center">@Html.DisplayFor(modelItem => item.Author)</p>
-                            <div class="books-items">
-                                <p class="books-points text-center">@Html.DisplayFor(modelItem => item.PointDuLivre) points</p>
-                            </div>
-                            <p class="text-center">@Html.DisplayFor(modelItem => item.Client.Adresse.Ville)</p>
-                        </div>
-                    </div>
+                                <div class="col-lg-4 col-md-6  col-sm-12 section-book-card">
+                                    <div class="section-picture-book-image thumbnail">
+                                        <a class="text-center" href='@Url.Action("DetailsLivre", "Categories")/@item.Id'>
+                                            <img src="@Url.Content(item.Image)" alt="Livre" class="img-fluid image-livre-catalogue" />
+                                        </a>
+                                    </div>
+                                    <div>
+                                        <p class="text-center titre-books-thumbnail">@Html.DisplayFor(modelItem => item.Title)</p>
+                                        <p class="text-center">@Html.DisplayFor(modelItem => item.Author)</p>
+                                        <div class="books-items">
+                                            <p class="books-points text-center">@Html.DisplayFor(modelItem => item.PointDuLivre) points</p>
+                                        </div>
+                                        <p class="text-center">@Html.DisplayFor(modelItem => item.Client.Adresse.Ville)</p>
+                                    </div>
+                                </div>
 
                             }
                         </div>

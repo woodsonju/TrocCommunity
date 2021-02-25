@@ -223,6 +223,12 @@ namespace TrocCommunity.WebUi.Controllers
             return View(viewModelWL);
         }
 
+        public ActionResult ListBookUser(int id)
+        {
+            IEnumerable<Livre> listBooks = ((SQLRepositoryLivre)contextLivre).BookByClient(id);
+            return View(listBooks);
+        }
+
         
 
 

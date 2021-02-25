@@ -1,0 +1,72 @@
+﻿@model IEnumerable<TrocCommunity.Core.Models.Livre>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<hr />
+<table id="myTable" class="display table-wishlist">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Image)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Author)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                <img src="@Url.Content(item.Image)" alt="image" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Author)
+            </td>
+            <td>
+                @if ((int)Session["idCurrentClient"] != item.ClientId)
+                {
+                    <a id="btn_add" href='@Url.Action("DetailsLivre", "Categories")/@item.Id' class="btn btn-danger btn-lg">
+                        <span>Voire détails</span>
+                    </a>
+                }
+
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+<link href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css" rel="stylesheet" />
+@section scripts{
+    @* Normal *@
+    <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+
+
+
+
+    <script>
+        $(document).ready(function () {
+            $('#myTable').DataTable({
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/a5734b29083/i18n/French.json"
+                }
+            });
+        });
+
+    </script>
+
+
+}
+
+
