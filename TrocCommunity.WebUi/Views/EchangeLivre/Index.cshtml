@@ -42,7 +42,7 @@
 
                 <tr>
                     <td>
-                        <img src="@item.LivreEchange.Image" alt="image" />
+                        <img src="@Url.Content(item.LivreEchange.Image)" alt="image" class="img-fluid justify-content-center"/>
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.LivreEchange.Title)
@@ -127,7 +127,7 @@
 
                 <tr>
                     <td>
-                        <img src="@item.LivreEchange.Image" alt="image" />
+                        <img src="@Url.Content(item.LivreEchange.Image)" alt="image" class="img-fluid justify-content-center" />
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.LivreEchange.Title)
