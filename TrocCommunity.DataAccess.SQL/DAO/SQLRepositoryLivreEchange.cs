@@ -43,7 +43,7 @@ namespace TrocCommunity.DataAccess.SQL.DAO
         public EchangeLivre enCoursEchange(int idLivre, int idClient)
         {
 
-            EchangeLivre echLivre =  dataContext.EchangeLivres.Include(ech => ech.LivreEchange).Include(ech => ech.LivreEchange.Client).Include(ech => ech.ClientProp).SingleOrDefault(ech => ech.LivreEchange.Id == idLivre &&
+            EchangeLivre echLivre =  dataContext.EchangeLivres.Include(ech => ech.LivreEchange).Include(ech => ech.LivreEchange.Client).Include(ech => ech.ClientProp).AsNoTracking().SingleOrDefault(ech => ech.LivreEchange.Id == idLivre &&
                                                                                                                     (ech.ClientProp.Id == idClient || ech.LivreEchange.Client.Id == idClient));
 
             return echLivre;
@@ -107,11 +107,11 @@ namespace TrocCommunity.DataAccess.SQL.DAO
         public void CancelOperation(int idEch)
         {
             // Le Client reprends ses points tout de même
-            EchangeLivre echLivre = dataContext.EchangeLivres.Include(ech => ech.ClientProp).Include(ech => ech.LivreEchange).SingleOrDefault(ech => ech.Id == idEch);
+            EchangeLivre echLivre = dataContext.EchangeLivres.Include(ech => ech.ClientProp).Include(ech => ech.LivreEchange).AsNoTracking().SingleOrDefault(ech => ech.Id == idEch);
             echLivre.ClientProp.SoldeCompte += echLivre.LivreEchange.PointDuLivre;
             dataContext.Entry(echLivre.ClientProp).State = EntityState.Modified;
 
-
+            
             // Suppression de ech
             Delete(idEch);
 
