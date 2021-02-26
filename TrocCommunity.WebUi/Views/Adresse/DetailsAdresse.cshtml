@@ -4,61 +4,54 @@
     ViewBag.Title = "DetailsAdresse";
 }
 
-<h2>DetailsAdresse</h2>
+<h2>Détails de l'adresse</h2>
 
-
-
-<div>
-    <hr />
-    <dl class="dl-horizontal">
-
-        <dt>
+<div class="contain">
+    <div class="row">
+        <div class="col-md-6">
             @Html.DisplayNameFor(model => model.FullName)
-        </dt>
-
-        <dd>
+        </div>
+        <div class="col-md-6">
             @Html.DisplayFor(model => model.FullName)
-            
-        </dd>
+        </div>
 
-        <dt>
+        <div class="col-md-6">
             @Html.DisplayNameFor(model => model.NumVoie)
-        </dt>
-
-        <dd>
+        </div>
+        <div class="col-md-6">
             @Html.DisplayFor(model => model.NumVoie)
-        </dd>
-        <dt>
+        </div>
+
+        <div class="col-md-6">
             @Html.DisplayNameFor(model => model.NomDeVoie)
-        </dt>
-
-        <dd>
+        </div>
+        <div class="col-md-6">
             @Html.DisplayFor(model => model.NomDeVoie)
-        </dd>
-        <dt>
+        </div>
+
+        <div class="col-md-6">
             @Html.DisplayNameFor(model => model.CodePostale)
-        </dt>
-
-        <dd>
+        </div>
+        <div class="col-md-6">
             @Html.DisplayFor(model => model.CodePostale)
-        </dd>
-        <dt>
+        </div>
+
+        <div class="col-md-6">
             @Html.DisplayNameFor(model => model.Ville)
-        </dt>
-
-        <dd>
+        </div>
+        <div class="col-md-6">
             @Html.DisplayFor(model => model.Ville)
-        </dd>
-        <dt>
+        </div>
+
+        <div class="col-md-6">
             @Html.DisplayNameFor(model => model.Pays)
-        </dt>
-
-        <dd>
+        </div>
+        <div class="col-md-6">
             @Html.DisplayFor(model => model.Pays)
-        </dd>
-
-    </dl>
+        </div>
+    </div>
 </div>
+
 <p>
     @Html.ActionLink("Edit", "EditAdresse", new { id = Model.Id }) |
     @Html.ActionLink("Retour vers Compte Utilisateur", "Index", "Account")

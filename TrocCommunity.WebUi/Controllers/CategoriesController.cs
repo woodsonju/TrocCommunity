@@ -27,7 +27,7 @@ namespace TrocCommunity.WebUi.Controllers
         IRepository<Categorie> contextCategorie;
         IRepository<Livre> contextLivre;
         IRepository<WishList> contextWishList;
-        private LivreService serviceBook;
+        private BookService serviceBook;
         private IEchangeLivre echangeService;
 
 
@@ -37,7 +37,7 @@ namespace TrocCommunity.WebUi.Controllers
             this.contextCategorie = new SQLRepository<Categorie>(new MyContext());
             this.contextLivre = new SQLRepositoryLivre(new MyContext());
             this.contextWishList = new SQLRepositoryWishList(new MyContext());
-            serviceBook = new LivreService(contextLivre);
+            serviceBook = new BookService(contextLivre);
 
             SQLRepositoryLivreEchange ech = new SQLRepositoryLivreEchange(new MyContext());
             echangeService = new EchangeLivreService(ech);
@@ -49,7 +49,7 @@ namespace TrocCommunity.WebUi.Controllers
             this.contextCategorie = contextCategorie;
             this.contextLivre = contextLivre;
             this.contextWishList = contextWishList;
-            serviceBook = new LivreService(contextLivre);
+            serviceBook = new BookService(contextLivre);
 
         }
 
@@ -88,7 +88,7 @@ namespace TrocCommunity.WebUi.Controllers
             CategorieLivre viewModel = new CategorieLivre();
             viewModel.Categories = contextCategorie.Collection().ToList();
 
-            ViewBag.TotalPages = (int)Math.Ceiling((decimal)((SQLRepositoryLivre)contextLivre).SearchCount(search) / pageSize);
+            ViewBag.TotalPages = (int)Math.Ceiling((decimal)serviceBook.SearchCount(search) / pageSize);
 
             //var list = contextLivre.Collection().ToList();
 
@@ -247,6 +247,12 @@ namespace TrocCommunity.WebUi.Controllers
             
 
             return View(viewModelWL);
+        }
+
+        public ActionResult ListBookUser(int id)
+        {
+            IEnumerable<Livre> listBooks = ((SQLRepositoryLivre)contextLivre).BookByClient(id);
+            return View(listBooks);
         }
 
         

@@ -28,7 +28,7 @@ else
 
             <ul class="dropdown">
                 <li>@Html.ActionLink("Mon compte", "Index", "Account")</li>
-                <li>@Html.ActionLink("Tableau de bord", "Index", "TableauDeBord")</li>
+                <li>@Html.ActionLink("WishList", "Index", "WishList")</li>
                 <li>@Html.ActionLink("Ajouter des nouveaux livres", "AddBook", "Books")</li>
                 <li>@Html.ActionLink("Echange en Cours", "ShowEchange", "EchangeLivre", new { etat = EtatEchange.Propose }, null)</li>
                 <li>@Html.ActionLink("Historique Echange", "ShowEchange", "EchangeLivre", new { etat = EtatEchange.Accepte }, null)</li>

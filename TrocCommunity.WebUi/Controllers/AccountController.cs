@@ -16,6 +16,7 @@ using TrocCommunity.DataAccess.SQL;
 using TrocCommunity.DataAccess.SQL.DAO;
 using TrocCommunity.WebUi.Interceptors;
 using TrocCommunity.WebUi.Service;
+using TrocCommunity.WebUi.ExceptionTC;
 
 namespace TrocCommunity.WebUi.Controllers
 {
@@ -78,10 +79,23 @@ namespace TrocCommunity.WebUi.Controllers
                 //Lors de la création d'un utilisateur je crée un adresse par défaut
                 /*            utilisateur.Adresse = new Adresse {
                               TypeDeVoie="", NomDeVoie="", NumVoie=0, CodePostale="00000", Ville="", Pays="" };*/
+                try
+                {
+                    serviceUser.Insert(utilisateur); //Ajoute dans la liste d'utilisateur en mémoire (la liste locale)
+                }
+                catch (UserNameIsException ex)
+                {
+                    ViewBag.ExceptionUserName = ex.Message;
+                    return View();
+                }
+                catch (EmailIsException ee)
+                {
+                    ViewBag.ExceptionMail = ee.Message;
+                    return View();
+                }
+                
 
-                serviceUser.Insert(utilisateur); //Ajoute dans la liste d'utilisateur en mémoire (la liste locale)
                 serviceUser.SaveChanges();  //Ensuite Actualise dans la base de données (la liste distante: remote)
-
                 ViewData["UserName"] = utilisateur.UserName;
                 
                 return RedirectToAction("Index", "Home");
@@ -93,7 +107,6 @@ namespace TrocCommunity.WebUi.Controllers
 
         public ActionResult Login()
         {
-
             return View();
         }
 
@@ -322,7 +335,6 @@ namespace TrocCommunity.WebUi.Controllers
                 return HttpNotFound();
             }
 
-            
             return View(utilisateur);
         }
 
@@ -333,7 +345,6 @@ namespace TrocCommunity.WebUi.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Client client, int id, HttpPostedFileBase image)
         {
-        
 
             if (!ModelState.IsValid)
             {
@@ -359,9 +370,7 @@ namespace TrocCommunity.WebUi.Controllers
                 TempData.Keep();
                 serviceUser.Update(client);
                 serviceUser.SaveChanges();
-                //img : photo
               
-
                 return RedirectToAction("Index");
             }
 

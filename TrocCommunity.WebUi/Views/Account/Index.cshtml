@@ -28,11 +28,11 @@
             @*@Html.ActionLink("Adresse", "DetailsAdresse", new { id = @TempData["ID"] })*@
 
             @*@if (Model.Adresse.FullName == "")
-        {
-            @Html.ActionLink("Adresse", "EditAdresse", "Adresse", new { id = @TempData["ID"] }, null)
-        }
-        else
-        {*@
+                {
+                    @Html.ActionLink("Adresse", "EditAdresse", "Adresse", new { id = @TempData["ID"] }, null)
+                }
+                else
+                {*@
 
             @Html.ActionLink("Adresse", "DetailsAdresse", "Adresse", new { id = @TempData["ID"] }, null)
             @* } *@
@@ -64,5 +64,14 @@
         </div>
     </div>
 
-</div>
+    <div class="row">
+        <div class="col-sm-5 col-xs-12 edit-profile">
+            <a href="@Url.Action("ListBookUser", "Categories")/@Session["idCurrentClient"]">
+                Mes livres
+            </a>
+            <p>Consulter la liste de mes livres</p>
+        </div>
+        </div>
+
+    </div>
 

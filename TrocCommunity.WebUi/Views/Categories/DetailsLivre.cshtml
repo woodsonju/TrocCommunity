@@ -15,7 +15,7 @@
         <div class="row" id="row-details-livre">
             <div class="col-md-4" id="detail-livre-left-side">
                 <div id="div-img">
-                    <img src="~/Content/TEMPLATE/images/Livres/@Html.DisplayFor(model => model.book.Image)" alt="Découverte" class="img-fluid justify-content-center" />
+                    <img src=@Url.Content(Model.book.Image) alt="Découverte" class="img-fluid justify-content-center" />
                 </div>
                 <div id="bouton-wishlist">
                     @foreach (var item in Model.wishList)
@@ -34,14 +34,14 @@
                     @if ((bool)Session["estPresent"] == false)
                     {
                         <a id="btn_add" href='@Url.Action("Index", "WishList")' class="btn btn-warning btn-lg">
-                            <i class="fas fa-exclamation-triangle"></i> Ce livre est déjà dans la wishList
-                        </a>
+                            <i class="fas fa-exclamation-triangle"></i> <span class="list-books">Ce livre est déjà dans la wishList</span>
+</a>
                     }
                     else
                     {
                         <a id="btn_add" href="@Url.Action("Create", "WishList")/Session[" idCurrentClient"]" class="btn btn-info btn-lg">
-                            <span class="icon-heart-o"></span> Ajouter à la WishList
-                        </a>
+                            <span class="icon-heart-o"></span> <span class="list-books">Ajouter à la WishList</span>
+</a>
                     }
 
 
@@ -55,7 +55,12 @@
                 <!-- Button trigger modal -->
                 <div id="bouton-wishlist">
                     <a href="@Url.Action("Index", "EmailSetup", new { id = Model.book.Id })" type="button" class="btn btn-info btn-lg mt-3" data-toggle="modal" data-target="#exampleModal">
-                        <i class="far fa-envelope"></i>&nbsp; Envoyer un mail au propriétaire
+                        <i class="far fa-envelope"></i><span class="list-books">Envoyer un mail au propriétaire</span>
+</a>
+                </div>
+                <div id="bouton-wishlist">
+                    <a id="btn_add" href="@Url.Action("ListBookUser", "Categories")/@Html.DisplayFor(model => model.book.ClientId)" class="btn btn-info btn-lg mt-3">
+                        <i class="fas fa-list"></i><span class="list-books">liste des livres du propriétaire</span>
                     </a>
                 </div>
 
@@ -82,31 +87,31 @@
 
 
             </div>
-                <div class="col-md-8">
-                    <p>@Html.DisplayFor(model => model.book.Author)</p>
-                    <p>@Html.DisplayFor(model => model.book.Title)</p>
-                    <p>Edition</p>
-                    <p>Description</p>
+            <div class="col-md-8">
+                <p>Auteur : @Html.DisplayFor(model => model.book.Author)</p>
+                <p>Titre : @Html.DisplayFor(model => model.book.Title)</p>
+                <p>Année d'édition : @Html.DisplayFor(model => model.book.Editor)</p>
+                <p>Description : @Html.DisplayFor(model => model.book.Description)</p>
 
 
-                    <!-- Modal -->
-                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Formulaire de Contact</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Formulaire de Contact</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
 
-                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
     </div>
 </div>
 

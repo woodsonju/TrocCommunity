@@ -39,6 +39,11 @@ namespace TrocCommunity.WebUi.Tests.Mocks
             }
         }
 
+        public void Detach(T t)
+        {
+            throw new NotImplementedException();
+        }
+
         public T FindById(int id)
         {
             T t = items.Find(item => item.Id == id);

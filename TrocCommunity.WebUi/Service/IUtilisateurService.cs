@@ -1,4 +1,5 @@
-﻿using TrocCommunity.Core.Models;
+﻿using System.Collections.Generic;
+using TrocCommunity.Core.Models;
 
 namespace TrocCommunity.WebUi.Service
 {
@@ -13,5 +14,9 @@ namespace TrocCommunity.WebUi.Service
         Utilisateur FindByEmail(string email);
 
         Utilisateur FindById(int id);
+
+        List<Utilisateur> FindUtilisateurs();
+
+
     }
 }

@@ -46,7 +46,7 @@ namespace TrocCommunity.DataAccess.SQL.DAO
         {
 
             return dataContext.Livres.AsNoTracking().Where(l => l.Disponible == true).Where(p => search == null
-            || p.Author.Contains(search)).Count();
+            || p.Title.Contains(search)).Count();
 
         }
 
@@ -73,7 +73,7 @@ namespace TrocCommunity.DataAccess.SQL.DAO
 
             if (cat == null)
             {
-                result = dataContext.Livres.Where(l => l.Disponible == true).OrderBy(x => x.Id).Skip((page - 1) * pageSize).Take(pageSize);
+                result = dataContext.Livres.Include(bookClient => bookClient.Client).Include(bookClient => bookClient.Client.Adresse).Where(l => l.Disponible == true).OrderBy(x => x.Id).Skip((page - 1) * pageSize).Take(pageSize);
             }
             else
             {
@@ -87,7 +87,7 @@ namespace TrocCommunity.DataAccess.SQL.DAO
 
         public IEnumerable<Livre> LivreParCategorie(string cat)
         {
-            IQueryable<Livre> result = dataContext.Livres.Where(l => l.Disponible == true).Where(x => x.Categorie.NomCategorie.Substring(0, 3) == cat);
+            IEnumerable<Livre> result = dataContext.Livres.Where(l => l.Disponible == true).Where(x => x.Categorie.NomCategorie.Substring(0, 3) == cat);
             return result;
 
         }
@@ -116,7 +116,13 @@ namespace TrocCommunity.DataAccess.SQL.DAO
 
         public IEnumerable<Livre> TroisDerniersLivresAjoutes()
         {
-            IEnumerable<Livre> result = dataContext.Livres.Where(l => l.Disponible == true).OrderByDescending(x => x.Id).Take(3);
+            IEnumerable<Livre> result = dataContext.Livres.Include(bookClient => bookClient.Client).Include(bookClient => bookClient.Client.Adresse).OrderByDescending(x => x.Id).Take(3);
+            return result;
+        }
+
+        public IEnumerable<Livre> BookByClient(int id)
+        {
+            IEnumerable<Livre> result = dataContext.Livres.Include(bookClient => bookClient.Client).Where(l => l.Disponible == true).Where(bookClient => bookClient.Client.Id == id);
             return result;
         }
 
@@ -186,13 +192,12 @@ namespace TrocCommunity.DataAccess.SQL.DAO
 
             // Author and Title
 
-            livre = livre.Where(book => book.Title.Contains(Titre)
-                                   || book.Author.Contains(Auteur));
+            livre = livre.Where(book =>(book.Title != null && book.Title.Contains(Titre))
+                                   || (book.Author != null && book.Author.Contains(Auteur)));
 
 
             return livre;
         }
-
 
 
     }

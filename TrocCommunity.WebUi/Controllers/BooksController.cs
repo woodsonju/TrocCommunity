@@ -11,10 +11,13 @@ using TrocCommunity.Core.ViewModels;
 using TrocCommunity.DataAccess.SQL;
 using TrocCommunity.DataAccess.SQL.DAO;
 using TrocCommunity.WebUi.ApiClient;
+using TrocCommunity.WebUi.ExceptionTC;
+using TrocCommunity.WebUi.Interceptors;
 using TrocCommunity.WebUi.Service;
 
 namespace TrocCommunity.WebUi.Controllers
 {
+    [LoginFilter]
     public class BooksController : Controller
     {
         private GoogleBookApiFunctions api = new GoogleBookApiFunctions();
@@ -82,19 +85,6 @@ namespace TrocCommunity.WebUi.Controllers
                 return View();
             
 
-/*            string author = service.GetEdithor(isbnString);
-            string editionDate = service.GetDateEdition(isbnString);
-            string langauge = service.GetLanguage(isbnString);
-            int volume = service.GetVolume(isbnString);
-            List<string> categories = service.GetCategories(isbnString);
-            string dimension = service.GetDimension(isbnString);
-            string description = service.GetDescription(isbnString);
-            double criticalBook = service.GetAverageRatingCritical(isbnString);
-            */
-
-            
-            //Calcul du nombre de points
-
 
         }
 
@@ -105,19 +95,29 @@ namespace TrocCommunity.WebUi.Controllers
             if (ModelState.IsValid)
             {
                 string isbnString = livre.ISBN.ToString();
-                string title = await service.GetTitle(isbnString);
-                double price = await service.GetPrice(isbnString);
-                double nbrePoints = service.GetPoints(price, EtatDuLivre.COMMENEUF);
-                double avancePoints = service.GetPoints(price, EtatDuLivre.COMMENEUF, livre.IsExchange);
-                string editionDate = await service.GetDateEdition(isbnString);
 
-                string image = await service.GetImage(isbnString);
-
-
+                string title = "", editionDate ="", image = "", description = "";
+                double price = 0.0, nbrePoints = 0.0, avancePoints = 0.0;
+                try
+                {
+                    title = await service.GetTitle(isbnString);
+                    price = await service.GetPrice(isbnString);
+                    nbrePoints = service.GetPoints(price, EtatDuLivre.COMMENEUF);
+                    avancePoints = service.GetPoints(price, EtatDuLivre.COMMENEUF, livre.IsExchange);
+                    editionDate = await service.GetDateEdition(isbnString);
+                    image = await service.GetImage(isbnString);
+                    description = await service.GetDescription(isbnString);
+                }
+                catch (BookNotFoundException bookException)
+                {
+                    ViewBag.ExceptionBook = bookException.Message;
+                    return PartialView();
+                }
 
                 livre.ISBN = Convert.ToInt64(isbnString);
                 livre.Title = title;
                 livre.Image = image;
+                livre.Description = description;
                 livre.Price = price;
                 livre.PointDuLivre = nbrePoints;
                 livre.AvancePoints = avancePoints;

@@ -265,6 +265,8 @@
     <Compile Include="Controllers\MyAccountController.cs" />
     <Compile Include="Controllers\UtilisateursController.cs" />
     <Compile Include="Controllers\WishListController.cs" />
+    <Compile Include="ExceptionTC\BookNotFoundException.cs" />
+    <Compile Include="ExceptionTC\UserNameIsException.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -275,6 +277,7 @@
     <Compile Include="Service\IEchangeLivre.cs" />
     <Compile Include="Service\ILivre.cs" />
     <Compile Include="Service\LivreService.cs" />
+    <Compile Include="ExceptionTC\EmailIsException.cs" />
     <Compile Include="Service\BookService.cs" />
     <Compile Include="Service\CategorieService.cs" />
     <Compile Include="Service\IBookService.cs" />
@@ -491,6 +494,7 @@
     <Content Include="Content\TEMPLATE\images\hero_1.png" />
     <Content Include="Content\TEMPLATE\images\hero_2.jpg" />
     <Content Include="Content\TEMPLATE\images\livre2.jpg" />
+    <Content Include="Content\TEMPLATE\images\Livres\default-book.jpg" />
     <Content Include="Content\TEMPLATE\images\Livres\imageParDefaut.jpg" />
     <Content Include="Content\TEMPLATE\images\macbook-pro-1050973_1920.jpg" />
     <Content Include="Content\TEMPLATE\images\Livres\manuscrit.jpg" />
@@ -767,6 +771,7 @@
     <Content Include="Views\Books\AddBook.cshtml" />
     <Content Include="Views\Books\_BookInfos.cshtml" />
     <Content Include="Views\EchangeLivre\Index.cshtml" />
+    <Content Include="Views\Categories\ListBookUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

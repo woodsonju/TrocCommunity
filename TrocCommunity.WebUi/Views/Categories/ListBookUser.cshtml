@@ -1,4 +1,4 @@
-﻿@model IEnumerable<TrocCommunity.Core.Models.WishList>
+﻿@model IEnumerable<TrocCommunity.Core.Models.Livre>
 
 @{
     ViewBag.Title = "Index";
@@ -23,22 +23,26 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    <img src="@Url.Content(item.Image)" alt="image"  />
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Title)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Author)
-                </td>
-                <td>
-                    <a id="btn_add" href='@Url.Action("Delete", "WishList")/@item.Id' class="btn btn-danger btn-lg">
-                        <i class="fas fa-trash-alt"></i>&nbsp; <span>SUPPRIMER</span>
+        <tr>
+            <td>
+                <img src="@Url.Content(item.Image)" alt="image" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Author)
+            </td>
+            <td>
+                @if ((int)Session["idCurrentClient"] != item.ClientId)
+                {
+                    <a id="btn_add" href='@Url.Action("DetailsLivre", "Categories")/@item.Id' class="btn btn-danger btn-lg">
+                        <span>Voire détails</span>
                     </a>
-                </td>
-            </tr>
+                }
+
+            </td>
+        </tr>
         }
     </tbody>
 </table>
