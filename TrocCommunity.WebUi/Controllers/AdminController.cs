@@ -73,6 +73,7 @@ namespace TrocCommunity.WebUi.Controllers
             {
                 Utilisateur user = contextUser.FindById(id);
                 user.TypeUtilisateur = updateDB.typeUtilisateur ;
+
                 contextUser.Update(user);
                 contextUser.SaveChanges();
                 return RedirectToAction("Index");

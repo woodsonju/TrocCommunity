@@ -13,27 +13,27 @@ namespace TrocCommunity.WebUi.ApiClient
     public class GooglePlaceApifunctions
     {
 
-        public async static Task<String> EssaiBookAPI(string isbn)
-        {
-            using (var client = new HttpClient())
-            {
+        //public async static Task<String> EssaiBookAPI(string isbn)
+        //{
+        //    using (var client = new HttpClient())
+        //    {
 
-                string response = await client.GetStringAsync(String.Format("https://www.googleapis.com/books/v1/volumes?q=isbn:"+isbn+"&key=" + ConfigurationManager.AppSettings["GooglePlaceAPIKey"]));
-             }
-            /* La clé se trouve dans le fichier Web.Config, pour l'utiliser : ConfigurationManager.AppSettings["GooglePlaceAPIKey"] (retourne la clé en string)
+        //        string response = await client.GetStringAsync(String.Format("https://www.googleapis.com/books/v1/volumes?q=isbn:"+isbn+"&key=" + ConfigurationManager.AppSettings["GooglePlaceAPIKey"]));
+        //     }
+        //    /* La clé se trouve dans le fichier Web.Config, pour l'utiliser : ConfigurationManager.AppSettings["GooglePlaceAPIKey"] (retourne la clé en string)
             
-            Pour utiliser la fonction EssaiBookAPI : 
-             await GooglePlaceApifunctions.EssaiBookAPI(ConfigurationManager.AppSettings["GooglePlaceAPIKey"]);
+        //    Pour utiliser la fonction EssaiBookAPI : 
+        //     await GooglePlaceApifunctions.EssaiBookAPI(ConfigurationManager.AppSettings["GooglePlaceAPIKey"]);
 
-            Pour utiliser une API:
-            - faire un compte google API
-            - ajouter dans bibliothèque les API voulu
-            - généré ue clé API 
-            - voir la doc de l'API pour voir comment l'utiliser
+        //    Pour utiliser une API:
+        //    - faire un compte google API
+        //    - ajouter dans bibliothèque les API voulu
+        //    - généré ue clé API 
+        //    - voir la doc de l'API pour voir comment l'utiliser
 
-            */
-            return "aa";
-        }
+        //    */
+        //    return "aa";
+        //}
 
 
         public async static Task<List<String>> AutoCompleteSearch( string search)
@@ -84,11 +84,33 @@ namespace TrocCommunity.WebUi.ApiClient
 
                 JObject objectContainer3 = JObject.Parse(response3);
 
-                var requestPoste = from posteCode in objectContainer3["result"]["address_components"] where posteCode["types"].ToList().Contains("postal_code") select posteCode["long_name"];
-                string poste = requestPoste.SingleOrDefault().ToString();
+                string poste;
+                try
+                {
+                    var requestPoste = from posteCode in objectContainer3["result"]["address_components"] where posteCode["types"].ToList().Contains("postal_code") select posteCode["long_name"];
+                    poste = requestPoste.SingleOrDefault().ToString();
+                }
+                catch (Exception)
+                {
 
-                var requestNum = from posteCode in objectContainer3["result"]["address_components"] where posteCode["types"].ToList().Contains("street_number") select posteCode["long_name"];
-                int num = Convert.ToInt32(requestNum.First().ToString());
+                    poste = "";
+                }
+               
+
+
+
+                int num;
+                try
+                {
+                    var requestNum = from posteCode in objectContainer3["result"]["address_components"] where posteCode["types"].ToList().Contains("street_number") select posteCode["long_name"];
+                    num = Convert.ToInt32(requestNum.First().ToString());
+                }
+                catch (Exception)
+                {
+
+                    num = 0;
+                }
+                
 
                 var requestCity = from posteCode in objectContainer3["result"]["address_components"] where posteCode["types"].ToList().Contains("locality") select posteCode["long_name"];
                 string city = requestCity.First().ToString();

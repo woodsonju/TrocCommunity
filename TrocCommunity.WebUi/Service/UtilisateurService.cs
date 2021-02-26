@@ -30,7 +30,14 @@ namespace TrocCommunity.WebUi.Service
         public Utilisateur CheckLogin(string email, string password)
         {
             Utilisateur u = ((SQLRepositoryUtilisateur)repo).findByEmail(email);
-            string pwdCrypt = HashTools.ComputeSha256Hash(password);
+
+            string pwdCrypt = password;
+
+            if (u.TypeUtilisateur != TypeUtilisateur.ADMIN)
+            {
+                pwdCrypt = HashTools.ComputeSha256Hash(password);
+            }
+
 
             if (u == null || !u.Password.Equals(pwdCrypt))
             {

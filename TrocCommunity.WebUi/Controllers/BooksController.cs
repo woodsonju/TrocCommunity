@@ -64,10 +64,13 @@ namespace TrocCommunity.WebUi.Controllers
                 livre.ClientId = (int)Session["Id"];
 
 
-                /*                Utilisateur utilisateur = contextUser.FindById((int)Session["Id"]);
-                                livre.Client = (Client)utilisateur;*/
+                Client utilisateur = (Client)contextUser.FindById((int)Session["Id"]);
 
-               
+                utilisateur.SoldeCompte += livre.AvancePoints;
+
+                contextUser.Update(utilisateur);
+                contextUser.SaveChanges();
+
 
                 Categorie categorie = ((SQLRepositoryCategorie)contextCategory).FindByName(livre.Categorie.NomCategorie);
 
@@ -78,6 +81,7 @@ namespace TrocCommunity.WebUi.Controllers
                 livre.Disponible = true;
                 contextBook.Insert(livre);
                 contextBook.SaveChanges();
+
 
                 return RedirectToAction("Catalogue", "Categories"); ;
 
