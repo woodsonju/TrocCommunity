@@ -1,33 +1,41 @@
-﻿
+﻿@using TrocCommunity.Core.Models
+
 @if (Session["Connexion"] == null)
-    {
-        <li>@Html.ActionLink("Créer un compte", "Register", "Account")</li>
-        <li>@Html.ActionLink("Connexion", "Login", "Account")</li>
-    }
-    else
-    {
+{
+    <li>@Html.ActionLink("Créer un compte", "Register", "Account")</li>
+    <li>@Html.ActionLink("Connexion", "Login", "Account")</li>
+}
+else
+{
     if ((int)Session["TypeUtilisateur"] == 0)
     {
 
-    <li class="has-children active list-navbar">
-        @Html.ActionLink("Admin " + Session["Connexion"], "Index", "Home")
-        <ul class="dropdown">
-            <li>@Html.ActionLink("Mon Compte", "LogOut", "Account")</li>
-            <li>@Html.ActionLink("Gestion des utilisateurs", "Index", "Admin")</li>
-            <li>@Html.ActionLink("Déconnexion", "LogOut", "Account")</li>
-        </ul>
-    </li>
+        <li class="has-children active list-navbar">
+            @Html.ActionLink("Admin " + Session["Connexion"], "Index", "Home")
+            <ul class="dropdown">
+                <li>@Html.ActionLink("Mon Compte", "LogOut", "Account")</li>
+                <li>@Html.ActionLink("Gestion des utilisateurs", "Index", "Admin")</li>
+                <li>@Html.ActionLink("Déconnexion", "LogOut", "Account")</li>
+            </ul>
+        </li>
     }
     else
     {
+        @Html.Action("SoldeUpdate", "Home")
         <li class="has-children active">
+
             @Html.ActionLink((String)Session["Connexion"], "Index", "Home")
+
             <ul class="dropdown">
                 <li>@Html.ActionLink("Mon compte", "Index", "Account")</li>
                 <li>@Html.ActionLink("Tableau de bord", "Index", "TableauDeBord")</li>
                 <li>@Html.ActionLink("Ajouter des nouveaux livres", "AddBook", "Books")</li>
+                <li>@Html.ActionLink("Echange en Cours", "ShowEchange", "EchangeLivre", new { etat = EtatEchange.Propose }, null)</li>
+                <li>@Html.ActionLink("Historique Echange", "ShowEchange", "EchangeLivre", new { etat = EtatEchange.Accepte }, null)</li>
                 <li>@Html.ActionLink("Déconnexion", "Logout", "Account")</li>
             </ul>
+
         </li>
+        <li> <a>@Convert.ToString(Session["Solde"]) points</a></li>
     }
-    }
+}

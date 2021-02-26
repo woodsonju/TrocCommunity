@@ -38,7 +38,7 @@ namespace TrocCommunity.WebUi.Service
 
         public List<Livre> NbPaginationSearch(int page, int pageSize, string search)
         {
-            return ((SQLRepositoryLivre)repo).NbPagination(page, pageSize, search);
+            return ((SQLRepositoryLivre)repo).NbPaginationSearch(page, pageSize, search);
         }
 
         public IEnumerable<Livre> Search(string search)

@@ -113,17 +113,22 @@ namespace TrocCommunity.WebUi.Controllers
                     ViewBag.ErrorLog = "L'adresse renseignée n'existe pas ou le mdp est faux";
                 }
                 
-                    else
-                    {
-                        // Connexion Réussite
-                        Session["Connexion"] = utilisateur.UserName;
-                        Session["TypeUtilisateur"] = utilisateur.TypeUtilisateur;
-                        Session["Photo"] = utilisateur.Photo;
-                        Session["Email"] = utilisateur.Email;
-                        Session["idCurrentClient"] = utilisateur.Id;
-                        int CurrentIdClient = (int)Session["idCurrentClient"];
-                        Session["count"] = (((SQLRepositoryWishList)contextWishList).listWLbyIdClient(CurrentIdClient)).Count();
+                else
+                {
+                    // Connexion Réussite
+                    Session["Connexion"] = utilisateur.UserName;
+                    Session["TypeUtilisateur"] = utilisateur.TypeUtilisateur;
+                    Session["Photo"] = utilisateur.Photo;
+                    Session["Email"] = utilisateur.Email;
+                    Session["idCurrentClient"] = utilisateur.Id;
+                        
+                    int CurrentIdClient = (int)Session["idCurrentClient"];
+                    Session["count"] = (((SQLRepositoryWishList)contextWishList).listWLbyIdClient(CurrentIdClient)).Count();
                     
+                    if(utilisateur.TypeUtilisateur == TypeUtilisateur.CLIENT)
+                    {
+                        Session["Solde"] = ((Client)utilisateur).SoldeCompte;
+                    }
                    
                     Session["Id"] = utilisateur.Id;
 

@@ -7,11 +7,11 @@ namespace TrocCommunity.DataAccess.SQL.Migrations
     {
         public override void Up()
         {
-            AddColumn("dbo.WishLists", "Title", c => c.String());
-            AddColumn("dbo.WishLists", "Author", c => c.String());
-            AddColumn("dbo.WishLists", "Image", c => c.String());
-            AddColumn("dbo.WishLists", "ClientOwner", c => c.Int(nullable: false));
-            AddColumn("dbo.WishLists", "IdBook", c => c.Int(nullable: false));
+            //AddColumn("dbo.WishLists", "Title", c => c.String());
+            //AddColumn("dbo.WishLists", "Author", c => c.String());
+            //AddColumn("dbo.WishLists", "Image", c => c.String());
+            //AddColumn("dbo.WishLists", "ClientOwner", c => c.Int(nullable: false));
+            //AddColumn("dbo.WishLists", "IdBook", c => c.Int(nullable: false));
         }
         
         public override void Down()

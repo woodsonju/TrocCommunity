@@ -22,16 +22,22 @@ namespace TrocCommunity.DataAccess.SQL.DAO
         {
 
         }
+
+        public Livre finByIdWClient(int id)
+        {
+            return dataContext.Livres.Include(l => l.Client).SingleOrDefault(l => l.Id == id);
+        }
+
         public int Count(string cat = null)
         {
 
             if (cat == null)
             {
-                return dataContext.Livres.AsNoTracking().Count();
+                return dataContext.Livres.AsNoTracking().Where(l=>l.Disponible == true).Count();
             }
             else
             {
-                return dataContext.Livres.AsNoTracking().Where(x => x.Categorie.NomCategorie.Substring(0, 3) == cat).Count();
+                return dataContext.Livres.AsNoTracking().Where(l => l.Disponible == true).Where(x => x.Categorie.NomCategorie.Substring(0, 3) == cat).Count();
 
             }
 
@@ -39,7 +45,7 @@ namespace TrocCommunity.DataAccess.SQL.DAO
         public int SearchCount(string search)
         {
 
-            return dataContext.Livres.AsNoTracking().Where(p => search == null
+            return dataContext.Livres.AsNoTracking().Where(l => l.Disponible == true).Where(p => search == null
             || p.Author.Contains(search)).Count();
 
         }
@@ -49,7 +55,7 @@ namespace TrocCommunity.DataAccess.SQL.DAO
             IEnumerable<Livre> book = new List<Livre>();
 
 
-            book = dataContext.Livres.AsNoTracking().Where(p => search == null
+            book = dataContext.Livres.AsNoTracking().Where(l => l.Disponible == true).Where(p => search == null
              ||p.Title.Contains(search) || p.Author.Contains(search));
 
             return book;
@@ -67,7 +73,7 @@ namespace TrocCommunity.DataAccess.SQL.DAO
 
             if (cat == null)
             {
-                result = dataContext.Livres.OrderBy(x => x.Id).Skip((page - 1) * pageSize).Take(pageSize);
+                result = dataContext.Livres.Where(l => l.Disponible == true).OrderBy(x => x.Id).Skip((page - 1) * pageSize).Take(pageSize);
             }
             else
             {
@@ -81,7 +87,7 @@ namespace TrocCommunity.DataAccess.SQL.DAO
 
         public IEnumerable<Livre> LivreParCategorie(string cat)
         {
-            IQueryable<Livre> result = dataContext.Livres.Where(x => x.Categorie.NomCategorie.Substring(0, 3) == cat);
+            IQueryable<Livre> result = dataContext.Livres.Where(l => l.Disponible == true).Where(x => x.Categorie.NomCategorie.Substring(0, 3) == cat);
             return result;
 
         }
@@ -110,7 +116,7 @@ namespace TrocCommunity.DataAccess.SQL.DAO
 
         public IEnumerable<Livre> TroisDerniersLivresAjoutes()
         {
-            IEnumerable<Livre> result = dataContext.Livres.OrderByDescending(x => x.Id).Take(3);
+            IEnumerable<Livre> result = dataContext.Livres.Where(l => l.Disponible == true).OrderByDescending(x => x.Id).Take(3);
             return result;
         }
 
@@ -145,7 +151,7 @@ namespace TrocCommunity.DataAccess.SQL.DAO
             else if ((bool)ville && !(bool)rayon)
             {
 
-                livre = livre.Where(book => book.Client.Adresse.Ville.Equals(adClient.Ville));
+                livre = livre.Where(l => l.Disponible == true).Where(book => book.Client.Adresse.Ville.Equals(adClient.Ville));
 
 
 
@@ -153,11 +159,11 @@ namespace TrocCommunity.DataAccess.SQL.DAO
             else if (!(bool)ville && (bool)rayon)
             {
 
-                livre = livre.Where(book => DistanceOrth.DistanceOrthodromique(adClient.Longitude,adClient.Latitude, book.Client.Adresse.Longitude, book.Client.Adresse.Latitude)<(int)range );
+                livre = livre.Where(l => l.Disponible == true).Where(book => DistanceOrth.DistanceOrthodromique(adClient.Longitude,adClient.Latitude, book.Client.Adresse.Longitude, book.Client.Adresse.Latitude)<(int)range );
             }
             else if ((bool)ville && (bool)rayon)
             {
-                livre = livre.Where(book => book.Client.Adresse.Ville.Equals(adClient.Ville) ||
+                livre = livre.Where(l => l.Disponible == true).Where(book => book.Client.Adresse.Ville.Equals(adClient.Ville) ||
                                              DistanceOrth.DistanceOrthodromique(adClient.Longitude, adClient.Latitude, book.Client.Adresse.Longitude, book.Client.Adresse.Latitude) < (int)range
                 );
             }
@@ -171,7 +177,7 @@ namespace TrocCommunity.DataAccess.SQL.DAO
 
             // Price
 
-            IEnumerable<Livre> livre = dataContext.Livres.Include(book => book.Client).Include(book => book.Client.Adresse).AsNoTracking().Where(book => book.PointDuLivre >= min && book.PointDuLivre <= max );
+            IEnumerable<Livre> livre = dataContext.Livres.Include(book => book.Client).Include(book => book.Client.Adresse).AsNoTracking().Where(l => l.Disponible == true).Where(book => book.PointDuLivre >= min && book.PointDuLivre <= max );
 
             // State
 

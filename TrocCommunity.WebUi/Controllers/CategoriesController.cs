@@ -28,7 +28,7 @@ namespace TrocCommunity.WebUi.Controllers
         IRepository<Livre> contextLivre;
         IRepository<WishList> contextWishList;
         private LivreService serviceBook;
-
+        private IEchangeLivre echangeService;
 
 
         public CategoriesController()
@@ -39,6 +39,8 @@ namespace TrocCommunity.WebUi.Controllers
             this.contextWishList = new SQLRepositoryWishList(new MyContext());
             serviceBook = new LivreService(contextLivre);
 
+            SQLRepositoryLivreEchange ech = new SQLRepositoryLivreEchange(new MyContext());
+            echangeService = new EchangeLivreService(ech);
         }
 
         public CategoriesController(IRepository<Utilisateur> contextUser, IRepository<Categorie> contextCategorie, IRepository<Livre> contextLivre, IRepository<WishList> contextWishList)
@@ -198,6 +200,7 @@ namespace TrocCommunity.WebUi.Controllers
             return RedirectToAction("Catalogue","Categories");
         }
 
+
         // Détails d'un livre
         [LoginFilter]
         public ActionResult DetailsLivre(int id)
@@ -213,13 +216,36 @@ namespace TrocCommunity.WebUi.Controllers
             Session["estPresent"] = estPresent;
             
             
-            int CurrentIdClient = (int)Session["idCurrentClient"];
+            int CurrentIdClient = (int)Session["Id"];
             viewModelWL.wishList = ((SQLRepositoryWishList)contextWishList).listWLbyIdClient(CurrentIdClient);
 
             if (viewModelWL == null)
             {
                 return HttpNotFound();
             }
+
+            // Verif pour savoir si le livre existe deja dans 
+
+            Livre livre = ((SQLRepositoryLivre) contextLivre).finByIdWClient(id);
+
+            if (livre.Client.Id == CurrentIdClient)
+            {
+                // Dans ce cas le livre m'appartient je ne peux pas faire d'échange dessus.
+                ViewBag.enCours = 2;
+            }
+            else
+            {
+                EchangeLivre ech = echangeService.enCoursEchange(id, CurrentIdClient);
+                int res = 0;
+
+                if (ech == null) res = 0;
+                else if (ech.ClientProp.Id == CurrentIdClient) res = 1;
+                else res = 2;
+
+                ViewBag.enCours = res;
+            }
+            
+
             return View(viewModelWL);
         }
 

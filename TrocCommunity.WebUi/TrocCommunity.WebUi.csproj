@@ -259,6 +259,7 @@
     <Compile Include="Controllers\AdresseController.cs" />
     <Compile Include="Controllers\BooksController.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
+    <Compile Include="Controllers\EchangeLivreController.cs" />
     <Compile Include="Controllers\EmailSetupController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MyAccountController.cs" />
@@ -270,6 +271,8 @@
     <Compile Include="Interceptors\LoginFilter.cs" />
     <Compile Include="Interceptors\RolesFilter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\EchangeLivreService.cs" />
+    <Compile Include="Service\IEchangeLivre.cs" />
     <Compile Include="Service\ILivre.cs" />
     <Compile Include="Service\LivreService.cs" />
     <Compile Include="Service\BookService.cs" />
@@ -763,6 +766,7 @@
     <Content Include="Views\EmailSetup\Index.cshtml" />
     <Content Include="Views\Books\AddBook.cshtml" />
     <Content Include="Views\Books\_BookInfos.cshtml" />
+    <Content Include="Views\EchangeLivre\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
