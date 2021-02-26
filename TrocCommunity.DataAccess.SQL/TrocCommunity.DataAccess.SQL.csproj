@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAO\SQLRepositoryLivreEchange.cs" />
     <Compile Include="DAO\SQLRepositoryCategorie.cs" />
     <Compile Include="DAO\QueryLivre.cs" />
     <Compile Include="DAO\SQLRepository.cs" />
@@ -182,6 +183,18 @@
     <Compile Include="Migrations\202102250908597_WishList.Designer.cs">
       <DependentUpon>202102250908597_WishList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202102250953482_addLivreEchange.cs" />
+    <Compile Include="Migrations\202102250953482_addLivreEchange.Designer.cs">
+      <DependentUpon>202102250953482_addLivreEchange.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102251322034_Historique.cs" />
+    <Compile Include="Migrations\202102251322034_Historique.Designer.cs">
+      <DependentUpon>202102251322034_Historique.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102251444121_noHistorique.cs" />
+    <Compile Include="Migrations\202102251444121_noHistorique.Designer.cs">
+      <DependentUpon>202102251444121_noHistorique.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\202102251453276_AddDescription.cs" />
     <Compile Include="Migrations\202102251453276_AddDescription.Designer.cs">
       <DependentUpon>202102251453276_AddDescription.cs</DependentUpon>
@@ -296,6 +309,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202102251453276_AddDescription.resx">
       <DependentUpon>202102251453276_AddDescription.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102250953482_addLivreEchange.resx">
+      <DependentUpon>202102250953482_addLivreEchange.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102251322034_Historique.resx">
+      <DependentUpon>202102251322034_Historique.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102251444121_noHistorique.resx">
+      <DependentUpon>202102251444121_noHistorique.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

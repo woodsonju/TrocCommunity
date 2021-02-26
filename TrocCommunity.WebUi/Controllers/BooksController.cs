@@ -75,7 +75,7 @@ namespace TrocCommunity.WebUi.Controllers
                 livre.CatgorieId = categorie.Id;
 
                 livre.Price = service.GetPoints(livre.Price, livre.EtatDuLivre, livre.IsExchange);
-
+                livre.Disponible = true;
                 contextBook.Insert(livre);
                 contextBook.SaveChanges();
 

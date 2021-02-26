@@ -310,7 +310,7 @@
 
 
 
-        if (Session["connexion"] != null)
+        if (Session["connexion"] != null )
         {
             <b>Géolocalisation</b>
             <div>
@@ -524,8 +524,8 @@
                 $("#slider-rangeTest").slider({
                     range: true,
                     min: 0,
-                    max: 1000,
-                    values: [0, 1000],
+                    max: 100,
+                    values: [0, 100],
                     slide: function (event, ui) {
                         $("#amount1").val(ui.values[0]);
                         $("#amount2").val(ui.values[1]);
