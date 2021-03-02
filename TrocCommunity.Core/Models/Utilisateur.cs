@@ -21,7 +21,8 @@ namespace TrocCommunity.Core.Models
 
         [Required]
         [MaxLength(20), MinLength(3)]
-      // [Display(Name = "Nom Utilisateur")]
+        [Display(Name = "Utilisateur")]
+        // [Display(Name = "Nom Utilisateur")]
         public string UserName { get; set; }   //Pseud
 
         /*[Required]*/

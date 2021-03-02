@@ -118,7 +118,7 @@ namespace TrocCommunity.WebUi.ApiClient
                 var requestCountry = from posteCode in objectContainer3["result"]["address_components"] where posteCode["types"].ToList().Contains("country") select posteCode["long_name"];
                 string country = requestCountry.First().ToString();
 
-                var requestRoute = from posteCode in objectContainer3["result"]["address_components"] where posteCode["types"].ToList().Contains("route") select posteCode["long_name"];
+                var requestRoute = from posteCode in objectContainer3["result"]["address_components"] where (posteCode["types"].ToList().Contains("route") || posteCode["types"].ToList().Contains("premise")) select posteCode["long_name"];
                 string route = requestRoute.First().ToString();
 
                 add = new Adresse()

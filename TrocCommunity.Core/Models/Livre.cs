@@ -7,12 +7,15 @@ namespace TrocCommunity.Core.Models
     public class Livre: BaseEntity
     {
     /*    [Required]*/
+        [Display(Name = "Titre")]
         public string Title { get; set; }
 
-    /*    [Required]*/
+        /*    [Required]*/
+        [Display(Name = "Auteur")]
         public string Author { get; set; }
 
-      /*  [Required]*/
+        /*  [Required]*/
+        [Display(Name = "Editeur")]
         public string Editor { get; set; }
 
         

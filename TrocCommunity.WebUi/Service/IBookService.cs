@@ -6,8 +6,6 @@ namespace TrocCommunity.WebUi.Service
 {
     public interface IBookService
     {
-        Task<List<string>> GetAuthors(string isbn);
-
         Task<double> GetAverageRatingCritical(string isbn);
 
         Task<List<string>> GetCategories(string isbn);
@@ -25,6 +23,8 @@ namespace TrocCommunity.WebUi.Service
         Task<string> GetLanguage(string isbn);
 
         Task<string> GetTitle(string isbn);
+
+        Task<string> GetAuthors(string isbn);
 
         Task<int> GetVolume(string isbn);
 

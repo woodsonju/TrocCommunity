@@ -76,7 +76,7 @@ namespace TrocCommunity.WebUi.Controllers
 
                 livre.Categorie = null;
                 livre.CatgorieId = categorie.Id;
-
+                
                 livre.Price = service.GetPoints(livre.Price, livre.EtatDuLivre, livre.IsExchange);
                 livre.Disponible = true;
                 contextBook.Insert(livre);
@@ -100,7 +100,7 @@ namespace TrocCommunity.WebUi.Controllers
             {
                 string isbnString = livre.ISBN.ToString();
 
-                string title = "", editionDate ="", image = "", description = "";
+                string title = "",auteur = "",editionDate ="", image = "", description = "";
                 double price = 0.0, nbrePoints = 0.0, avancePoints = 0.0;
                 try
                 {
@@ -111,13 +111,14 @@ namespace TrocCommunity.WebUi.Controllers
                     editionDate = await service.GetDateEdition(isbnString);
                     image = await service.GetImage(isbnString);
                     description = await service.GetDescription(isbnString);
+                    auteur = await service.GetAuthors(isbnString);
                 }
                 catch (BookNotFoundException bookException)
                 {
                     ViewBag.ExceptionBook = bookException.Message;
                     return PartialView();
                 }
-
+                livre.Author = auteur;
                 livre.ISBN = Convert.ToInt64(isbnString);
                 livre.Title = title;
                 livre.Image = image;

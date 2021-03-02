@@ -68,6 +68,7 @@ namespace TrocCommunity.WebUi.Controllers
         public ActionResult ShowEchange(EtatEchange etat)
         {
             int id =(int)Session["Id"];
+            ViewBag.Historique = Convert.ToBoolean(etat);
             List<EchangeLivre> listRes = serviceEchange.ShowAll(etat,id);
             return View("Index", listRes);
         }
