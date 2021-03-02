@@ -25,8 +25,10 @@ namespace TrocCommunity.Core.Models
         [ForeignKey("LivreEchangeId")]
         public Livre LivreEchange { get; set; }
 
+        [Display(Name = "Date")]
         public DateTime DateEchangeCreation { get; set; }
 
+        [Display(Name = "Date")]
         public DateTime DateEchangeEffectue { get; set; }
 
         public int? ClientPropId { get; set; }

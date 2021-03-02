@@ -33,6 +33,11 @@ namespace TrocCommunity.WebUi.Service
 
             string pwdCrypt = password;
 
+            if (u == null)
+            {
+                return null;
+            }
+
             if (u.TypeUtilisateur != TypeUtilisateur.ADMIN)
             {
                 pwdCrypt = HashTools.ComputeSha256Hash(password);

@@ -77,7 +77,7 @@ namespace TrocCommunity.DataAccess.SQL.DAO
             }
             else
             {
-                result = LivreParCategorie(cat).OrderBy(x => x.Id).Skip((page - 1) * pageSize).Take(pageSize);
+                result = LivreParCategorie(cat).Where(l => l.Disponible == true).OrderBy(x => x.Id).Skip((page - 1) * pageSize).Take(pageSize);
             }
 
 
@@ -116,7 +116,7 @@ namespace TrocCommunity.DataAccess.SQL.DAO
 
         public IEnumerable<Livre> TroisDerniersLivresAjoutes()
         {
-            IEnumerable<Livre> result = dataContext.Livres.Include(bookClient => bookClient.Client).Include(bookClient => bookClient.Client.Adresse).OrderByDescending(x => x.Id).Take(3);
+            IEnumerable<Livre> result = dataContext.Livres.Include(bookClient => bookClient.Client).Include(bookClient => bookClient.Client.Adresse).Where(l => l.Disponible == true).OrderByDescending(x => x.Id).Take(3);
             return result;
         }
 

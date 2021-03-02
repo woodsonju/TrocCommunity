@@ -3,211 +3,227 @@
 @{
     ViewBag.Title = "Index";
 }
+<br />
+<br />
+<br />
 
-<h2>Mes Propositions D'échanges</h2>
-<table id="myTable" class="display table-EchangeLivre2 no-footer">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.LivreEchange.Image)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.LivreEchange.Title)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.LivreEchange.Author)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.LivreEchange.ISBN)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ClientProp.UserName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.LivreEchange.Client.UserName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DateEchangeEffectue)
-            </th>
+@if (ViewBag.Historique)
+{
+    <h2>Livres Acquis</h2>
+    }
+    else
+    {
+    <h2>Mes Propositions D'échanges</h2>
+    }
 
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            if (item.ClientProp.Id == (int)Session["Id"])
+
+
+    <table id="myTable" class="display table-EchangeLivre2 no-footer">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.LivreEchange.Image)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LivreEchange.Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LivreEchange.Author)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LivreEchange.ISBN)
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.LivreEchange.Client.UserName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DateEchangeEffectue)
+                </th>
+
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
             {
+                if (item.ClientProp.Id == (int)Session["Id"])
+                {
 
 
-                <tr>
-                    <td>
-                        <img src="@Url.Content(item.LivreEchange.Image)" alt="image" class="img-fluid justify-content-center"/>
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.LivreEchange.Title)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.LivreEchange.Author)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.LivreEchange.ISBN)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ClientProp.UserName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.LivreEchange.Client.UserName)
-                    </td>
-
-                    @if (item.LivreEchange.Disponible)
-                    {
+                    <tr>
                         <td>
-                            @Html.DisplayFor(modelItem => item.DateEchangeCreation)
+                            <img src="@Url.Content(item.LivreEchange.Image)" alt="image" class="img-fluid justify-content-center" />
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LivreEchange.Title)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LivreEchange.Author)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LivreEchange.ISBN)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LivreEchange.Client.UserName)
                         </td>
 
-                        <td>
-                            <a id="btn_add" href='@Url.Action("CancelEchangeWEch", "EchangeLivre",new { echId = item.Id})' class="btn btn-danger btn-lg">
-                                <i class="fas fa-trash-alt"></i>&nbsp; <span>supprimer</span>
-                            </a>
-                        </td>
-                    }
-                    else
-                    {
-                        <td>
-                            @Html.DisplayFor(modelItem => item.DateEchangeEffectue)
-                        </td>
+                        @if (item.LivreEchange.Disponible)
+                        {
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DateEchangeCreation)
+                            </td>
 
-                    }
+                            <td>
+                                <a id="btn_add" href='@Url.Action("CancelEchangeWEch", "EchangeLivre",new { echId = item.Id})' class="btn btn-danger btn-lg">
+                                    <i class="fas fa-trash-alt"></i>&nbsp; <span>supprimer</span>
+                                </a>
+                            </td>
+                        }
+                        else
+                        {
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DateEchangeEffectue)
+                            </td>
+
+                        }
 
 
 
-                </tr>
+                    </tr>
+                }
             }
-        }
-    </tbody>
-</table>
+        </tbody>
+    </table>
 
-<hr />
-<h2>Les Proposition qui me sont faites</h2>
-<table id="myTable2" class="display table-EchangeLivre">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.LivreEchange.Image)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.LivreEchange.Title)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.LivreEchange.Author)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.LivreEchange.ISBN)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ClientProp.UserName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.LivreEchange.Client.UserName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DateEchangeCreation)
-            </th>
+    <hr />
+    <br />
+    <br />
+    <br />
+    @if (ViewBag.Historique)
+    {
+        <h2>Livres échangés</h2>
+    }
+    else
+    {
+        <h2>Propositions reçues</h2>
+    }
+    <br />
 
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            if (item.LivreEchange.Client.Id == (int)Session["Id"])
+    <table id="myTable2" class="display table-EchangeLivre">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.LivreEchange.Image)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LivreEchange.Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LivreEchange.Author)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LivreEchange.ISBN)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ClientProp.UserName)
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.DateEchangeCreation)
+                </th>
+
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
             {
+                if (item.LivreEchange.Client.Id == (int)Session["Id"])
+                {
 
 
-                <tr>
-                    <td>
-                        <img src="@Url.Content(item.LivreEchange.Image)" alt="image" class="img-fluid justify-content-center" />
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.LivreEchange.Title)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.LivreEchange.Author)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.LivreEchange.ISBN)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ClientProp.UserName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.LivreEchange.Client.UserName)
-                    </td>
-
-                    @if (item.LivreEchange.Disponible)
-                    {
+                    <tr>
                         <td>
-                            @Html.DisplayFor(modelItem => item.DateEchangeCreation)
-                        </td>
-
-                        <td>
-                            <a id="btn_add" href='@Url.Action("AccepterEchange", "EchangeLivre",new {echId = item.Id })' class="btn btn-success btn-lg">
-                                <i class="fas fa-vote-yea"></i>&nbsp; <span>accepter</span>
-                            </a>
+                            <img src="@Url.Content(item.LivreEchange.Image)" alt="image" class="img-fluid justify-content-center" />
                         </td>
                         <td>
-                            <a id="btn_add" href='@Url.Action("CancelEchangeWEch", "EchangeLivre",new { echId = item.Id})' class="btn btn-danger btn-lg">
-                                <i class="fas fa-trash-alt"></i>&nbsp; <span>supprimer</span>
-                            </a>
+                            @Html.DisplayFor(modelItem => item.LivreEchange.Title)
                         </td>
-                    }
-                    else
-                    {
                         <td>
-                            @Html.DisplayFor(modelItem => item.DateEchangeEffectue)
+                            @Html.DisplayFor(modelItem => item.LivreEchange.Author)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LivreEchange.ISBN)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ClientProp.UserName)
                         </td>
 
-                    }
+
+                        @if (item.LivreEchange.Disponible)
+                        {
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DateEchangeCreation)
+                            </td>
+
+                            <td>
+                                <a id="btn_add" href='@Url.Action("AccepterEchange", "EchangeLivre",new {echId = item.Id })' class="btn btn-success btn-lg">
+                                    <i class="fas fa-vote-yea"></i>&nbsp; <span>accepter</span>
+                                </a>
+                            </td>
+                            <td>
+                                <a id="btn_add" href='@Url.Action("CancelEchangeWEch", "EchangeLivre",new { echId = item.Id})' class="btn btn-danger btn-lg">
+                                    <i class="fas fa-trash-alt"></i>&nbsp; <span>supprimer</span>
+                                </a>
+                            </td>
+                        }
+                        else
+                        {
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DateEchangeEffectue)
+                            </td>
+
+                        }
 
 
-                </tr>
+                    </tr>
+                }
             }
-        }
-    </tbody>
-</table>
+        </tbody>
+    </table>
 
 
 
 
 
-<link href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css" rel="stylesheet" />
-@section scripts{
-    @* Normal *@
-    <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+    <link href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css" rel="stylesheet" />
+    @section scripts{
+        @* Normal *@
+        <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
 
 
 
 
-    <script>
-        $(document).ready(function () {
-            $('#myTable').DataTable({
-                "language": {
-                    "url": "//cdn.datatables.net/plug-ins/a5734b29083/i18n/French.json"
-                }
-            });
-        });
-
-        $(document).ready(function () {
-            $('#myTable2').DataTable({
-                "language": {
-                    "url": "//cdn.datatables.net/plug-ins/a5734b29083/i18n/French.json"
-                }
+        <script>
+            $(document).ready(function () {
+                $('#myTable').DataTable({
+                    "language": {
+                        "url": "//cdn.datatables.net/plug-ins/a5734b29083/i18n/French.json"
+                    }
+                });
             });
 
-        });
+            $(document).ready(function () {
+                $('#myTable2').DataTable({
+                    "language": {
+                        "url": "//cdn.datatables.net/plug-ins/a5734b29083/i18n/French.json"
+                    }
+                });
 
-    </script>
+            });
+
+        </script>
 
 
-}
+    }

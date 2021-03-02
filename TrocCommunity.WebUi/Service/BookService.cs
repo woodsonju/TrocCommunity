@@ -34,14 +34,26 @@ namespace TrocCommunity.WebUi.Service
         /// </summary>
         /// <param name="books"></param>
         /// <returns>Auteur(s)</returns>
-        public async Task<List<string>> GetAuthors(string isbn)
+        public async Task<string> GetAuthors(string isbn)
         {
             JObject book = await GetJObjectBook(isbn);
 
-            List<string> auteursApi = new List<string>();
-            foreach (var autheur in book.SelectTokens("items[0].volumeInfo.authors[*]"))
+            string auteursApi = "";
+
+            IEnumerable<JToken> authors = book.SelectTokens("items[0].volumeInfo.authors[*]");
+            if (authors == null)
             {
-                auteursApi.Add((string)autheur);
+                return auteursApi;
+            }
+            for (int i = 0; i<authors.Count();i++)
+            {
+                auteursApi+=(string)authors.ElementAt(i);
+
+                if (authors.Count()-1 != i)
+                {
+                    auteursApi += ", ";
+                }
+
             }
 
             return auteursApi;
